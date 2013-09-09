@@ -1,0 +1,4 @@
+[div.footer#footer
+	[div.section#copy
+		[p © 2009 &mdash; Todos los derechos reservados &mdash; Desarrollado por [[http://interlecto.net Interlecto]]. Bogotá (Colombia)]]
+	[div.section.banner{area:banner}]]
