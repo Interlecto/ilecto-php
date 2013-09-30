@@ -2,10 +2,11 @@
 ini_set('display_errors', true);
 error_reporting(E_ALL);
 
-header('Content-type: text/plain;charset=utf8');
 if(!file_exists('site_def.php')) {
-	die("Configuration file does not exist!");
+	$IL_Install_Query ='No site definition file was found';
+	return include "lib/install.php";
 }
+header('Content-type: text/plain;charset=utf8');
 require_once 'lib/db.php';
 require_once 'site_def.php';
 $db = new db(
@@ -13,6 +14,10 @@ $db = new db(
 	isset($il_data_user)?$il_data_user:'root',
 	isset($il_data_password)?$il_data_password:''
 );
+if($db->connect_errno) {
+	$IL_Install_Query ='Database could not open: error reported as '.$db->conect_error;
+	return include "lib/install.php";
+}
 $database = db_var(isset($il_data_database)?$il_data_database:'interlecto');
 $sitename = db_val(isset($il_data_database)?$il_data_database:'Interlecto');
 function il_add($a,$text) { echo trim($text).chr(10); }
