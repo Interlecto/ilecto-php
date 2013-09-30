@@ -1,0 +1,12 @@
+RewriteEngine	On
+
+RewriteRule	^/?(lib|mod|Rewrites)\b	-	[R=403,NC,L]
+RewriteCond	%{REQUEST_FILENAME}	-f
+RewriteRule	.?	-	[L]
+RewriteRule	^(.*)\b	index.php	[PT,QSA]
+
+ErrorDocument	401	/status/401
+ErrorDocument	403	/status/403
+ErrorDocument	404	/status/404
+ErrorDocument	500	/status/500
+ 
