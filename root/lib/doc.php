@@ -10,12 +10,12 @@ class Doc extends Attributer {
 		$this->protect[] = 'page';
 		$this->page = $page;
 	}
-	
+
 	function make() {
 		$this->set('type','text',SET_UNSET);
 		$this->set('content',htmlspecialchars(print_r($this,true)),SET_EMPTY);
 	}
-	
+
 	function html($version = 5) {
 		$this->make();
 		switch($t = $this->get('type')) {
@@ -29,7 +29,7 @@ class Doc extends Attributer {
 			return "<div class=\"$t\">".$this->get('content')."</div>\n";
 		}
 	}
-	
+
 	function set_content($record,$default=null,$writedown=true) {
 		if($record==0) {
 			if($writedown && !empty($default)) $this->set('content',$default);

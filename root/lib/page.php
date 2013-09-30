@@ -5,7 +5,7 @@ require_once 'lib/doc.php';
 
 class Page extends Attributer {
 	static $first;
-	
+
 	function __construct() {
 		session_start();
 		Attributer::__construct(1);
@@ -21,7 +21,7 @@ class Page extends Attributer {
 	function close() {
 		$this->db->close();
 	}
-	
+
 	function getglobals() {
 		$this->line = new Attributer();
 		foreach($GLOBALS as $gvar=>$val)
@@ -95,14 +95,14 @@ class Page extends Attributer {
 		$prefix	= $this->get('data/prefix','');
 		$this->db = new db($server,$user,$passwd,$db,$prefix);
 	}
-	
+
 	function checkstyle(&$style,&$format) {
 		if(file_exists($fn="style/$style/$format.php")) return $fn;
 		if($style=='default' && $format=='html') {
 			$this->add('log/error',"Default style with no 'html' format.",ADD_ARRAY);
 			return false;
 		}
-		
+
 		if(!is_dir($d="style/$style/")) {
 			$this->add('log/warning',"Style '$style' is not installed.",ADD_ARRAY);
 			if($style=='default') {
@@ -120,7 +120,7 @@ class Page extends Attributer {
 		$format = 'html';
 		return $this->checkstyle($style,$format);
 	}
-	
+
 	function imports() {
 		$f = $this->db->select('res_environ');
 		if(!$f) return;
@@ -133,7 +133,7 @@ class Page extends Attributer {
 			}
 		}
 	}
-	
+
 	function getengine($engine) {
 		if(!($enar = $this->db->select_first('res_engine',null,array('engine'=>"=$engine")))) {
 			$enar = array('engine'=>$engine);
@@ -172,7 +172,7 @@ class Page extends Attributer {
 		$this->from_array('engine',$enar);
 		return $enar;
 	}
-	
+
 	function go() {
 		#make content
 		$engine = $this->get('line/engine','dispatch');
@@ -181,7 +181,7 @@ class Page extends Attributer {
 		if(class_exists($class = 'doc_'.$this->get('engine/class','raw')))
 			$this->content = new $class($this);
 		else $this->content = new nulldoc($this);
-		
+
 		#wrap a style
 		$style = $this->get('style','default');
 		$format = $this->get('format','html');
