@@ -3,6 +3,9 @@ ini_set('display_errors', true);
 error_reporting(E_ALL);
 
 header('Content-type: text/plain;charset=utf8');
+if(!file_exists('site_def.php')) {
+	die("Configuration file does not exist!");
+}
 require_once 'lib/db.php';
 require_once 'site_def.php';
 $db = new db(
