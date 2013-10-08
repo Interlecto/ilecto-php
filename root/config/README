@@ -1,0 +1,18 @@
+Some configuration files should be created, including:
+
+site.php
+	with the following information:
+	
+	<?php
+	$il_site_name = '<sitename>';
+	$il_style = '<style>';
+	
+	$il_data_server	= '<database-server>';	// default is localhost
+	$il_data_database	= '<database-name>';	// default is interlecto
+	$il_data_prefix	= '<database-prefix>';	// default is interlecto
+	$il_data_user	= '<database-user>';	// default is root
+	$il_data_password	= '<database-user-password>';	// default is blank
+	?>
+	
+	Note that this file might be created by the install utility.
+
