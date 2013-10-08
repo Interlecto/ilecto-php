@@ -2,13 +2,13 @@
 ini_set('display_errors', true);
 error_reporting(E_ALL);
 
-if(!file_exists('site_def.php')) {
+if(!file_exists('config/site.php')) {
 	$IL_Install_Query ='No site definition file was found';
 	return include "lib/install.php";
 }
 header('Content-type: text/plain;charset=utf8');
 require_once 'lib/db.php';
-require_once 'site_def.php';
+require_once 'config/site.php';
 $db = new db(
 	isset($il_data_server)?$il_data_server:'localhost',
 	isset($il_data_user)?$il_data_user:'root',

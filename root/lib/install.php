@@ -24,7 +24,7 @@ if(!empty($_POST)) {
 		if(__ip('dbpass',''))
 			$s.= "\$il_data_password = '{$_POST['dbpass']}';\n";
 		$s.= "?>";
-		file_put_contents('site_def.php',$s);
+		file_put_contents('config/site.php',$s);
 		header('Location: install.php');
 		die('Go!');
 		$comment = "<pre>".htmlspecialchars($s)."</pre>\n";

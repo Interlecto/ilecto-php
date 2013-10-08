@@ -8,7 +8,7 @@ class Page extends Attributer {
 
 	function __construct() {
 		session_start();
-		Attributer::__construct(1);
+		Attributer::__construct(true);
 		if(!isset(Page::$first)) Page::$first = $this;
 		$this->protect[] = 'db';
 		$this->getglobals();
@@ -28,10 +28,10 @@ class Page extends Attributer {
 			if(substr($gvar,0,3)=='il_') {
 				$var = str_replace('_','/',substr($gvar,3));
 				$this->set($var,$val);
-				unset($gvar);
+				unset($GLOBALS[$gvar]);
 			}
 		foreach($_SERVER as $serkey=>$val) {
-			$key = preg_match('{^(HTTP|SERVER|CONTEXT|REDIRECT|REQUEST|PHP)_(.*)}',$serkey,$m)? strtolower("{$m[1]}/{$m[2]}"): strtolower("serv/$serkey");
+			$key = preg_match('{^(HTTP|SERVER|CONTEXT|REDIRECT|REQUEST|PHP)_(.*)}',$serkey,$m)? strtolower("{$m[1]}/{$m[2]}"): strtolower("enviro/$serkey");
 			$this->set($key,$val);
 		}
 		foreach($_REQUEST as $key=>$val) {
@@ -41,7 +41,7 @@ class Page extends Attributer {
 			$this->set("session/$key",$val);
 		}
 		$this->set('line/uri',$this->get('req/line',$this->get('redirect/url',$this->get('request/uri',''))));
-		$this->set('line/query',$this->get('redirect/query_string',$this->get('serv/query_string','')));
+		$this->set('line/query',$this->get('redirect/query_string',$this->get('enviro/query_string','')));
 	}
 	function get_db_params() {
 		$params = $this->db->select('gen_param',array('param','idx','value'),array('object'=>'=1'));
@@ -116,7 +116,6 @@ class Page extends Attributer {
 			$style = 'default';
 			return $fn;
 		}
-		//echo "\t$style\t$format\t<br>\n";
 		$format = 'html';
 		return $this->checkstyle($style,$format);
 	}
@@ -181,7 +180,7 @@ class Page extends Attributer {
 		if(class_exists($class = 'doc_'.$this->get('engine/class','raw')))
 			$this->content = new $class($this);
 		else $this->content = new nulldoc($this);
-
+		
 		#wrap a style
 		$style = $this->get('style','default');
 		$format = $this->get('format','html');

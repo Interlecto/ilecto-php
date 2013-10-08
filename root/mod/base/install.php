@@ -40,6 +40,17 @@ QUERY
 );
 
 db_query(<<<QUERY
+CREATE TABLE IF NOT EXISTS `base_titles` (
+	`idx` BIGINT(20),
+	`lang` CHAR(2),
+	`title` TEXT DEFAULT NULL,
+	PRIMARY KEY(`idx`,`lang`),
+	KEY `idx`(`idx`)
+);
+QUERY
+);
+
+db_query(<<<QUERY
 CREATE TABLE IF NOT EXISTS `base_status` (
 	`id` INT(3) PRIMARY KEY,
 	`text` CHAR(48),
@@ -94,5 +105,17 @@ db_insert( 'base_status',
 		array(505,'HTTP Version Not Supported'),
 	),
 	array('id','text'),true);
+
+db_insert( 'base_content',
+	array(
+		array('index','Main Page','ilm',1000,'auto'),
+	),
+	array('key','title','type','record','as'),true);
+
+db_insert( 'base_text',
+	array(
+		array(1000,'en','[p Main Page.]'),
+	),
+	array('index','lang','content'),true);
 
 ?>

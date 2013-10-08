@@ -37,25 +37,30 @@ class Doc extends Attributer {
 		}
 		$lang = $this->get('lang',il_get('lang',il_get('line/lang','en')));
 		$r = db_select_key('base_text','lang',array('idx'=>"=$record"));
+		$s = db_select_key('base_titles','lang',array('idx'=>"=$record"));
 		if(empty($r)) {
 			$c = $default;
 			$t = null;
 		} elseif(isset($r[$lang])) {
 			$c = $r[$lang]['content'];
-			$t = $r[$lang]['title'];
+			if(isset($s[$lang]))
+				$t = $s[$lang]['title'];
 		} elseif(isset($r['en'])) {
 			$lang = 'en';
 			$c = $r[$lang]['content'];
-			$t = $r[$lang]['title'];
+			if(isset($s[$lang]))
+				$t = $s[$lang]['title'];
 		} elseif(isset($r['es'])) {
 			$lang = 'es';
 			$c = $r[$lang]['content'];
-			$t = $r[$lang]['title'];
+			if(isset($s[$lang]))
+				$t = $s[$lang]['title'];
 		} else {
 			$k = array_keys($r);
 			$lang = $k[0];
 			$c = $r[$lang]['content'];
-			$t = $r[$lang]['title'];
+			if(isset($s[$lang]))
+				$t = $s[$lang]['title'];
 		}
 		if($writedown) {
 			if(!empty($c)) $this->set('content',$c);

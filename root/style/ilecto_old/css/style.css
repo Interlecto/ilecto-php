@@ -54,3 +54,5 @@ img { border: none; }
 .post { margin:1ex 0; border-bottom:solid #dc8 1px;}
 .post .footer { padding-left: 1em; background: #e8e0c0; clear:both; }
 .post .date { font-size: .9em; }
+
+pre{font-size:.9em;background:#ccc;opacity:.8;overflow:scroll;max-height:50em}

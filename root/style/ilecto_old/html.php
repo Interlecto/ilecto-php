@@ -55,7 +55,7 @@ ob_start();?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 
 require_once 'lib/html.php';
 class ilecto_html extends html {
-	public $style = 'style/ilecto_old/';
+	public $style = '/style/ilecto_old/';
 	function __construct($page) {
 		html::__construct($page);
 		il_set('site/motto','Tu interlocución y presencia en nuevos paradigmas sociales',SET_EMPTY);
@@ -64,6 +64,10 @@ class ilecto_html extends html {
 		$this->area_set('banner');
 		$this->area_set('adsense');
 		$this->menu_set('enlaces');
+	}
+	function make($content) {
+		html::make($content);
+		il_set('title',$content->get('title','NULL: Interlecto'));
 	}
 };
 

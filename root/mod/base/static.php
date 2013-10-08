@@ -7,11 +7,12 @@ class doc_static extends Doc {
 		$this->set('pars/arr',$lpar);
 		$lang = substr($lpar[0].$lpar[4].$lpar[6],0,2);
 		$this->set('pars/lang',$lang);
-		$keys = array( trim($lpar[1].'/'.$lpar[2].'/'.$lpar[3],'/') );
+		$lpar12 = empty($lpar[2])? $lpar[1]: $lpar[1].'/'.$lpar[2];
+		$keys = array( trim($lpar12.'/'.$lpar[3],'/') );
 		if(empty($lpar[3]))
-			$keys[] = trim($lpar[1].'/'.$lpar[2].'/index','/');
+			$keys[] = trim($lpar12.'/index','/');
 		else
-			$keys[] = trim($lpar[1].'/'.$lpar[2].'/'.$lpar[3].'/index','/');
+			$keys[] = trim($lpar12.'/'.$lpar[3].'/index','/');
 		$this->set('pars/key',$keys);
 		$rcon = db_select('base_content',null,array('key'=>$keys));
 		if(!$rcon) {
@@ -23,7 +24,8 @@ class doc_static extends Doc {
 			$this->set_content($rcon[0]['record']);
 			$this->set('title',$rcon[0]['title']);
 		}
-		//$this->add('content','[x '.ilm_escape(print_r($this,true)).']');
+		$this->add('content','[x This = Attributer'.chr(10).ilm_escape($this->print_r(chr(9))).']');
+		$this->add('content','[x Page = Attributer'.chr(10).ilm_escape($this->page->print_r(chr(9))).']');
 	}
 }
 

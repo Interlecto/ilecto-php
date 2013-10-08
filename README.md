@@ -1,5 +1,4 @@
-==========
-interlecto
-==========
+Interlecto CMS
+==============
 
 Content Management System

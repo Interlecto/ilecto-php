@@ -9,9 +9,8 @@ define('ADD_STRING',2);
 define('ADD_NUMBER',3);
 
 class Attributer {
-	//public $C=array();
 	function __construct($protect=false) {
-		if($protect) {
+		if(!empty($protect)) {
 			$this->protect=array('protect');
 			if(is_array($protect)) $this->protect = array_merge($this->protect,$protect);
 			if(is_string($protect)) $this->protect[] = $protect;
@@ -120,6 +119,20 @@ class Attributer {
 			else
 				$this->$key->set($k,$v);
 		}
+	}
+	
+	function print_r($t='') {
+		$k = get_object_vars($this);
+		$s = '';
+		foreach($k as $n=>$o) {
+			if(isset($this->protect) && in_array($n, $this->protect)) continue;
+			$s.= "{$t}[$n] = ";
+			if(is_a($o, 'Attributer'))
+				$s.= "Attributer\n\t$t(\n".$o->print_r("$t\t")."\n\t$t)\n";
+			else
+				$s.= str_replace(chr(10),"\n\t$t",trim(print_r($o,true))).chr(10);
+		}
+		return $s;
 	}
 }
 ?>
