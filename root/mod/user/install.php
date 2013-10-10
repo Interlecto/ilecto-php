@@ -1,7 +1,7 @@
 <?php
 
 db_query(<<<QUERY
-CREATE TABLE IF NOT EXISTS `user` (
+CREATE TABLE IF NOT EXISTS `{$dp}user` (
   `id` char(24) CHARACTER SET ascii NOT NULL,
   `name` char(56) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
   `hash` char(32) CHARACTER SET ascii DEFAULT NULL,
@@ -13,14 +13,14 @@ CREATE TABLE IF NOT EXISTS `user` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 QUERY
 );
-db_insert('user',
+db_insert("{$dp}user",
 	array(
 		array('super', 'Super User', '6ae5f59efb0b7fc0f2676e4d7fba6390'),
 	),
 	array('id', 'name', 'hash'),true);
 	
 db_query(<<<QUERY
-CREATE TABLE IF NOT EXISTS `user_data` (
+CREATE TABLE IF NOT EXISTS `{$dp}user_data` (
   `user` char(24) CHARACTER SET ascii NOT NULL,
   `param` char(16) CHARACTER SET ascii NOT NULL,
   `param_idx` int(2) NOT NULL DEFAULT '0',
@@ -33,7 +33,7 @@ QUERY
 );
 
 db_query(<<<QUERY
-CREATE TABLE IF NOT EXISTS `user_group` (
+CREATE TABLE IF NOT EXISTS `{$dp}user_group` (
   `user` char(24) CHARACTER SET ascii NOT NULL,
   `group` char(24) CHARACTER SET ascii NOT NULL,
   `role` int(1) NOT NULL,
@@ -44,14 +44,14 @@ CREATE TABLE IF NOT EXISTS `user_group` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 QUERY
 );
-db_insert('user_group',
+db_insert("{$dp}user_group",
 	array(
 		array('super', 'this_site', 9),
 	),
 	array('user', 'group', 'role'),true);
 
 db_query(<<<QUERY
-CREATE TABLE IF NOT EXISTS `user_role` (
+CREATE TABLE IF NOT EXISTS `{$dp}user_role` (
   `id` int(1) NOT NULL,
   `role` char(12) CHARACTER SET ascii NOT NULL,
   `description` char(48) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `user_role` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 QUERY
 );
-db_insert('user_role',
+db_insert("{$dp}user_role",
 	array(
 		array(0, 'guest', 'visitante'),
 		array(1, 'bot', 'usuario automatico'),
@@ -75,7 +75,7 @@ db_insert('user_role',
 
 
 db_query(<<<QUERY
-CREATE TABLE IF NOT EXISTS `avatar` (
+CREATE TABLE IF NOT EXISTS `{$dp}avatar` (
   `idx` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `basedir` char(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
   `tiny` char(40) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
@@ -88,7 +88,7 @@ QUERY
 );
 
 db_query(<<<QUERY
-CREATE TABLE IF NOT EXISTS `banner` (
+CREATE TABLE IF NOT EXISTS `{$dp}banner` (
   `idx` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `basedir` char(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
   `small` char(24) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
@@ -101,7 +101,7 @@ QUERY
 );
 
 db_query(<<<QUERY
-CREATE TABLE IF NOT EXISTS `group` (
+CREATE TABLE IF NOT EXISTS `{$dp}group` (
   `id` char(24) CHARACTER SET ascii NOT NULL,
   `name` char(56) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
   `avatar` int(20) unsigned DEFAULT NULL,
@@ -110,14 +110,14 @@ CREATE TABLE IF NOT EXISTS `group` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 QUERY
 );
-db_insert('group',
+db_insert($dp.'group',
 	array(
 		array('this_site', 'This Site'),
 	),
 	array('id', 'name'),true);
 
 
-db_insert('res_case',
+db_insert($dp.'res_case',
 	array(
 		array(5,'(?:([a-z]{2})/)?(user|usuario)(?:/([-\\w]*\\w)?(?:/([-\\w]*\\w)?(?:\\.([a-z]{2}))?(?:\\.(\\w+!?))?(?:\\.([a-z]{2}))?)?)?',2,'user','0,4,6','5'),
 		array(6,'(?:([a-z]{2})/)?login(?:\\.([a-z]{2}))?(?:\\.(\\w+!?))?(?:\\.([a-z]{2}))?(?:|/([-\\w]*\\w)?(?:\\.([a-z]{2}))?(?:\\.(\\w+!?))?(?:\\.([a-z]{2}))?)',2,'login','0,1,3,5,7','2,6'),
@@ -129,11 +129,11 @@ db_insert('res_case',
 	),
 	array('id','case','priority','engine','langidx','formidx'),true);
 
-#db_update('res_case',array('case'=>'(?:([a-z]{2})/)?(users?|usuarios?)(?:|/|(?:\\.([a-z]{2}))?(?:\\.(\\w+!?))?(?:\\.([a-z]{2}))?)'),array('id'=>'=7'));
-#db_update('res_case',array('case'=>'(?:([a-z]{2})/)?login(?:\\.([a-z]{2}))?(?:\\.(\\w+!?))?(?:\\.([a-z]{2}))?(?:/(logout|out)(?:\\.([a-z]{2}))?(?:\\.(\\w+!?))?(?:\\.([a-z]{2}))?)'),array('id'=>'=8'));
-#db_update('res_case',array('case'=>'(?:([a-z]{2})/)?login(?:\\.([a-z]{2}))?(?:\\.(\\w+!?))?(?:\\.([a-z]{2}))?(?:/(reg(?:ist(?:er|ro))?)(?:\\.([a-z]{2}))?(?:\\.(\\w+!?))?(?:\\.([a-z]{2}))?)'),array('id'=>'=10'));
+#db_update($dp.'res_case',array('case'=>'(?:([a-z]{2})/)?(users?|usuarios?)(?:|/|(?:\\.([a-z]{2}))?(?:\\.(\\w+!?))?(?:\\.([a-z]{2}))?)'),array('id'=>'=7'));
+#db_update($dp.'res_case',array('case'=>'(?:([a-z]{2})/)?login(?:\\.([a-z]{2}))?(?:\\.(\\w+!?))?(?:\\.([a-z]{2}))?(?:/(logout|out)(?:\\.([a-z]{2}))?(?:\\.(\\w+!?))?(?:\\.([a-z]{2}))?)'),array('id'=>'=8'));
+#db_update($dp.'res_case',array('case'=>'(?:([a-z]{2})/)?login(?:\\.([a-z]{2}))?(?:\\.(\\w+!?))?(?:\\.([a-z]{2}))?(?:/(reg(?:ist(?:er|ro))?)(?:\\.([a-z]{2}))?(?:\\.(\\w+!?))?(?:\\.([a-z]{2}))?)'),array('id'=>'=10'));
 
-db_insert('res_engine',
+db_insert($dp.'res_engine',
 	array(
 		array('user','mod/user/','user.php','user'),
 		array('users','mod/user/','user.php','users'),
@@ -143,16 +143,16 @@ db_insert('res_engine',
 	),
 	array('engine','basedir','file','class'),true);
 
-db_insert('res_environ',
+db_insert($dp.'res_environ',
 	array(
 		array(4,'load','mod/user/','login.php'),
 	),
 	array('id','verb','basedir','file'),true);
 
-#db_update('res_engine',array('file'=>'user.php'),array('file'=>"#",'basedir'=>'mod/user/'));
-#db_update('res_engine',array('file'=>null),array('file'=>"=login.php"));
+#db_update($dp.'res_engine',array('file'=>'user.php'),array('file'=>"#",'basedir'=>'mod/user/'));
+#db_update($dp.'res_engine',array('file'=>null),array('file'=>"=login.php"));
 
-db_insert('base_text',
+db_insert($dp.'base_text',
 	array(
 		array(10,'en','[@F[@P[@L#user User Name][@I#user]][@P[@L#passwd Password][@W#passwd]][@P[@G][@R]]]'),
 		array(11,'en','[@F]'),

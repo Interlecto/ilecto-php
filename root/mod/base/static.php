@@ -24,8 +24,9 @@ class doc_static extends Doc {
 			$this->set_content($rcon[0]['record']);
 			$this->set('title',$rcon[0]['title']);
 		}
-		$this->add('content','[x This = Attributer'.chr(10).ilm_escape($this->print_r(chr(9))).']');
-		$this->add('content','[x Page = Attributer'.chr(10).ilm_escape($this->page->print_r(chr(9))).']');
+		$this->page->set('title',$this->get('title',null),SET_EMPTY);
+		//$this->add('content','[x This = Attributer'.chr(10).ilm_escape($this->print_r(chr(9))).']');
+		//$this->add('content','[x Page = Attributer'.chr(10).ilm_escape($this->page->print_r(chr(9))).']');
 	}
 }
 

@@ -126,8 +126,12 @@ class Page extends Attributer {
 		foreach($f as $r) {
 			switch($r['verb']) {
 			case 'load':
-				if(file_exists($fn = $r['basedir'].$r['file']))
+				try {
+					$fn = $r['basedir'].$r['file'];
 					require_once $fn;
+				} catch(Exception $e) {
+					echo 'Caught exception: ',  $e->getMessage(), " when attempting to load '$fn'\n";
+				}
 				break;
 			}
 		}

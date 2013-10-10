@@ -1,6 +1,6 @@
 <?php
 
-db_insert('res_engine',
+db_insert($dp.'res_engine',
 	array(
 		array('dispatch','mod/base/',null,'dispatch'),
 		array('static','mod/base/','static.php','static'),
@@ -8,7 +8,7 @@ db_insert('res_engine',
 	),
 	array('engine','basedir','file','class'),true);
 
-db_insert('res_environ',
+db_insert($dp.'res_environ',
 	array(
 		array(1,'load','mod/base/','status.php'),
 		array(2,'load','mod/base/','dispatch.php'),
@@ -16,9 +16,9 @@ db_insert('res_environ',
 	),
 	array('id','verb','basedir','file'),true);
 
-//db_query('DROP TABLE IF EXISTS `base_content`');
+//db_query('DROP TABLE IF EXISTS `{$dp}base_content`');
 db_query(<<<QUERY
-CREATE TABLE IF NOT EXISTS `base_text` (
+CREATE TABLE IF NOT EXISTS `{$dp}base_text` (
 	`idx` BIGINT(20),
 	`lang` CHAR(2),
 	`content` TEXT DEFAULT NULL,
@@ -29,7 +29,7 @@ QUERY
 );
 
 db_query(<<<QUERY
-CREATE TABLE IF NOT EXISTS `base_content` (
+CREATE TABLE IF NOT EXISTS `{$dp}base_content` (
 	`key` CHAR(128) PRIMARY KEY,
 	`title` VARCHAR(255),
 	`type` CHAR(12) DEFAULT 'ilm',
@@ -40,7 +40,7 @@ QUERY
 );
 
 db_query(<<<QUERY
-CREATE TABLE IF NOT EXISTS `base_titles` (
+CREATE TABLE IF NOT EXISTS `{$dp}base_titles` (
 	`idx` BIGINT(20),
 	`lang` CHAR(2),
 	`title` TEXT DEFAULT NULL,
@@ -51,7 +51,7 @@ QUERY
 );
 
 db_query(<<<QUERY
-CREATE TABLE IF NOT EXISTS `base_status` (
+CREATE TABLE IF NOT EXISTS `{$dp}base_status` (
 	`id` INT(3) PRIMARY KEY,
 	`text` CHAR(48),
 	`type` CHAR(12) DEFAULT 'ilm',
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `base_status` (
 QUERY
 );
 
-db_insert( 'base_status',
+db_insert( $dp.'base_status',
 	array(
 		array(100,'Continue'),
 		array(101,'Switching Protocols'),
@@ -104,15 +104,15 @@ db_insert( 'base_status',
 		array(504,'Gateway Timeout'),
 		array(505,'HTTP Version Not Supported'),
 	),
-	array('id','text'),true);
+	array($dp.'id','text'),true);
 
-db_insert( 'base_content',
+db_insert( $dp.'base_content',
 	array(
 		array('index','Main Page','ilm',1000,'auto'),
 	),
 	array('key','title','type','record','as'),true);
 
-db_insert( 'base_text',
+db_insert( $dp.'base_text',
 	array(
 		array(1000,'en','[p Main Page.]'),
 	),
