@@ -57,7 +57,6 @@ class html extends il_output {
 
 function il_html_unbrace($m) {
 	static $stack = array();
-	var_dump($stack);
 	$o = '';
 	$p = false;
 	$q = chr(27);
