@@ -78,7 +78,7 @@ class ILMtag {
 		if(!isset($this->attributes)) $this->attributes = array();
 		$this->attributes[$attrib] = $value;
 	}
-	
+
 	function html($version=5,$t="\t") {
 		$name = $this->name;
 		$t0 = $t1 = '';
@@ -126,7 +126,7 @@ class ILMref extends ILMtag {
 	}
 	function html($version=5,$t='') {
 		$t0 = $r = $s = $t1 = '';
-		
+
 		switch($p = $this->params[0]) {
 		case 'mailto':
 			$to = $this->params[2];
@@ -157,12 +157,12 @@ class ILMref extends ILMtag {
 		default:
 			$s = implode('/',$this->params);
 		}
-		
+
 		if($this->follow) {
 			$t0 = '<a href="'.$r.'">';
 			$t1 = '</a>';
 		}
-		
+
 		return $t0.$s.$t1;
 	}
 };
