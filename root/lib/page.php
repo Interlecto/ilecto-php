@@ -184,7 +184,7 @@ class Page extends Attributer {
 		if(class_exists($class = 'doc_'.$this->get('engine/class','raw')))
 			$this->content = new $class($this);
 		else $this->content = new nulldoc($this);
-		
+
 		#wrap a style
 		$style = $this->get('style','default');
 		$format = $this->get('format','html');

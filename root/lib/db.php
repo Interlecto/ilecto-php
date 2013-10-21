@@ -178,15 +178,15 @@ class db extends mysqli {
 		if($this->connect_errno)
 			il_add('queries','Connect Error: '.$this->connect_error);
 		if($d) {
-			if(!$this->select_db($d)) {
+			if(!@$this->select_db($d)) {
 				header('Location: /install.php');
 				die("Database $d does not exist.");
 			}
 		}
 	}
-	
+
 	function str($string) { return $this->real_escape_string($string); }
-	
+
 	function select($table,$columns='*',$where=null,$orderby=null,$limit=100,$offset=0) {
 		$table = db_var($this->prefix.$table);
 		$query = 'SELECT '.($this->fix_columns($columns))." FROM $table".
@@ -237,12 +237,12 @@ class db extends mysqli {
 		$r->free();
 		return $a;
 	}
-	
+
 	function select_first($table,$columns='*',$where=null,$orderby=null) {
 		$r = $this->select($table,$columns,$where,$orderby,1);
 		return $r? $r[0]: false;
 	}
-	
+
 	function select_one($table,$column,$where=null,$asarray=false) {
 		$table = db_var($this->prefix.$table);
 		db__var($column);
@@ -263,13 +263,13 @@ class db extends mysqli {
 		$r->free();
 		return $a;
 	}
-	
+
 	function update($table,$updates,$where=null) {
 		$table = db_var($this->prefix.$table);
 		$query = "UPDATE $table SET ".($this->fix_updates($updates)).($this->fix_where($where)).";\n";
 		$this->query($query);
 	}
-	
+
 	function insert($table,$inserts,$columns=null,$ondup=false) {
 		$table = db_var($this->prefix.$table);
 		$values = $this->fix_inserts($inserts,$columns);
@@ -279,7 +279,7 @@ class db extends mysqli {
 		$query = "INSERT INTO $table ($colstr) VALUES$values$dupseq;\n";
 		$this->query($query);
 	}
-	
+
 	function query($query) {
 		il_add('queries',$query);
 		$a = mysqli::query($query);

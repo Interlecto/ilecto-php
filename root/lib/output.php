@@ -5,12 +5,12 @@ class il_output extends Attributer {
 		Attributer::__construct('page');
 		$this->page = $page;
 	}
-	
+
 	function on_html($content) {
 		$this->content = $content->html();
 		$this->title = $content->get('title',$this->page->get('line/clean'));
 	}
-	
+
 	function make($content) {
 		$this->on_html($content);
 ?><!DOCTYPE html>

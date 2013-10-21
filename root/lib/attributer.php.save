@@ -31,7 +31,7 @@ class Attributer {
 		}
 		return false;
 	}
-
+	
 	function set($key,$val,$how=SET_REPLACE) {
 		if(isset($this->protect) && in_array($key,$this->protect)) return null;
 		if($this->deeper($key,$atr,true))
@@ -41,7 +41,7 @@ class Attributer {
 		elseif($how==SET_EMPTY && empty($this->$key)) $this->$key = $val;
 		return $this->$key;
 	}
-
+	
 	function get($key,$default=null,$how=DEF_UNSET) {
 		if($this->deeper($key,$atr)) {
 			if(is_a($atr,'Attributer')) return $atr->get($key,$default,$how);
@@ -55,7 +55,7 @@ class Attributer {
 		if(!isset($this->$key)) return $default;
 		return empty($this->$key) && $how==DEF_EMPTY? $default: $this->$key;
 	}
-
+	
 	function add($key,$val=null,$how=ADD_ARRAY) {
 		if(isset($this->protect) && in_array($key,$this->protect)) return null;
 		if($this->deeper($key,$atr,true))
@@ -79,7 +79,7 @@ class Attributer {
 		elseif(is_number($this->$key)) $this->$key+= (double)$val;
 		return $this->$key;
 	}
-
+	
 	function exists($key) {
 		if($this->deeper($key,$atr)) {
 			if(is_a($atr,'Attributer')) return $atr->exists($key);
@@ -88,7 +88,7 @@ class Attributer {
 		}
 		return isset($this->$key);
 	}
-
+	
 	function empt($key) {
 		if($this->deeper($key,$atr)) {
 			if(is_a($atr,'Attributer')) return $atr->empt($key);
@@ -97,7 +97,7 @@ class Attributer {
 		}
 		return empty($this->$key);
 	}
-
+	
 	function clear($key) {
 		if(isset($this->protect) && in_array($key,$this->protect)) return null;
 		if($this->deeper($key,$atr)) {
@@ -105,12 +105,12 @@ class Attributer {
 			elseif(is_array($atr)) unset($atr[$key]);
 		} else unset($this->$key);
 	}
-
+	
 	function as_array() {
 		$je = json_encode($this);
 		return json_decode($js,true);
 	}
-
+	
 	function from_array($key,$arr) {
 		$this->$key = new Attributer();
 		foreach($arr as $k=>$v) {
@@ -120,7 +120,7 @@ class Attributer {
 				$this->$key->set($k,$v);
 		}
 	}
-
+	
 	function print_r($t='') {
 		$k = get_object_vars($this);
 		$s = '';
