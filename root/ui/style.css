@@ -1,0 +1,97 @@
+/******
+ ******  -- RESETS
+ ******/
+*,.x{margin:0;padding:0;border: none}
+:link{text-decoration:none;color:inherit;background-color:rgba(0,0,100,0.1)}
+:link:hover{background-color:rgba(0,0,100,0.2)}
+:visited{text-decoration:none;color:inherit;background-color:rgba(50,0,100,0.1)}
+:visited:hover{background-color:rgba(50,0,100,0.2)}
+
+/******
+ ******  -- INTERLECTO VAINILLA TEMPLATE
+ ******/
+@font-face{font-family:Interlecto;src:url('interlecto.woff')}
+@font-face{font-family:Interlecto;src:url('interlectoI.woff');font-style:italic}
+@font-face{font-family:Interlecto;src:url('interlectoB.woff');font-weight:bold}
+@font-face{font-family:Interlecto;src:url('interlectoBI.woff');font-weight:bold;font-style:italic}
+@font-face{font-family:'Interlecto Logo';src:url('ilectologo.woff')}
+@font-face{font-family:'Interlecto Dings';src:url('ilectodings.woff')}
+@font-face{font-family:'Interlecto Mono';src:url('ilectomono.woff')}
+@font-face{font-family:'Interlecto Mono';src:url('ilectomonoI.woff');font-style:italic}
+@font-face{font-family:'Interlecto Mono';src:url('ilectomonoB.woff');font-weight:bold}
+@font-face{font-family:'Interlecto Mono';src:url('ilectomonoBI.woff');font-weight:bold;font-style:italic}
+body,.n{font-family:Interlecto,Helv,Arial,sans;font-size:12pt;line-height:1.5em}
+.t,pre,code,tt{font-family:'Interlecto Mono','Andale Mono','Lucidad Console',monospace}
+.i,i,em,dfn,cite,address,tfoot{font-style:italic}
+.b,b,strong,dfn,dt,th{font-weight:bold}
+.h,h1,h2,h3,h4,h5,h6{font-family:'Interlecto Logo',Helv,Arial,sans;font-weight:normal}
+.h,h1,h2,h3,h4,h5,h6{margin:0.5em 0 0}
+.p,p,code,pre,kbd,address,ul,ol,dl,fieldset{margin:0.625em 0 0}
+h1:first-child,h2:first-child,h3:first-child,h4:first-child,h5:first-child,h6:first-child,p:first-child{margin-top:0}
+.bq,blockquote{margin:0.5em 1em}
+.li,li,dd{margin-left:1.5em}
+ul{list-style:disc}
+ol{list-style:decimal}
+ol ol{list-style:upper-alpha}
+ol ol ol{list-style:lower-roman}
+ol ol ol ol{list-style:lower-alpha}
+table{margin:1em 0}
+th,td,caption{padding:4px}
+abbr,acronym{border-bottom:thin dotted}
+.s,del{text-decoration:line-through}
+pre{white-space:pre}
+img{max-width:100%}
+h1{font-size:2.25em}
+h2{font-size:1.6em}
+h3{font-size:1.35em}
+h4{font-size:1.125em}
+h5{font-size:1em}
+h6{font-size:0.83334em}
+fieldset{border:1px inset #555;padding:0.5em}
+input,select{border:1px solid #555;padding:2px 3px}
+input[type=reset],input[type=submit],input[type=button]{padding:2px 5px;border-radius:4px;border-style:outset}
+.button,.reset,.submit{border:1px solid #555;padding:2px 5px;border-radius:4px}
+input[type=file]{padding:0}
+.o{display:none}
+.sc{font-variant:small-caps}
+.uc{text-transform:uppercase}
+.lc{text-transform:lowercase}
+.tc{text-transform:capitalize}
+.f{text-indent:1.2em;margin-top:0}
+.x,.cl{clear:both}
+.x:after,.ca:after{display:block;content:"\00a0";height:0;clear:both}
+.l{display:block;float:left}
+.r{display:block;float:right}
+.c,.ac{display:block;margin-left:auto;margin-right:auto}
+.al{display:inline;float:left;margin-right:10px}
+.ar{display:inline;float:right;margin-left:10px}
+.ar{display:inline;float:right;margin-left:10px}
+.j{display:block;margin-left:0;margin-right:0}
+.lf{text-align:left}
+.rf{text-align:right}
+.cf{text-align:center}
+.jf{text-align:justify}
+.w{font-family:'Interlecto Dings'}
+.huge{font-size:3em}
+.extrabig{font-size:2em}
+.big{font-size:1.6em}
+.large{font-size:1.2em}
+.n,.normal{font-size:1em}
+.small{font-size:0.835em}
+.tiny{font-size:0.6}
+.fri{margin:0}
+.fri dt{float:left;clear:left;margin:0 1ex 0 0}
+.fri dd{margin:0.5ex 0}
+.fri dd:after{display:block;content:"\00a0";height:0;clear:left}
+
+
+/******
+ ******  -- COMMON STYLE
+ ******/
+input,select{background:#ccc;color:black}
+.button,input[type=button]{background:#aaa;font-family:inherit}
+.submit,input[type=submit]{background:#5af;font-family:inherit}
+.reset,input[type=reset]{background:#f55;font-family:inherit}
+.hnav ul{display:inline-block;list-style-type:none}
+.hnav li{display:block;float:left;margin:0;padding:0}
+.hnav a{padding:2px 0.5ex}

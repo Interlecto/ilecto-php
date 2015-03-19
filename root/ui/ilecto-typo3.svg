@@ -1,0 +1,1159 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+2015-3-3: Created.
+-->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg3121"
+   height="500"
+   width="550"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   sodipodi:docname="ilecto-typo3.svg">
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1855"
+     inkscape:window-height="1056"
+     id="namedview25"
+     showgrid="false"
+     inkscape:zoom="1"
+     inkscape:cx="275"
+     inkscape:cy="250"
+     inkscape:window-x="65"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g45" />
+  <metadata
+     id="metadata3123">
+Created by FontForge 20120731 at Tue Mar  3 12:44:41 2015
+ By Carlos Eugenio Thompson Pinzón,,,
+Created by Carlos Eugenio Thompson Pinzo'n,,, with FontForge 2.0 (http://fontforge.sf.net)
+<rdf:RDF>
+  <cc:Work
+     rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type
+       rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+  </cc:Work>
+</rdf:RDF>
+</metadata>
+  <defs
+     id="font-def">
+    <font
+       id="IlectoLogo"
+       horiz-adv-x="550"
+       horiz-origin-x="0"
+       horiz-origin-y="0"
+       vert-origin-x="45"
+       vert-origin-y="90"
+       vert-adv-y="500">
+      <font-face
+         font-family="IlectoLogo"
+         font-weight="500"
+         font-stretch="normal"
+         units-per-em="1024"
+         panose-1="2 0 6 3 0 0 0 0 0 0"
+         ascent="768"
+         descent="-256"
+         x-height="500"
+         bbox="-60 -400 960 900"
+         underline-thickness="20"
+         underline-position="-50"
+         unicode-range="U+0061-00FF"
+         id="font-face3128"
+         stemv="0"
+         stemh="0"
+         slope="0"
+         cap-height="700"
+         accent-height="0"
+         ideographic="0"
+         alphabetic="0"
+         mathematical="0"
+         hanging="0"
+         v-ideographic="0"
+         v-alphabetic="0"
+         v-mathematical="0"
+         v-hanging="0"
+         strikethrough-position="0"
+         strikethrough-thickness="0"
+         overline-position="0"
+         overline-thickness="0" />
+      <missing-glyph
+         id="missing-glyph3130" />
+      <glyph
+         id="glyph-a"
+         glyph-name="a"
+         unicode="a">
+        <path
+           id="gp-a"
+           d="m 425 500 100 0 0 -500 -50 -50 -50 50 0 50 C 382,17 326,0 275,0 137,0 25,112 25,250 c 0,138 112,250 250,250 51,0 106,-17 150,-50 z m 0 -250 c 0,83 -67,150 -150,150 -83,0 -150,-67 -150,-150 0,-83 67,-150 150,-150 83,0 150,67 150,150 z" />
+      </glyph>
+      <glyph
+         id="glyph-b"
+         glyph-name="b"
+         unicode="b">
+        <path
+           id="gp-b"
+           d="m 25 0 0 700 50 50 50 -50 0 -250 c 44,33 95,50 150,50 C 413,500 525,388 525,250 525,112 413,0 275,0 220,0 169,17 125,50 l 0 -50 z m 100 250 c 0,-83 67,-150 150,-150 83,0 150,67 150,150 0,83 -67,150 -150,150 -83,0 -150,-67 -150,-150 z" />
+      </glyph>
+      <glyph
+         id="glyph-c"
+         glyph-name="c"
+         unicode="c"
+         horiz-adv-x="475">
+        <path
+           id="gp-c"
+           d="m 452,427 0,-71 -71,0 c -29,29 -65,44 -106,44 -83,0 -150,-67 -150,-150 0,-83 67,-150 150,-150 41,0 77,15 106,44 L 452,73 C 404,25 343,0 275,0 137,0 25,112 25,250 c 0,138 112,250 250,250 68,0 129,-25 177,-73 z"
+           inkscape:connector-curvature="0" />
+      </glyph>
+      <glyph
+         id="glyph-d"
+         glyph-name="d"
+         unicode="d">
+        <path
+           id="gp-d"
+           d="m 425 700 100 0 0 -700 -50 -50 -50 50 0 50 C 382,17 326,0 275,0 137,0 25,112 25,250 c 0,138 112,250 250,250 51,0 106,-17 150,-50 z m 0 -450 c 0,83 -67,150 -150,150 -83,0 -150,-67 -150,-150 0,-83 67,-150 150,-150 83,0 150,67 150,150 z" />
+      </glyph>
+      <glyph
+         id="glyph-e"
+         glyph-name="e"
+         unicode="e">
+        <path
+           id="gp-e"
+           d="m 225,300 191,0 c -20,60 -78,100 -141,100 -83,0 -150,-67 -150,-150 0,-83 67,-150 150,-150 41,0 77,15 106,44 L 452,73 C 404,25 343,0 275,0 137,0 25,112 25,250 c 0,138 112,250 250,250 138,0 250,-112 250,-250 0,-28 -22,-50 -50,-50 l -250,0 -50,50 z"
+           inkscape:connector-curvature="0" />
+      </glyph>
+      <glyph
+         id="glyph-f"
+         glyph-name="f"
+         unicode="f"
+         horiz-adv-x="400">
+        <path
+           id="gp-f"
+           d="m 325 700 0 -100 c -56,0 -100,-44 -100 -100 l 100 0 50 -50 -50 -50 -100 0 0 -400 -100 0 0 400 -100 0 0 100 100 0 c 0,111 89,200 200 200 z" />
+      </glyph>
+      <glyph
+         id="glyph-g"
+         glyph-name="g"
+         unicode="g">
+        <path
+           id="gp-g"
+           d="m 425 500 100 0 0 -500 c 0,-111 -89,-200 -200 -200 l -50 50 50 50 c 56,0 100,44 100 100 l 0 50 C 382,17 326,0 275,0 137,0 25,112 25,250 c 0,138 112,250 250,250 51,0 106,-17 150,-50 z m 0 -250 c 0,83 -67,150 -150,150 -83,0 -150,-67 -150,-150 0,-83 67,-150 150,-150 83,0 150,67 150,150 z" />
+      </glyph>
+      <glyph
+         id="glyph-h"
+         glyph-name="h"
+         unicode="h">
+        <path
+           id="gp-h"
+           d="m 25 0 0 700 50 50 50 -50 0 -250 c 44,33 95,50 150,50 C 413,500 525,388 525,250 l 0 -250 -100 0 0 250 c 0,83 -67,150 -150,150 -83,0 -150,-67 -150,-150 l 0 -250 z" />
+      </glyph>
+      <glyph
+         id="glyph-i"
+         glyph-name="i"
+         unicode="i"
+         horiz-adv-x="150">
+        <path
+           id="gp-i"
+           d="M 25,500 125,500 125,0 75,-50 25,0 z m 50,215 c 36,0 65,-29 65,-65 0,-36 -29,-65 -65,-65 -36,0 -65,29 -65,65 0,36 29,65 65,65 z"
+           inkscape:connector-curvature="0" />
+      </glyph>
+      <glyph
+         id="glyph-j"
+         glyph-name="j"
+         unicode="j"
+         horiz-adv-x="250">
+        <path
+           id="gp-j"
+           d="m 125,500 100,0 0,-500 c 0,-111 -89,-200 -200,-200 l -50,50 50,50 c 56,0 100,44 100,100 z m 50,215 c 36,0 65,-29 65,-65 0,-36 -29,-65 -65,-65 -36,0 -65,29 -65,65 0,36 29,65 65,65 z"
+           inkscape:connector-curvature="0" />
+      </glyph>
+      <glyph
+         horiz-adv-x="475"
+         unicode="k"
+         glyph-name="k"
+         id="glyph-k">
+        <path
+           d="m 25,700 50,50 50,-50 0,-379 179,179 71,0 0,-71 -179,-179 212,-212 71,71 0,-213 -213,0 71,71 L 125,179 125,0 25,0 z"
+           id="gp-k"
+           inkscape:connector-curvature="0" />
+      </glyph>
+      <glyph
+         id="glyph-l"
+         glyph-name="l"
+         unicode="l"
+         horiz-adv-x="150">
+        <path
+           id="gp-l"
+           d="M 25,650 H -25 L 75,750 175,650 H 125 V 0 H 25 z" />
+      </glyph>
+      <glyph
+         id="glyph-m"
+         glyph-name="m"
+         unicode="m"
+         horiz-adv-x="950">
+        <path
+           id="gp-m"
+           d="m 25,0 0,500 50,50 50,-50 0,-50 c 44,33 95,50 150,50 80,0 152,-36 200,-100 48,64 120,100 200,100 138,0 250,-112 250,-250 l 0,-250 -100,0 0,250 c 0,83 -67,150 -150,150 -83,0 -150,-67 -150,-150 l 0,-250 -100,0 0,250 c 0,83 -67,150 -150,150 -83,0 -150,-67 -150,-150 L 125,0 z"
+           inkscape:connector-curvature="0" />
+      </glyph>
+      <glyph
+         id="glyph-n"
+         glyph-name="n"
+         unicode="n">
+        <path
+           id="gp-n"
+           d="m 25 0 0 500 50 50 50 -50 0 -50 c 44,33 95,50 150,50 C 413,500 525,388 525,250 l 0 -250 -100 0 0 250 c 0,83 -67,150 -150,150 -83,0 -150,-67 -150,-150 l 0 -250 z" />
+      </glyph>
+      <glyph
+         id="glyph-o"
+         glyph-name="o"
+         unicode="o">
+        <path
+           id="gp-o"
+           d="m 275 500 c 138 0 250 -112 250 -250 0 -138 -112 -250 -250 -250 -138 0 -250 112 -250 250 0 138 112 250 250 250 z m 0 -100 c -83,0 -150,-67 -150,-150 0,-83 67,-150 150,-150 83,0 150,67 150,150 0,83 -67,150 -150,150 z" />
+      </glyph>
+      <glyph
+         id="glyph-p"
+         glyph-name="p"
+         unicode="p">
+        <path
+           id="gp-p"
+           d="m 25,-200 0,700 50,50 50,-50 0,-50 c 44,33 95,50 150,50 C 413,500 525,388 525,250 525,112 413,0 275,0 220,0 169,17 125,50 l 0,-250 z m 100,450 c 0,-83 67,-150 150,-150 83,0 150,67 150,150 0,83 -67,150 -150,150 -83,0 -150,-67 -150,-150 z"
+           inkscape:connector-curvature="0" />
+      </glyph>
+      <glyph
+         id="glyph-q"
+         glyph-name="q"
+         unicode="q">
+        <path
+           id="gp-q"
+           d="m 425,500 100,0 0,-700 -50,-50 -50,50 0,250 C 382,17 326,0 275,0 137,0 25,112 25,250 c 0,138 112,250 250,250 51,0 106,-17 150,-50 z m 0,-250 c 0,83 -67,150 -150,150 -83,0 -150,-67 -150,-150 0,-83 67,-150 150,-150 83,0 150,67 150,150 z"
+           inkscape:connector-curvature="0" />
+      </glyph>
+      <glyph
+         id="glyph-r"
+         glyph-name="r"
+         unicode="r"
+         horiz-adv-x="475">
+        <path
+           id="gp-r"
+           d="m 237,-174 71,71 -177,177 c -9,9 -15,22 -15,35 0,13 6,26 15,35 29,29 44,67 44,106 0,83 -67,150 -150,150 l -50,50 50,50 c 138,0 250,-112 250,-250 0,-49 -15,-97 -42,-138 l 145,-145 71,71 0,-212 z"
+           inkscape:connector-curvature="0" />
+      </glyph>
+      <glyph
+         unicode="s"
+         glyph-name="s"
+         id="glyph-s"
+         horiz-adv-x="475">
+        <path
+           d="m 200,500 200,0 50,-50 -50,-50 -200,0 c -28,0 -50,-22 -50,-50 0,-28 22,-50 50,-50 l 100,0 C 383,300 450,233 450,150 450,67 383,0 300,0 L 200,0 C 132,0 71,25 23,73 l 71,71 c 29,-29 65,-44 106,-44 l 100,0 c 28,0 50,22 50,50 0,28 -22,50 -50,50 l -100,0 c -83,0 -150,67 -150,150 0,83 67,150 150,150 z"
+           id="gp-s"
+           inkscape:connector-curvature="0" />
+      </glyph>
+      <glyph
+         id="glyph-t"
+         glyph-name="t"
+         unicode="t"
+         horiz-adv-x="400">
+        <path
+           id="gp-t"
+           d="M 350,0 C 239,0 150,89 150,200 l 0,200 -62,0 C 69,438 42,473 9,500 l 41,0 200,200 0,-200 100,0 0,-100 -100,0 0,-200 c 0,-56 44,-100 100,-100 l 50,-50 z"
+           inkscape:connector-curvature="0" />
+      </glyph>
+      <glyph
+         unicode="u"
+         glyph-name="u"
+         id="glyph-u">
+        <path
+           inkscape:connector-curvature="0"
+           d="m 25,500 100,0 0,-250 c 0,-83 67,-150 150,-150 83,0 150,67 150,150 l 0,250 100,0 0,-500 -50,-50 -50,50 0,50 C 381,17 330,0 275,0 137,0 25,112 25,250 z"
+           id="gp-u" />
+      </glyph>
+      <glyph
+         id="glyph-v"
+         glyph-name="v"
+         unicode="v">
+        <path
+           id="gp-v"
+           d="m 275,-21 -250,250 0,271 50,50 50,-50 0,-229 150,-150 150,150 0,229 100,0 0,-271 z"
+           inkscape:connector-curvature="0" />
+      </glyph>
+      <glyph
+         unicode="w"
+         glyph-name="w"
+         id="glyph-w">
+        <path
+           inkscape:connector-curvature="0"
+           d="m 225,-21 -200,200 0,321 50,50 50,-50 0,-279 100,-100 100,100 0,279 100,0 0,-279 100,-100 100,100 0,279 100,0 0,-321 L 525,-21 375,129 z"
+           id="gp-w" />
+      </glyph>
+      <glyph
+         unicode="x"
+         glyph-name="x"
+         id="glyph-x"
+         horiz-adv-x="625">
+        <path
+           inkscape:connector-curvature="0"
+           d="m 25,500 71,0 179,-179 179,179 71,0 0,-71 -179,-179 212,-212 71,71 0,-213 -213,0 71,71 L 275,179 96,0 25,0 25,71 204,250 25,429 z"
+           id="gp-x" />
+      </glyph>
+      <glyph
+         id="glyph-y"
+         glyph-name="y"
+         unicode="y">
+        <path
+           id="gp-y"
+           d="m 204,50 -179,179 0,271 50,50 50,-50 0,-229 150,-150 150,150 0,229 100,0 0,-271 -429,-429 -71,2 0,71 z"
+           inkscape:connector-curvature="0" />
+      </glyph>
+      <glyph
+         unicode="z"
+         glyph-name="z"
+         id="glyph-z">
+        <path
+           inkscape:connector-curvature="0"
+           d="m 75,500 450,0 0,-71 -329,-329 229,0 0,100 L 575,50 425,-100 425,0 25,0 25,71 354,400 75,400 25,450 z"
+           id="gp-z" />
+      </glyph>
+      <glyph
+         unicode=""
+         glyph-name="agrave"
+         id="glyph-a0">
+        <path
+           id="gp-a0"
+           d="m 425,500 100,0 0,-500 -50,-50 -50,50 0,50 C 382,17 326,0 275,0 137,0 25,112 25,250 c 0,138 112,250 250,250 51,0 106,-17 150,-50 z m 0,-250 c 0,83 -67,150 -150,150 -83,0 -150,-67 -150,-150 0,-83 67,-150 150,-150 83,0 150,67 150,150 z m -185,481 106,-106 0,-71 -71,0 -106,106 z"
+           inkscape:connector-curvature="0" />
+      </glyph>
+      <glyph
+         unicode=""
+         glyph-name="aacute"
+         id="glyph-a1">
+        <path
+           id="gp-a1"
+           d="m 425,500 100,0 0,-500 -50,-50 -50,50 0,50 C 382,17 326,0 275,0 137,0 25,112 25,250 c 0,138 112,250 250,250 51,0 106,-17 150,-50 z m 0,-250 c 0,83 -67,150 -150,150 -83,0 -150,-67 -150,-150 0,-83 67,-150 150,-150 83,0 150,67 150,150 z m -231,365 106,106 71,0 0,-71 -106,-106 z"
+           inkscape:connector-curvature="0" />
+      </glyph>
+      <glyph
+         unicode=""
+         glyph-name="acircumflex"
+         id="glyph-a2">
+        <path
+           id="gp-a2"
+           d="m 425,500 100,0 0,-500 -50,-50 -50,50 0,50 C 382,17 326,0 275,0 137,0 25,112 25,250 c 0,138 112,250 250,250 51,0 106,-17 150,-50 z m 0,-250 c 0,83 -67,150 -150,150 -83,0 -150,-67 -150,-150 0,-83 67,-150 150,-150 83,0 150,67 150,150 z m -150,475 106,-106 0,-71 -71,0 -35,35 -35,-35 -71,71 z"
+           inkscape:connector-curvature="0" />
+      </glyph>
+      <glyph
+         unicode=""
+         glyph-name="atilde"
+         id="glyph-a3">
+        <path
+           id="gp-a3"
+           d="m 425,500 100,0 0,-500 -50,-50 -50,50 0,50 C 382,17 326,0 275,0 137,0 25,112 25,250 c 0,138 112,250 250,250 51,0 106,-17 150,-50 z m 0,-250 c 0,83 -67,150 -150,150 -83,0 -150,-67 -150,-150 0,-83 67,-150 150,-150 83,0 150,67 150,150 z M 134,660 c 49,49 127,49 176,0 10,-10 26,-10 36,0 l 70,0 0,-70 c -49,-49 -127,-49 -176,0 -10,10 -26,10 -36,0 z"
+           inkscape:connector-curvature="0" />
+      </glyph>
+      <glyph
+         unicode=""
+         glyph-name="adieresis"
+         id="glyph-a4">
+        <path
+           id="gp-a4"
+           d="m 425,500 100,0 0,-500 -50,-50 -50,50 0,50 C 382,17 326,0 275,0 137,0 25,112 25,250 c 0,138 112,250 250,250 51,0 106,-17 150,-50 z m 0,-250 c 0,83 -67,150 -150,150 -83,0 -150,-67 -150,-150 0,-83 67,-150 150,-150 83,0 150,67 150,150 z m -250,325 0,100 50,0 50,-50 -50,-50 z m 150,0 0,100 50,0 50,-50 -50,-50 z"
+           inkscape:connector-curvature="0" />
+      </glyph>
+      <glyph
+         unicode=""
+         glyph-name="aring"
+         id="glyph-a5">
+        <path
+           id="gp-a5"
+           d="m 425,500 100,0 0,-500 -50,-50 -50,50 0,50 C 382,17 326,0 275,0 137,0 25,112 25,250 c 0,138 112,250 250,250 51,0 106,-17 150,-50 z m 0,-250 c 0,83 -67,150 -150,150 -83,0 -150,-67 -150,-150 0,-83 67,-150 150,-150 83,0 150,67 150,150 z M 275,525 c -56,0 -100,44 -100,100 0,56 44,100 100,100 56,0 100,-44 100,-100 0,-56 -44,-100 -100,-100 z m 0,50 c 28,0 50,22 50,50 0,28 -22,50 -50,50 -28,0 -50,-22 -50,-50 0,-28 22,-50 50,-50 z"
+           inkscape:connector-curvature="0" />
+      </glyph>
+      <glyph
+         unicode=""
+         glyph-name="aring"
+         id="glyph-ae"
+         horiz-adv-x="950">
+        <path
+           id="gp-ae"
+           d="m 425,500 100,0 0,-50 c 44,33 95,50 150,50 138,0 250,-112 250,-250 0,-28 -22,-50 -50,-50 l -250,0 -50,50 50,50 191,0 c -20,60 -78,100 -141,100 -83,0 -150,-67 -150,-150 0,-83 67,-150 150,-150 41,0 77,15 106,44 L 852,73 C 804,25 743,0 675,0 620,0 569,17 525,50 l 0,-50 -50,-50 -50,50 0,50 C 382,17 330,0 275,0 137,0 25,112 25,250 c 0,138 112,250 250,250 55,0 106,-17 150,-50 z m 0,-250 c 0,83 -67,150 -150,150 -83,0 -150,-67 -150,-150 0,-83 67,-150 150,-150 83,0 150,67 150,150 z"
+           inkscape:connector-curvature="0" />
+      </glyph>
+      <glyph
+         unicode=""
+         glyph-name="ccedilla"
+         id="glyph-c6">
+        <path
+           id="gp-c6"
+           d="m 452,427 0,-71 -71,0 c -29,29 -65,44 -106,44 -83,0 -150,-67 -150,-150 0,-83 67,-150 150,-150 41,0 77,15 106,44 L 452,73 C 404,25 343,0 275,0 137,0 25,112 25,250 c 0,138 112,250 250,250 68,0 129,-25 177,-73 z M 300,0 400,0 c 0,-111 -89,-200 -200,-200 l -50,50 50,50 c 56,0 100,44 100,100 z"
+           inkscape:connector-curvature="0" />
+      </glyph>
+      <glyph
+         unicode=""
+         glyph-name="egrave"
+         id="glyph-e0">
+        <path
+           id="gp-e0"
+           d="m 225,300 191,0 c -20,60 -78,100 -141,100 -83,0 -150,-67 -150,-150 0,-83 67,-150 150,-150 41,0 77,15 106,44 L 452,73 C 404,25 343,0 275,0 137,0 25,112 25,250 c 0,138 112,250 250,250 138,0 250,-112 250,-250 0,-28 -22,-50 -50,-50 l -250,0 -50,50 z m 15,431 106,-106 0,-71 -71,0 -106,106 z"
+           inkscape:connector-curvature="0" />
+      </glyph>
+      <glyph
+         unicode=""
+         glyph-name="eacute"
+         id="glyph-e1">
+        <path
+           id="gp-e1"
+           d="m 225,300 191,0 c -20,60 -78,100 -141,100 -83,0 -150,-67 -150,-150 0,-83 67,-150 150,-150 41,0 77,15 106,44 L 452,73 C 404,25 343,0 275,0 137,0 25,112 25,250 c 0,138 112,250 250,250 138,0 250,-112 250,-250 0,-28 -22,-50 -50,-50 l -250,0 -50,50 z m -31,315 106,106 71,0 0,-71 -106,-106 z"
+           inkscape:connector-curvature="0" />
+      </glyph>
+      <glyph
+         unicode=""
+         glyph-name="ecircumflex"
+         id="glyph-e2">
+        <path
+           id="gp-e2"
+           d="m 225,300 191,0 c -20,60 -78,100 -141,100 -83,0 -150,-67 -150,-150 0,-83 67,-150 150,-150 41,0 77,15 106,44 L 452,73 C 404,25 343,0 275,0 137,0 25,112 25,250 c 0,138 112,250 250,250 138,0 250,-112 250,-250 0,-28 -22,-50 -50,-50 l -250,0 -50,50 z m 50,425 106,-106 0,-71 -71,0 -35,35 -35,-35 -71,71 z"
+           inkscape:connector-curvature="0" />
+      </glyph>
+      <glyph
+         unicode=""
+         glyph-name="edieresis"
+         id="glyph-e4">
+        <path
+           id="gp-e4"
+           d="m 225,300 191,0 c -20,60 -78,100 -141,100 -83,0 -150,-67 -150,-150 0,-83 67,-150 150,-150 41,0 77,15 106,44 L 452,73 C 404,25 343,0 275,0 137,0 25,112 25,250 c 0,138 112,250 250,250 138,0 250,-112 250,-250 0,-28 -22,-50 -50,-50 l -250,0 -50,50 z m -50,275 0,100 50,0 50,-50 -50,-50 z m 150,0 0,100 50,0 50,-50 -50,-50 z"
+           inkscape:connector-curvature="0" />
+      </glyph>
+      <glyph
+         unicode=""
+         glyph-name="igrave"
+         id="glyph-i0"
+         horiz-adv-x="150">
+        <path
+           id="gp-i0"
+           d="M 25,500 125,500 125,0 75,-50 25,0 z m 15,231 106,-106 0,-71 -71,0 -106,106 z"
+           inkscape:connector-curvature="0" />
+      </glyph>
+      <glyph
+         unicode=""
+         glyph-name="iacute"
+         id="glyph-i1"
+         horiz-adv-x="150">
+        <path
+           id="gp-i1"
+           d="M 25,500 125,500 125,0 75,-50 25,0 z m -31,115 106,106 71,0 0,-71 L 65,544 z"
+           inkscape:connector-curvature="0" />
+      </glyph>
+      <glyph
+         unicode=""
+         glyph-name="icircumflex"
+         id="glyph-i2"
+         horiz-adv-x="150">
+        <path
+           id="gp-i2"
+           d="M 25,500 125,500 125,0 75,-50 25,0 z m 50,225 106,-106 0,-71 -71,0 -35,35 -35,-35 -71,71 z"
+           inkscape:connector-curvature="0" />
+      </glyph>
+      <glyph
+         unicode=""
+         glyph-name="idieresis"
+         id="glyph-i4"
+         horiz-adv-x="150">
+        <path
+           id="gp-i4"
+           d="M 25,500 125,500 125,0 75,-50 25,0 z m -50,75 0,100 50,0 50,-50 -50,-50 z m 150,0 0,100 50,0 50,-50 -50,-50 z"
+           inkscape:connector-curvature="0" />
+      </glyph>
+      <glyph
+         unicode=""
+         glyph-name="eth"
+         id="glyph-dh">
+        <path
+           id="gp-dh"
+           d="m 275,700 c 51,0 99,-15 138,-41 l 41,41 71,0 0,-71 -41,-41 c 26,-39 41,-87 41,-138 l 0,-200 C 525,112 413,0 275,0 137,0 25,112 25,250 c 0,138 112,250 250,250 55,0 106,-17 150,-50 0,23 -5,45 -14,65 l -28,-28 -71,71 28,28 c -20,9 -42,14 -65,14 z m 0,-300 c -83,0 -150,-67 -150,-150 0,-83 67,-150 150,-150 83,0 150,67 150,150 0,83 -67,150 -150,150 z"
+           inkscape:connector-curvature="0" />
+      </glyph>
+      <glyph
+         unicode=""
+         glyph-name="ntilde"
+         id="glyph-n3">
+        <path
+           id="gp-n3"
+           d="m 25,0 0,500 50,50 50,-50 0,-50 c 44,33 95,50 150,50 138,0 250,-112 250,-250 l 0,-250 -100,0 0,250 c 0,83 -67,150 -150,150 -83,0 -150,-67 -150,-150 L 125,0 z m 109,660 c 49,49 127,49 176,0 10,-10 26,-10 36,0 l 70,0 0,-70 c -49,-49 -127,-49 -176,0 -10,10 -26,10 -36,0 z"
+           inkscape:connector-curvature="0" />
+      </glyph>
+      <glyph
+         unicode=""
+         glyph-name="ograve"
+         id="glyph-o0">
+        <path
+           id="gp-o0"
+           d="m 275 500 c 138 0 250 -112 250 -250 0 -138 -112 -250 -250 -250 -138 0 -250 112 -250 250 0 138 112 250 250 250 z m 0 -100 c -83,0 -150,-67 -150,-150 0,-83 67,-150 150,-150 83,0 150,67 150,150 0,83 -67,150 -150,150 z m -35,331 106,-106 0,-71 -71,0 -106,106 z"
+           inkscape:connector-curvature="0" />
+      </glyph>
+      <glyph
+         unicode=""
+         glyph-name="oacute"
+         id="glyph-o1">
+        <path
+           id="gp-o1"
+           d="M 275,500 C 413,500 525,388 525,250 525,112 413,0 275,0 137,0 25,112 25,250 25,388 137,500 275,500 z m 0,-100 c -83,0 -150,-67 -150,-150 0,-83 67,-150 150,-150 83,0 150,67 150,150 0,83 -67,150 -150,150 z m -81,215 106,106 71,0 0,-71 -106,-106 z"
+           inkscape:connector-curvature="0" />
+      </glyph>
+      <glyph
+         unicode=""
+         glyph-name="ocircumflex"
+         id="glyph-o2">
+        <path
+           id="gp-o2"
+           d="M 275,500 C 413,500 525,388 525,250 525,112 413,0 275,0 137,0 25,112 25,250 25,388 137,500 275,500 z m 0,-100 c -83,0 -150,-67 -150,-150 0,-83 67,-150 150,-150 83,0 150,67 150,150 0,83 -67,150 -150,150 z m 0,325 106,-106 0,-71 -71,0 -35,35 -35,-35 -71,71 z"
+           inkscape:connector-curvature="0" />
+      </glyph>
+      <glyph
+         unicode=""
+         glyph-name="otilde"
+         id="glyph-o3">
+        <path
+           id="gp-o3"
+           d="M 275,500 C 413,500 525,388 525,250 525,112 413,0 275,0 137,0 25,112 25,250 25,388 137,500 275,500 z m 0,-100 c -83,0 -150,-67 -150,-150 0,-83 67,-150 150,-150 83,0 150,67 150,150 0,83 -67,150 -150,150 z M 134,660 c 49,49 127,49 176,0 10,-10 26,-10 36,0 l 70,0 0,-70 c -49,-49 -127,-49 -176,0 -10,10 -26,10 -36,0 z"
+           inkscape:connector-curvature="0" />
+      </glyph>
+      <glyph
+         unicode=""
+         glyph-name="odieresis"
+         id="glyph-o4">
+        <path
+           id="gp-o4"
+           d="M 275,500 C 413,500 525,388 525,250 525,112 413,0 275,0 137,0 25,112 25,250 25,388 137,500 275,500 z m 0,-100 c -83,0 -150,-67 -150,-150 0,-83 67,-150 150,-150 83,0 150,67 150,150 0,83 -67,150 -150,150 z m -100,175 0,100 50,0 50,-50 -50,-50 z m 150,0 0,100 50,0 50,-50 -50,-50 z"
+           inkscape:connector-curvature="0" />
+      </glyph>
+      <glyph
+         unicode=""
+         glyph-name="oslash"
+         id="glyph-o7">
+        <path
+           id="gp-o7"
+           d="m 275,500 c 51,0 99,-15 138,-41 l 41,41 71,0 0,-71 -41,-41 C 510,349 525,301 525,250 525,112 413,0 275,0 224,0 176,15 137,41 L 96,0 25,71 66,112 c -26,39 -41,87 -41,138 0,138 112,250 250,250 z m 0,-100 c -83,0 -150,-67 -150,-150 0,-23 5,-45 14,-65 l 201,201 c -20,9 -42,14 -65,14 z m 0,-300 c 83,0 150,67 150,150 0,23 -5,45 -14,65 L 210,114 c 20,-9 42,-14 65,-14 z"
+           inkscape:connector-curvature="0" />
+      </glyph>
+      <glyph
+         unicode=""
+         glyph-name="ugrave"
+         id="glyph-u0">
+        <path
+           id="gp-u0"
+           d="m 25,500 100,0 0,-250 c 0,-83 67,-150 150,-150 83,0 150,67 150,150 l 0,250 100,0 0,-500 -50,-50 -50,50 0,50 C 381,17 330,0 275,0 137,0 25,112 25,250 z m 215,231 106,-106 0,-71 -71,0 -106,106 z"
+           inkscape:connector-curvature="0" />
+      </glyph>
+      <glyph
+         unicode=""
+         glyph-name="uacute"
+         id="glyph-u1">
+        <path
+           id="gp-u1"
+           d="m 25,500 100,0 0,-250 c 0,-83 67,-150 150,-150 83,0 150,67 150,150 l 0,250 100,0 0,-500 -50,-50 -50,50 0,50 C 381,17 330,0 275,0 137,0 25,112 25,250 z m 169,115 106,106 71,0 0,-71 -106,-106 z"
+           inkscape:connector-curvature="0" />
+      </glyph>
+      <glyph
+         unicode=""
+         glyph-name="ucircumflex"
+         id="glyph-u2">
+        <path
+           id="gp-u2"
+           d="m 25,500 100,0 0,-250 c 0,-83 67,-150 150,-150 83,0 150,67 150,150 l 0,250 100,0 0,-500 -50,-50 -50,50 0,50 C 381,17 330,0 275,0 137,0 25,112 25,250 z m 250,225 106,-106 0,-71 -71,0 -35,35 -35,-35 -71,71 z"
+           inkscape:connector-curvature="0" />
+      </glyph>
+      <glyph
+         unicode=""
+         glyph-name="udieresis"
+         id="glyph-u4">
+        <path
+           id="gp-u4"
+           d="m 25,500 100,0 0,-250 c 0,-83 67,-150 150,-150 83,0 150,67 150,150 l 0,250 100,0 0,-500 -50,-50 -50,50 0,50 C 381,17 330,0 275,0 137,0 25,112 25,250 z m 150,75 0,100 50,0 50,-50 -50,-50 z m 150,0 0,100 50,0 50,-50 -50,-50 z"
+           inkscape:connector-curvature="0" />
+      </glyph>
+      <glyph
+         unicode=""
+         glyph-name="yacute"
+         id="glyph-y1">
+        <path
+           id="gp-y1"
+           d="m 204,50 -179,179 0,271 50,50 50,-50 0,-229 150,-150 150,150 0,229 100,0 0,-271 -429,-429 -71,2 0,71 z m -10,565 106,106 71,0 0,-71 -106,-106 z"
+           inkscape:connector-curvature="0" />
+      </glyph>
+      <glyph
+         unicode=""
+         glyph-name="thorn"
+         id="glyph-th">
+        <path
+           id="gp-th"
+           d="m 25,-200 0,900 50,50 50,-50 0,-250 c 44,33 95,50 150,50 C 413,500 525,388 525,250 525,112 413,0 275,0 220,0 169,17 125,50 l 0,-250 z m 100,450 c 0,-83 67,-150 150,-150 83,0 150,67 150,150 0,83 -67,150 -150,150 -83,0 -150,-67 -150,-150 z"
+           inkscape:connector-curvature="0" />
+      </glyph>
+      <glyph
+         unicode=""
+         glyph-name="ydieresis"
+         id="glyph-y4">
+        <path
+           id="gp-y4"
+           d="m 204,50 -179,179 0,271 50,50 50,-50 0,-229 150,-150 150,150 0,229 100,0 0,-271 -429,-429 -71,2 0,71 z m -29,525 0,100 50,0 50,-50 -50,-50 z m 150,0 0,100 50,0 50,-50 -50,-50 z"
+           inkscape:connector-curvature="0" />
+      </glyph>
+    </font>
+  </defs>
+  <g
+     id="ruler-1">
+    <path
+       sodipodi:nodetypes="ccccccccccccccccccccccccc"
+       inkscape:connector-curvature="0"
+       id="path3065"
+       d="m 0,0 100,0 0,30 -100,0 z m 200,0 100,0 0,30 -100,0 z m 200,0 100,0 0,30 -100,0 z m 200,0 100,0 0,30 -100,0 z m 200,0 100,0 0,30 -100,0 z"
+       style="opacity:0.5;fill:#aaaaaa" />
+    <path
+       sodipodi:nodetypes="cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+       style="opacity:0.5;fill:#555555"
+       d="m 0,5 25,0 0,15 -25,0 z m 50,0 25,0 0,15 -25,0 z m 50,0 25,0 0,15 -25,0 z m 50,0 25,0 0,15 -25,0 z m 50,0 25,0 0,15 -25,0 z m 50,0 25,0 0,15 -25,0 z m 50,0 25,0 0,15 -25,0 z m 50,0 25,0 0,15 -25,0 z m 50,0 25,0 0,15 -25,0 z m 50,0 25,0 0,15 -25,0 z m 50,0 25,0 0,15 -25,0 z m 50,0 25,0 0,15 -25,0 z m 50,0 25,0 0,15 -25,0 z m 50,0 25,0 0,15 -25,0 z m 50,0 25,0 0,15 -25,0 z m 50,0 25,0 0,15 -25,0 z m 50,0 25,0 0,15 -25,0 z m 50,0 25,0 0,15 -25,0 z m 50,0 25,0 0,15 -25,0 z m 50,0 25,0 0,15 -25,0 z"
+       id="path3068"
+       inkscape:connector-curvature="0" />
+  </g>
+  <use
+     x="0"
+     y="0"
+     xlink:href="#ruler-1"
+     id="ruler-2"
+     transform="translate(0,475)"
+     width="550"
+     height="500" />
+  <g
+     id="g45"
+     transform="matrix(1,0,0,-1,0,500)">
+    <rect
+       id="ascent"
+       x="0"
+       y="0"
+       height="768"
+       width="550"
+       style="opacity:0.25;fill:#33bb66" />
+    <rect
+       id="body"
+       x="25"
+       y="0"
+       height="500"
+       width="500"
+       style="opacity:0.5;fill:#33bb66;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
+    <rect
+       id="descent"
+       x="0"
+       y="-256"
+       height="256"
+       width="550"
+       style="opacity:0.5;fill:#33bb66;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
+    <g
+       id="g50"
+       style="opacity:0.5;fill:#cc3333"
+       transform="matrix(0.1,0,0,0.1,-372,0)">
+      <use
+         id="u-a"
+         xlink:href="#gp-a"
+         x="0"
+         y="0"
+         height="500"
+         width="550" />
+      <use
+         id="u-b"
+         xlink:href="#gp-b"
+         x="0"
+         y="0"
+         height="500"
+         width="550"
+         transform="translate(550,0)" />
+      <use
+         id="u-c"
+         xlink:href="#gp-c"
+         x="0"
+         y="0"
+         height="500"
+         width="550"
+         transform="translate(1100,0)" />
+      <use
+         id="u-d"
+         xlink:href="#gp-d"
+         x="0"
+         y="0"
+         height="500"
+         width="550"
+         transform="translate(1550,0)" />
+      <use
+         id="u-e"
+         xlink:href="#gp-e"
+         x="0"
+         y="0"
+         height="500"
+         width="550"
+         transform="translate(2100,0)" />
+      <use
+         id="u-f"
+         xlink:href="#gp-f"
+         x="0"
+         y="0"
+         height="500"
+         width="550"
+         transform="translate(2600,0)" />
+      <use
+         id="u-g"
+         xlink:href="#gp-g"
+         x="0"
+         y="0"
+         height="500"
+         width="550"
+         transform="translate(2960,0)" />
+      <use
+         id="u-h"
+         xlink:href="#gp-h"
+         x="0"
+         y="0"
+         height="500"
+         width="550"
+         transform="translate(3550,0)" />
+      <use
+         id="u-i"
+         xlink:href="#gp-i"
+         x="0"
+         y="0"
+         height="500"
+         width="550"
+         transform="translate(4120,0)" />
+      <use
+         id="u-j"
+         xlink:href="#gp-j"
+         x="0"
+         y="0"
+         height="500"
+         width="550"
+         transform="translate(4270,0)" />
+      <use
+         transform="translate(4550,0)"
+         width="550"
+         height="500"
+         y="0"
+         x="0"
+         xlink:href="#gp-k"
+         id="u-k" />
+      <use
+         id="u-l"
+         xlink:href="#gp-l"
+         x="0"
+         y="0"
+         height="500"
+         width="550"
+         transform="translate(5060,0)" />
+      <use
+         id="u-m"
+         xlink:href="#gp-m"
+         x="0"
+         y="0"
+         height="500"
+         width="550"
+         transform="translate(5270,0)" />
+      <use
+         id="u-n"
+         xlink:href="#gp-n"
+         x="0"
+         y="0"
+         height="500"
+         width="550"
+         transform="translate(6240,0)" />
+      <use
+         id="u-o"
+         xlink:href="#gp-o"
+         x="0"
+         y="0"
+         height="500"
+         width="550"
+         transform="translate(6790,0)" />
+      <use
+         id="u-p"
+         xlink:href="#gp-p"
+         x="0"
+         y="0"
+         height="500"
+         width="550"
+         transform="translate(7360,0)" />
+      <use
+         id="u-q"
+         xlink:href="#gp-q"
+         x="0"
+         y="0"
+         height="500"
+         width="550"
+         transform="translate(7890,0)" />
+      <use
+         id="u-r"
+         xlink:href="#gp-r"
+         x="0"
+         y="0"
+         height="500"
+         width="550"
+         transform="translate(8500,0)" />
+      <use
+         transform="translate(8860,0)"
+         width="550"
+         height="500"
+         y="0"
+         x="0"
+         xlink:href="#gp-s"
+         id="u-s" />
+      <use
+         id="u-t"
+         xlink:href="#gp-t"
+         x="0"
+         y="0"
+         height="500"
+         width="550"
+         transform="translate(9290,0)" />
+      <use
+         id="u-u"
+         xlink:href="#gp-u"
+         x="0"
+         y="0"
+         height="500"
+         width="550"
+         transform="translate(9690,0)" />
+      <use
+         id="u-v"
+         xlink:href="#gp-v"
+         x="0"
+         y="0"
+         height="500"
+         width="550"
+         transform="translate(10230,0)" />
+      <use
+         id="u-w"
+         xlink:href="#gp-w"
+         x="0"
+         y="0"
+         height="500"
+         width="550"
+         transform="translate(10770,0)" />
+      <use
+         transform="translate(11510,0)"
+         width="550"
+         height="500"
+         y="0"
+         x="0"
+         xlink:href="#gp-x"
+         id="u-x" />
+      <use
+         id="u-y"
+         xlink:href="#gp-y"
+         x="0"
+         y="0"
+         height="500"
+         width="550"
+         transform="translate(12050,0)" />
+      <use
+         transform="translate(12590,0)"
+         width="550"
+         height="500"
+         y="0"
+         x="0"
+         xlink:href="#gp-z"
+         id="u-z" />
+    </g>
+    <g
+       id="g51"
+       style="opacity:0.5;fill:#cc3333"
+       transform="matrix(0.1,0,0,0.1,-444,-100)">
+      <use
+         id="u-a0"
+         xlink:href="#gp-a0"
+         x="0"
+         y="0"
+         height="500"
+         width="550"
+         transform="translate(-500,0)" />
+      <use
+         id="u-a1"
+         xlink:href="#gp-a1"
+         x="0"
+         y="0"
+         height="500"
+         width="550"
+         transform="translate(50,0)" />
+      <use
+         id="u-a2"
+         xlink:href="#gp-a2"
+         x="0"
+         y="0"
+         height="500"
+         width="550"
+         transform="translate(600,0)" />
+      <use
+         id="u-a3"
+         xlink:href="#gp-a3"
+         x="0"
+         y="0"
+         height="500"
+         width="550"
+         transform="translate(1150,0)" />
+      <use
+         id="u-a4"
+         xlink:href="#gp-a4"
+         x="0"
+         y="0"
+         height="500"
+         width="550"
+         transform="translate(1700,0)" />
+      <use
+         id="u-a5"
+         xlink:href="#gp-a5"
+         x="0"
+         y="0"
+         height="500"
+         width="550"
+         transform="translate(2260,0)" />
+      <use
+         id="u-ae"
+         xlink:href="#gp-ae"
+         x="0"
+         y="0"
+         height="500"
+         width="550"
+         transform="translate(2800,0)" />
+      <use
+         id="u-c6"
+         xlink:href="#gp-c6"
+         x="0"
+         y="0"
+         height="500"
+         width="550"
+         transform="translate(3730,0)" />
+      <use
+         id="u-e0"
+         xlink:href="#gp-e0"
+         x="0"
+         y="0"
+         height="500"
+         width="550"
+         transform="translate(4180,0)" />
+      <use
+         id="u-e1"
+         xlink:href="#gp-e1"
+         x="0"
+         y="0"
+         height="500"
+         width="550"
+         transform="translate(4730,0)" />
+      <use
+         id="u-e2"
+         xlink:href="#gp-e2"
+         x="0"
+         y="0"
+         height="500"
+         width="550"
+         transform="translate(5250,0)" />
+      <use
+         id="u-e4"
+         xlink:href="#gp-e4"
+         x="0"
+         y="0"
+         height="500"
+         width="550"
+         transform="translate(5840,0)" />
+      <use
+         id="u-i0"
+         xlink:href="#gp-i0"
+         x="0"
+         y="0"
+         height="500"
+         width="550"
+         transform="translate(6450,0)" />
+      <use
+         id="u-i1"
+         xlink:href="#gp-i1"
+         x="0"
+         y="0"
+         height="500"
+         width="550"
+         transform="translate(6620,0)" />
+      <use
+         id="u-i2"
+         xlink:href="#gp-i2"
+         x="0"
+         y="0"
+         height="500"
+         width="550"
+         transform="translate(6830,0)" />
+      <use
+         id="u-i4"
+         xlink:href="#gp-i4"
+         x="0"
+         y="0"
+         height="500"
+         width="550"
+         transform="translate(7020,0)" />
+      <use
+         id="u-dh"
+         xlink:href="#gp-dh"
+         x="0"
+         y="0"
+         height="500"
+         width="550"
+         transform="translate(7190,0)" />
+      <use
+         id="u-n3"
+         xlink:href="#gp-n3"
+         x="0"
+         y="0"
+         height="500"
+         width="550"
+         transform="translate(7780,0)" />
+      <use
+         id="u-o0"
+         xlink:href="#gp-o0"
+         x="0"
+         y="0"
+         height="500"
+         width="550"
+         transform="translate(8360,0)" />
+      <use
+         id="u-o1"
+         xlink:href="#gp-o1"
+         x="0"
+         y="0"
+         height="500"
+         width="550"
+         transform="translate(8910,0)" />
+      <use
+         id="u-o2"
+         xlink:href="#gp-o2"
+         x="0"
+         y="0"
+         height="500"
+         width="550"
+         transform="translate(9450,0)" />
+      <use
+         id="u-o3"
+         xlink:href="#gp-o3"
+         x="0"
+         y="0"
+         height="500"
+         width="550"
+         transform="translate(10030,0)" />
+      <use
+         id="u-o4"
+         xlink:href="#gp-o4"
+         x="0"
+         y="0"
+         height="500"
+         width="550"
+         transform="translate(10590,0)" />
+      <use
+         id="u-o7"
+         xlink:href="#gp-o7"
+         x="0"
+         y="0"
+         height="500"
+         width="550"
+         transform="translate(11130,0)" />
+      <use
+         id="u-u0"
+         xlink:href="#gp-u0"
+         x="0"
+         y="0"
+         height="500"
+         width="550"
+         transform="translate(11650,0)" />
+      <use
+         id="u-u1"
+         xlink:href="#gp-u1"
+         x="0"
+         y="0"
+         height="500"
+         width="550"
+         transform="translate(12190,0)" />
+      <use
+         id="u-u2"
+         xlink:href="#gp-u2"
+         x="0"
+         y="0"
+         height="500"
+         width="550"
+         transform="translate(12730,0)" />
+      <use
+         id="u-u4"
+         xlink:href="#gp-u4"
+         x="0"
+         y="0"
+         height="500"
+         width="550"
+         transform="translate(13290,0)" />
+      <use
+         id="u-y1"
+         xlink:href="#gp-y1"
+         x="0"
+         y="0"
+         height="500"
+         width="550"
+         transform="translate(13830,0)" />
+      <use
+         id="u-th"
+         xlink:href="#gp-th"
+         x="0"
+         y="0"
+         height="500"
+         width="550"
+         transform="translate(14370,0)" />
+      <use
+         id="u-y4"
+         xlink:href="#gp-y4"
+         x="0"
+         y="0"
+         height="500"
+         width="550"
+         transform="translate(14910,0)" />
+    </g>
+    <use
+       width="550"
+       height="500"
+       y="0"
+       x="0"
+       xlink:href="#gp-s"
+       id="use3062"
+       style="fill:#000099;fill-opacity:0.25;stroke:#ff0000;stroke-width:3;stroke-opacity:0.625" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 200,500 C 117,500 50,433 50,350 50,267 117,200 200,200 l 100,0 c 28,0 50,-22 50,-50 0,-28 -22,-50 -50,-50 l -100,0 c -41,0 -77,15 -106,44 L 23,73 C 71,25 132,0 200,0 l 100,0 c 83,0 150,67 150,150 0,83 -67,150 -150,150 l -100,0 c -28,0 -50,22 -50,50 0,28 22,50 50,50 l 200,0 50,50 -50,50 z"
+       id="path3085"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccccccccccccccc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 134,660 c 49,49 127,49 176,0 10,-10 26,-10 36,0 l 70,0 0,-70 c -49,-49 -127,-49 -176,0 -10,10 -26,10 -36,0 z"
+       id="path3233"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccccc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 200,500 200,0 50,-50 -50,-50 -200,0 c -28,0 -50,-22 -50,-50 0,-28 22,-50 50,-50 l 100,0 C 383,300 450,233 450,150 450,67 383,0 300,0 L 200,0 C 132,0 71,25 23,73 l 71,71 c 29,-29 65,-44 106,-44 l 100,0 c 28,0 50,22 50,50 0,28 -22,50 -50,50 l -100,0 c -83,0 -150,67 -150,150 0,83 67,150 150,150 z"
+       id="path3137"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccccsssssccccccsssss" />
+  </g>
+</svg>

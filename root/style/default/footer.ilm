@@ -1,0 +1,4 @@
+[div.footer#footer
+	[p.section#copy{ui:cc}{ui:cc-by} 2015, Chlewey]
+	[p This site complains with HTML ([ui:html5]) and CSS ([ui:css3])]]
+[div.section.banner{area:banner}]]

@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+2015-3-3: Created.
+-->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg3121"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   width="550"
+   height="500"
+   sodipodi:docname="ilecto-typo3.svg">
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1855"
+     inkscape:window-height="1056"
+     id="namedview25"
+     showgrid="false"
+     inkscape:zoom="1.858"
+     inkscape:cx="275"
+     inkscape:cy="163.8859"
+     inkscape:window-x="65"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g50" />
+  <metadata
+     id="metadata3123">
+Created by FontForge 20120731 at Tue Mar  3 12:44:41 2015
+ By Carlos Eugenio Thompson Pinzón,,,
+Created by Carlos Eugenio Thompson Pinzo'n,,, with FontForge 2.0 (http://fontforge.sf.net)
+<rdf:RDF>
+  <cc:Work
+     rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type
+       rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+  </cc:Work>
+</rdf:RDF>
+</metadata>
+  <defs
+     id="defs3125">
+    <font
+       id="IlectoLogo"
+       horiz-adv-x="550"
+       horiz-origin-x="0"
+       horiz-origin-y="0"
+       vert-origin-x="45"
+       vert-origin-y="90"
+       vert-adv-y="500">
+      <font-face
+         font-family="IlectoLogo"
+         font-weight="500"
+         font-stretch="normal"
+         units-per-em="1024"
+         panose-1="2 0 6 3 0 0 0 0 0 0"
+         ascent="768"
+         descent="-256"
+         x-height="500"
+         bbox="-60 -400 960 900"
+         underline-thickness="20"
+         underline-position="-50"
+         unicode-range="U+0061-006F"
+         id="font-face3128" />
+      <missing-glyph
+         id="missing-glyph3130" />
+      <glyph
+         glyph-name="a"
+         unicode="a"
+         id="glyph-a">
+        <path
+           id="gp-a"
+           d="m 425 500 100 0 0 -500 -50 -50 -50 50 0 50 a 250 250 0 1 0 0 400 z m 0 -250 a 150 150 0 0 1 -300 0 150 150 0 0 1 300 0 z" />
+      </glyph>
+      <glyph
+         glyph-name="b"
+         unicode="b"
+         id="glyph-b">
+        <path
+           id="gp-b"
+           d="m 25 0 0 700 50 50 50 -50 0 -250 a 250 250 0 1 0 0 -400 l 0 -50 z m 100 250 a 150 150 0 0 1 300 0 150 150 0 0 1 -300 0 z" />
+      </glyph>
+      <glyph
+         glyph-name="c"
+         unicode="c"
+         id="glyph-c"
+         horiz-adv-x="130">
+        <path
+           id="gp-c"
+           d="M 451.776695 426.776695 451.776695 356.066017 381.066017 356.066017 A 150 150 0 1 1 381.066017 143.933983 L 451.776695 73.223305 A 250 250 0 1 0 451.776695 426.776695 z" />
+      </glyph>
+      <glyph
+         glyph-name="d"
+         unicode="d"
+         id="glyph-d">
+        <path
+           id="gp-d"
+           d="m 425 700 100 0 0 -700 -50 -50 -50 50 0 50 a 250 250 0 1 0 0 400 z m 0 -450 a 150 150 0 0 1 -300 0 150 150 0 0 1 300 0 z" />
+      </glyph>
+      <glyph
+         glyph-name="e"
+         unicode="e"
+         id="glyph-e">
+        <path
+           id="gp-e"
+           d="M 225 300 416.421356 300 A 150 150 0 1 1 381.066017 143.933983 L 451.776695 73.223305 A 250 250 0 1 0 525 250 a 50 50 0 0 0 -50 -50 l -250 0 -50 50 z" />
+      </glyph>
+      <glyph
+         glyph-name="f"
+         unicode="f"
+         id="glyph-f"
+         horiz-adv-x="70">
+        <path
+           id="gp-f"
+           d="m 325 700 0 -100 a 100 100 0 0 1 -100 -100 l 100 0 50 -50 -50 -50 -100 0 0 -400 -100 0 0 400 -100 0 0 100 100 0 a 200 200 0 0 0 200 200 z" />
+      </glyph>
+      <glyph
+         glyph-name="g"
+         unicode="g"
+         id="glyph-g">
+        <path
+           id="gp-g"
+           d="m 425 500 100 0 0 -500 a 200 200 0 0 0 -200 -200 l -50 50 50 50 a 100 100 0 0 1 100 100 l 0 50 a 250 250 0 1 0 0 400 z m 0 -250 a 150 150 0 0 1 -300 0 150 150 0 0 1 300 0 z" />
+      </glyph>
+      <glyph
+         glyph-name="h"
+         unicode="h"
+         id="glyph-h">
+        <path
+           id="gp-h"
+           d="m 25 0 0 700 50 50 50 -50 0 -250 a 250 250 0 0 0 400 -200 l 0 -250 -100 0 0 250 a 150 150 0 0 1 -300 0 l 0 -250 z" />
+      </glyph>
+      <glyph
+         glyph-name="i"
+         unicode="i"
+         id="glyph-i"
+         horiz-adv-x="150">
+        <path
+           id="gp-i"
+           d="M 25,500 125,500 125,0 75,-50 25,0 z M 10,650 a 65,65 0 0 0 130,0 65,65 0 0 0 -130,0 z" />
+      </glyph>
+      <glyph
+         glyph-name="j"
+         unicode="j"
+         id="glyph-j"
+         horiz-adv-x="250">
+        <path
+           id="gp-j"
+           d="m 125 500 100 0 0 -500 a 200 200 0 0 0 -200 -200 l -50 50 50 50 a 100 100 0 0 1 100 100 z -15 150 a 65 65 0 0 0 130 0 65 65 0 0 0 -130 0 z" />
+      </glyph>
+      <glyph
+         glyph-name="l"
+         unicode="l"
+         id="glyph-l"
+         horiz-adv-x="150">
+        <path
+           id="gp-l"
+           d="M 25,650 H -25 L 75,750 175,650 H 125 V 0 H 25 z" />
+      </glyph>
+      <glyph
+         glyph-name="m"
+         unicode="m"
+         id="glyph-m"
+         horiz-adv-x="950">
+        <path
+           id="gp-m"
+           d="m 25 0 0 500 50 50 50 -50 0 -50 a 250 250 0 0 0 350 -50 250 250 0 0 0 450 -150 l 0 -250 -100 0 0 250 a 150 150 0 0 1 -300 0 l 0 -250 -100 0 0 250 a 150 150 0 0 1 -300 0 l 0 -250 z" />
+      </glyph>
+      <glyph
+         glyph-name="n"
+         unicode="n"
+         id="glyph-n">
+        <path
+           id="gp-n"
+           d="m 25 0 0 500 50 50 50 -50 0 -50 a 250 250 0 0 0 400 -200 l 0 -250 -100 0 0 250 a 150 150 0 0 1 -300 0 l 0 -250 z" />
+      </glyph>
+      <glyph
+         glyph-name="o"
+         unicode="o"
+         id="glyph-o">
+        <path
+           id="gp-o"
+           d="m 275 500 a 250 250 0 0 0 0 -500 250 250 0 0 0 0 500 z m 0 -100 a 150 150 0 0 1 0 -300 150 150 0 0 1 0 300 z" />
+      </glyph>
+      <glyph
+         glyph-name="p"
+         unicode="p"
+         id="glyph-p">
+        <path
+           id="gp-p"
+           d="m 25 -200 0 700 50 50 50 -50 0 -50 a 250 250 0 1 0 0 -400 l 0 -250 z m 100 450 a 150 150 0 0 1 300 0 150 150 0 0 1 -300 0 z" />
+      </glyph>
+      <glyph
+         glyph-name="q"
+         unicode="q"
+         id="glyph-q">
+        <path
+           id="gp-q"
+           d="m 425 500 100 0 0 -700 -50 -50 -50 50 0 250 a 250 250 0 1 0 0 400 z m 0 -250 a 150 150 0 0 1 -300 0 150 150 0 0 1 300 0 z" />
+      </glyph>
+      <glyph
+         glyph-name="r"
+         unicode="r"
+         id="glyph-r">
+        <path
+           id="gp-r"
+           d="m 237.13203,-174.26407 70.71068,70.71068 -176.77669,176.776695 0.0442,0.04419 A 50,50 0 0 0 131.06602,143.93398 150,150 0 0 1 25,399.99503 L -25.005708,450.00073 25,500.00644 A 250,250 0 0 0 233.35343,112.35725 l 145.19996,-145.199962 70.71068,70.710678 0,-212.132036 -212.13204,0 z" />
+      </glyph>
+      <glyph
+         glyph-name="t"
+         unicode="t"
+         id="glyph-t">
+        <path
+           id="gp-t"
+           d="M 335.9375,0 A 200,200 0 0 0 150,200 l 0,200 -62.5,0 C 67.6058,437.977635 40.4279,472.72053 8.8125,500 L 50,500 250,700 250,500 350,500 350,400 250,400 250,200 A 100,100 0 0 1 350,100 L 400,50 350,50 a 200,200 0 0 0 198.59375,250 z" />
+      </glyph>
+    </font>
+  </defs>
+  <g
+     transform="matrix(1,0,0,-1,0,500)"
+     id="g45">
+    <rect
+       style="opacity:0.25;fill:#33bb66"
+       id="rect3002"
+       width="550"
+       height="768"
+       x="0"
+       y="0" />
+    <rect
+       style="opacity:0.5;fill:#33bb66;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect3004"
+       width="500"
+       height="500"
+       x="25"
+       y="0" />
+    <rect
+       style="opacity:0.5;fill:#33bb66;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect3006"
+       width="550"
+       height="256"
+       y="-256"
+       x="0" />
+    <g
+       style="opacity:0.5;fill:#cc3333"
+       id="g50"
+       transform="scale(0.1,0.1)">
+      <use
+         xlink:href="#gp-a"
+         id="u-a"
+         x="0"
+         y="0"
+         width="550"
+         height="500"
+         transform="translate(-21.528525,-16.146394)" />
+      <use
+         xlink:href="#gp-b"
+         id="u-b"
+         x="0"
+         y="0"
+         width="550"
+         height="500"
+         transform="translate(231.43165,-5.3821313)" />
+      <use
+         xlink:href="#gp-c"
+         id="u-c"
+         x="0"
+         y="0"
+         width="550"
+         height="500"
+         transform="translate(462.86329,-16.146394)" />
+      <use
+         xlink:href="#gp-d"
+         id="u-d"
+         x="0"
+         y="0"
+         width="550"
+         height="500"
+         transform="translate(586.65231,0)" />
+      <use
+         xlink:href="#gp-e"
+         id="u-e"
+         x="0"
+         y="0"
+         width="550"
+         height="500"
+         transform="translate(753.49839,16.146394)" />
+      <use
+         xlink:href="#gp-f"
+         id="u-f"
+         x="0"
+         y="0"
+         width="550"
+         height="500"
+         transform="translate(1022.605,43.057051)" />
+      <use
+         xlink:href="#gp-g"
+         id="u-g"
+         x="0"
+         y="0"
+         width="550"
+         height="500"
+         transform="translate(2055.9742,64.585576)" />
+      <use
+         xlink:href="#gp-h"
+         id="u-h"
+         x="0"
+         y="0"
+         width="550"
+         height="500"
+         transform="translate(2448.8698,16.146394)" />
+      <use
+         xlink:href="#gp-i"
+         id="u-i"
+         x="0"
+         y="0"
+         width="550"
+         height="500"
+         transform="translate(2970.9365,53.821313)" />
+      <use
+         xlink:href="#gp-j"
+         id="u-j"
+         x="0"
+         y="0"
+         width="550"
+         height="500"
+         transform="translate(3110.8719,43.057051)" />
+      <use
+         xlink:href="#gp-l"
+         id="u-l"
+         x="0"
+         y="0"
+         width="550"
+         height="500"
+         transform="translate(3379.9785,-5.3821313)" />
+      <use
+         xlink:href="#gp-m"
+         id="u-m"
+         x="0"
+         y="0"
+         width="550"
+         height="500"
+         transform="translate(1334.7686,-37.674919)" />
+      <use
+         xlink:href="#gp-n"
+         id="u-n"
+         x="0"
+         y="0"
+         width="550"
+         height="500"
+         transform="translate(3595.2637,59.203445)" />
+      <use
+         xlink:href="#gp-o"
+         id="u-o"
+         x="0"
+         y="0"
+         width="550"
+         height="500"
+         transform="translate(4149.6233,-16.146394)" />
+      <use
+         xlink:href="#gp-p"
+         id="u-p"
+         x="0"
+         y="0"
+         width="550"
+         height="500"
+         transform="translate(4725.5113,-21.528525)" />
+      <use
+         xlink:href="#gp-q"
+         id="u-q"
+         x="0"
+         y="0"
+         width="550"
+         height="500"
+         transform="translate(5220.6674,5.3821313)" />
+      <use
+         xlink:href="#gp-r"
+         id="u-r"
+         x="0"
+         y="0"
+         width="550"
+         height="500"
+         transform="translate(5775.0269,-32.292788)" />
+      <use
+         xlink:href="#gp-t"
+         id="u-t"
+         x="0"
+         y="0"
+         width="550"
+         height="500"
+         transform="translate(6184.0689,-26.910657)" />
+    </g>
+  </g>
+</svg>
