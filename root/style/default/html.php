@@ -13,7 +13,6 @@
 
   <div class="content" id="body">
     <h1 id="title">{page:title}</h1>
-    <p>{text:Loren ipsum}</p>
     {content}
   </div>
 

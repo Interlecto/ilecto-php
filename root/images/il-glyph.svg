@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg2"
+   height="300"
+   width="300"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   sodipodi:docname="small.svg">
+  <defs
+     id="defs4">
+    <filter
+       id="filter3840"
+       x="-0.13050798"
+       y="-0.11105805"
+       height="1.2221161"
+       width="1.261016"
+       inkscape:collect="always"
+       color-interpolation-filters="sRGB">
+      <feGaussianBlur
+         id="feGaussianBlur3842"
+         inkscape:collect="always"
+         stdDeviation="6.46232" />
+    </filter>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1"
+     inkscape:cx="150"
+     inkscape:cy="150"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1855"
+     inkscape:window-height="1056"
+     inkscape:window-x="65"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer0"
+     style="opacity:0.75"
+     transform="translate(5,5)"
+     inkscape:groupmode="layer"
+     inkscape:label="Capa 0">
+    <g
+       id="sh-logo"
+       style="filter:url(#filter3840)"
+       transform="matrix(0.99712,0.07584,-0.07584,0.99712,157,135)">
+      <use
+         id="sh-point"
+         xlink:href="#point"
+         x="0"
+         y="0"
+         height="300"
+         width="840" />
+      <path
+         sodipodi:type="arc"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="100"
+         sodipodi:ry="100"
+         d="M 100,0 A 100,100 0 1 1 -100,0 100,100 0 1 1 100,0 z"
+         id="sh-bubble" />
+    </g>
+  </g>
+  <g
+     id="layer1"
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer">
+    <g
+       id="logo"
+       transform="matrix(0.99712,0.07584,-0.07584,0.99712,157,135)">
+      <g
+         id="call"
+         style="fill:#3399cc">
+        <path
+           d="M 156.875 35 C 105.09236 35.001526 61.27344 74.918212 57.28125 127.40625 C 55.48589 151.01106 62.057989 173.31599 74.46875 191.4375 L 31.34375 270.875 L 131.9375 231.84375 C 137.56832 233.29349 143.4064 234.26241 149.40625 234.71875 C 204.47567 238.90728 252.53022 197.66317 256.71875 142.59375 C 260.90728 87.524333 219.66317 39.469778 164.59375 35.28125 C 162.01237 35.084913 159.42169 34.999925 156.875 35 z M 160.625 50.1875 C 161.56332 50.16399 162.5027 50.1789 163.4375 50.25 C 178.3943 51.3876 192.79175 60.00475 191.84375 72.46875 C 190.89575 84.93275 174.98805 96.2626 160.03125 95.125 C 145.07445 93.9874 130.677 85.37025 131.625 72.90625 C 132.51375 61.22125 146.55015 50.540146 160.625 50.1875 z M 158.125 110.28125 C 160.07851 110.26181 162.0054 110.2953 163.875 110.4375 C 178.8318 111.5751 183.0751 121.94945 181.9375 136.90625 L 178.125 186.75 C 176.6082 206.6924 192.53935 195.38045 198.09375 188.28125 L 207.28125 199 C 199.04445 208.4024 185.81985 217.43145 155.90625 215.15625 C 135.96385 213.63945 126.76865 202.8943 127.90625 187.9375 L 131.6875 138.09375 C 132.4459 128.12255 122.494 127.3455 116.75 136.9375 L 107.53125 126.21875 C 117.25495 117.86965 139.24105 110.4692 158.125 110.28125 z "
+           transform="matrix(0.99712,-0.07584,0.07584,0.99712,-166.78624,-122.70432)"
+           id="point" />
+      </g>
+      <g
+         id="info"
+         style="fill:#ffffff" />
+    </g>
+  </g>
+</svg>

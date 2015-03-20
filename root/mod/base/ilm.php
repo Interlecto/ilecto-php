@@ -16,6 +16,14 @@ function ilm_unescape($p,$t=null,&$text) {
 	return chr(intval("$p",16));
 }
 
+function ilm_u_unescape($p,$t=null,&$text) {
+	if(is_array($p) && isset($p[1])) {
+		$text = substr($text,strlen($p[0]));
+		return '&#x' . $p[1] . ';';
+	}
+	return chr(intval("$p",16));
+}
+
 $GLOBALS['ilm2html_subs'] = array(
 	'x'=>array(3,'pre'),
 	's'=>array(2,'section'),
@@ -279,6 +287,7 @@ function ilm2html($ilm,$version = 5) {
 
 $GLOBALS['ilm_cases'] = array(
 	'_([0-9A-Fa-f]{2})' => 'ilm_unescape',
+	'__([0-9A-Fa-f]{3,6})' => 'ilm_u_unescape',
 	'\[\[([-\w]*)(:?)([^][{}\s]*)\s*([^][{}]*)\]\]' => 'ilm_anchor',
 	'\[(\w[-\w]*)(\s*)' => 'ilm_maketag',
 	'\.(\w[-\w]*)(\s*)' => 'ilm_tagclass',

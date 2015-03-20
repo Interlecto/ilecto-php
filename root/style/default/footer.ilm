@@ -1,4 +1,3 @@
 [div.footer#footer
-	[p.section#copy{ui:cc}{ui:cc-by} 2015, Chlewey]
+	[p.section#copy{ui:cc}{ui:cc-by} 2015, Chlewey & Interlecto ({ui:twitter}[[http://twitter.com/ @interlecto]])]
 	[p This site complains with HTML ([ui:html5]) and CSS ([ui:css3])]]
-[div.section.banner{area:banner}]]

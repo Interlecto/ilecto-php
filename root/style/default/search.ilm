@@ -1,2 +1,2 @@
 [div.nav#search[h3.o Búsqueda]
-	[@F#s-box[@I#s][@G#s-go]]]
+	[@F#s-box[@I#s][@G.ui#s-go __1F50E]]]
