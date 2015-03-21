@@ -1,0 +1,66 @@
+
+Escape sequences:
+single byte: _XX (XX is a two nible case-insensitive hexadecimal code)
+UTF-16: _uXXXX (XXXX is a four-nible case-insensitive hexadecimal code)
+multibyte: __XXXXXX (XXXXXX is a variable-len (max 6 nibles) case-insensitive hexadecimal code)
+
+_41, _u0041, __41, __041, __0041, __00041, and __000041 are equivalent.
+_C1 is not (necesarily) equivalent to _u00C1, it depends on encoding:
+using common UTF-8 encoding: __C1 = _u00C1 = _C3_81
+althoug in UTF-16 encoding or 24 or 32 bit Unicode econdigs: __C1 = _u00C1 = _C1
+
+_41b is correct for Ab
+__41b is interpreded as u+00041B (cyrillic capital letter el, Л)
+__000041b is again Ab
+_u0041b is Ab
+_u041b is Л
+_u41b is incorrect (restorts to literal "_u41b")
+
+[key content] ==> <key>content</key>
+                  <key value=content>
+                  <tag class=key>content</tag>
+                  <tag type=key value=content>
+
+[key.sort content] ==> <key class=sort>content</key>
+                       <key class=sort value=content>
+                       <tag class="key sort">content</tag>
+                       <tag class=sort type=key value=content>
+
+[key#name content] ==> <key id=name>content</key>
+                       <key id=name value=content>
+                       <tag id=name class=key>content</tag>
+                       <tag id=name type=key value=content>
+
+[key!action content] ==> <a href=action><key>content</key></a>
+                         <key action=action value=content>
+                         <a href=action><tag class=key>content</tag></a>
+                         <a href=action><tag type=key value=content></a>
+
+[key.sort#name!action content] ==> <a href=action><key id=name class=sort>content</key></a>
+                                   ...
+
+Direct translation between ILM and HTML:
+[div], [h1], [p], [em]
+
+Casual translation (HTML4 compatible, HTML5 extended)
+[nav] =>> <div class=nav></div>, <nav></nav>
+[aside] =>> <div class=aside></div>, <aside></aside>
+[header], [footer], [section] ...
+
+Unicoded aliases:
+[§] == [section]
+
+Sensitive:
+[H] =>> [h2],[h3]... according to inside level:
+[div[H][div[H][H]][H]] = [div[h2][div[h3][h3]][h2]]
+[§3[H]] = [section[h3]]
+[@] ==> <form method=post>
+[@action] ==> <form method=post action=action></form>
+[!] ==> <input type=submit>
+[! content] ==> <input type=submit value=content>
+[![s complex content]] => <button type=submit><s>complex conent</s></button>
+[!action] ==> <input type=submit formaction=action>, <button type=submit formaction=action>
+
+[@ ...] ==> form (POST)
+[? ...] ==> form (GET)
+[@action ...] and [?action ...] ==> defines action

@@ -1,4 +1,5 @@
 <?php
+
 require_once 'lib/attributer.php';
 require_once 'lib/db.php';
 require_once 'lib/doc.php';
@@ -180,7 +181,7 @@ class Page extends Attributer {
 		#make content
 		$engine = $this->get('line/engine','dispatch');
 		$this->getengine($engine);
-		if($fn=$this->get('engine/filename',false)) require $fn;
+		if($fn=$this->get('engine/filename',false)) require_once $fn;
 		if(class_exists($class = 'doc_'.$this->get('engine/class','raw')))
 			$this->content = new $class($this);
 		else $this->content = new nulldoc($this);

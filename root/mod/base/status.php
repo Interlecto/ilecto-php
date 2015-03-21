@@ -24,6 +24,7 @@ function make_status(&$doc,$status,$alttitle=null,$altbody=null,$alttype='ilm',$
 		il_add('log/headers',$h,ADD_ARRAY);
 	}
 	$doc->add('content',"[x ".ilm_escape(htmlentities(print_r($doc,true)))."]");
+	$doc->add('content',"[x ".ilm_escape(htmlentities(print_r($_SERVER,true)))."]");
 }
 
 require_once 'lib/doc.php';

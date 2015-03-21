@@ -1,0 +1,96 @@
+[body
+	[header
+		[H!/ Site Name]
+		[p Site Motto]]
+	[content
+		[H!. Page Title]
+		[section
+			[H Common formating]
+			[p[!//lipsum.org Lorem ipsum] [b dolor sit amet], consectetur adipiscing elit.
+				Donec lacinia [!consequences consectetur] nisi, id aliquam leo tristique [!non].
+				Cras ut ullamcorper nunc, sit amet ultricies tellus.
+				Nunc maximus, felis vel [i vehicula pretium], diam ante faucibus [i!knowledge sapien], et fermentum ipsum sem in dui.
+				Mauris eu [u lorem vitae] libero fermentum scelerisque.
+				Morbi felis turpis, [!mailto:me facilisis] ac congue vel, finibus id [!mailto:ex@not.me ex].
+				Vivamus at elementum velit, vitae sodales [b!ftp:tellus.org tellus].
+				[del Mauris maximus neque id dignissim interdum.]
+				Fusce ac finibus velit.]
+			[p _45n un _u00e1rbol __00064__65 __00006danzanas (__0006danzanas, S__faper __006danzanas _c3_ba __1F50d¿¡Qué!?__01f50e &#x1F5; &#x1F50; &#x1F50E;).]
+			[p[i The End]]]
+		[section
+			[H Form test]
+			[section
+				[H Simple Search form]
+					[?search#searchform[I#s>Search term][!]]]
+			[§[H Complex form]
+				[@gb#gb
+					[@@ Personal Info
+						[L@name Name:][I#name Prefilled name]
+						[L@passwd Password][P#passwd>enter your password]
+						[L@email Email:][email#email>enter your email]
+						[L@bd Birthday:][@@#bd
+						[S#day
+							{for:n:1:31}[O {:n}]{next}]
+						[S#month
+							[O:1 January]
+							[O:2 February]
+							[O:3 March]
+							[O:4 April]
+							[O:5 May]
+							[O:6 June]
+							[O:7 July]
+							[O:8 August]
+							[O:9 September]
+							[O:10 Octuber]
+							[O:11 November]
+							[O:12 December]]
+						[S#year
+							{for:n:2005:-1:1905}[O {:n}]{next}]]]
+					[¶ Interests
+						[L@int Interests:]
+						[¶#int
+							[R#int.1 education][L@int.1 Education]
+							[R#int.2 job][L@int.2 Job and Career]
+							[R#int.3 leisure][L@int.3 Leisure time]
+							[R#int.4 travel][L@int.4 Travel]]
+						[L@com Commitment:]
+						[@@#com
+							[R#com.2][L@com.2 Mild]
+							[R#com.3:x][L@com.3 Fair]
+							[R#com.4][L@com.4 Dedicated]
+							[R#com.5][L@com.5 Full]]
+						[L@el Education level:]
+						[¶#el
+							[R#some@el][L@some Some Shool]
+							[R#hs@el highschool][L@hs Highschool]
+							[R#college@el][L@college College]
+							[R#graduate@el][L@graduate Graduate School]]
+						[L@iss Issues:]
+						[@@#iss
+							[C#nofly][L@nofly Can't fly]
+							[C#iss.2][L@iss.2 Vegan]
+							[C#issue3 married][L@issue3 Married]
+							[C#issue4:0][L@issue4 Unrelated]]]
+					[¶Message
+						[T Some initial text]]
+					[! Publish][!emailing Apply [b privately]][!!]]]]
+			[§[H Images]
+				[p Here is some inline {img:image1.png image 1} image
+				And we can have some floating images such as
+				{img:left:image2.png image 2}{img:left:image3.png image 3}{img:left:image4.png image 4}
+				this group.]
+				{img:center:image5.png Centered image}
+				[p{img:right:image5.png[c image with caption]}Some images can also be given captions.
+				There are other small images, usually called icons, such as: {ui:cc} and {ui:instagram}.
+				Those icons can be used in listings, i.e.:]
+				[l
+					[o item 1 (with no icon)]
+					[o::twitter item 2 (Twitter)]
+					[o::facebook item 2 (Facbook)]]
+				]]
+	[footer[address The Interlecto Team]]
+]
+						
+
+
+			
