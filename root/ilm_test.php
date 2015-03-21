@@ -13,6 +13,30 @@ ini_set('display_errors', true);
 error_reporting(E_ALL);
 $ilm = file_get_contents('mod/base/sample.ilm');
 
+function array_popkey(array &$array,$key) {
+	if(!isset($array[$key])) return Null;
+	$value = $array[$key];
+	unset($array[$key]);
+	return $value;
+}
+function array_renamekey(array &$array,$old,$new,$def=Null) {
+	if(isset($array[$old])) {
+		$array[$new] = $array[$old];
+		unset($array[$old]);
+		return True;
+	}
+	if(!is_null($def))
+		$array[$new] = $def;
+	return False;
+}
+function array_addclass(array &$array,$class,$key='class') {
+	if(isset($array[$key])) $array[$key].=" $class";
+	else $array[$key] = $class;
+}
+function array_get(array $array,$key,$def=null) {
+	return isset($array[$key])? $array[$key]: $def;
+}
+
 $tagactions = array(
 	'' => 'emptytag',
 	'section' => 'sectiontag',
@@ -59,10 +83,7 @@ function commonattribs($mods,array &$attribs) {
 		case '.';
 			$c = array_shift($m[0]);
 			$c = str_replace('.',' ',$c);
-			if(isset($attribs['class']))
-				$attribs['class'].= " $c";
-			else
-				$attribs['class'] = $c;
+			array_addclass($attribs,$c);
 			break;
 		case '#';
 			$attribs['id'] = array_shift($m[0]);
@@ -75,7 +96,7 @@ function commonattribs($mods,array &$attribs) {
 			$attribs['value'] = array_shift($m[0]);
 			break;
 		case '::';
-			$attribs['class'].= 'ui ui_'.array_shift($m[0]);
+			$attribs['class'] = 'ui ui_'.array_shift($m[0]);
 			break;
 		case '!';
 			$attribs['href'] = implode($m[0]);
@@ -95,10 +116,7 @@ function inputattribs($mods,array &$attribs) {
 		switch($a) {
 		case '.';
 			$c = array_shift($m[0]);
-			if(isset($attribs['class']))
-				$attribs['class'].= " $c";
-			else
-				$attribs['class'] = $c;
+			array_addclass($attribs,$c);
 			break;
 		case '#';
 			$attribs['id'] = array_shift($m[0]);
@@ -131,8 +149,6 @@ function inputattribs($mods,array &$attribs) {
 			$attribs[] = $a;
 		}
 	}
-	if(isset($id)) $attribs['id'] = $id;
-	if(isset($name)) $attribs['name'] = $name;
 	return $attribs;
 }
 
@@ -186,18 +202,18 @@ function opentag($tag,&$closetag,&$closefunc) {
 function fixhref($href) {
 	return $href;
 }
+function checkhref(array &$attribs) {
+	if(!($href=array_popkey($attribs,'href')))
+		return '';
+	return '<a href="'.fixhref($href).'">';
+}
 function defaulttag($tag,$mods,&$closetag,&$closefunc) {
 	$closefunc = 'closetag';
 	$closetag = tagalias($tag,$attribs);
 	commonattribs($mods,$attribs);
-	if(isset($attribs['href'])) {
-		$href = $attribs['href'];
-		unset($attribs['href']);
+	if($p=checkhref($attribs))
 		$closefunc = 'closeanchor';
-		return '<a href="'.fixhref($href).'">'.
-			htmltag($closetag,$attribs);
-	}
-	return htmltag($closetag,$attribs);
+	return $p.htmltag($closetag,$attribs);
 }
 
 function emptytag($tag,$mods,&$closetag,&$closefunc) {
@@ -207,22 +223,19 @@ function emptytag($tag,$mods,&$closetag,&$closefunc) {
 		$attribs = array();
 		commonattribs($mods,$attribs);
 		$attribs['type'] = 'submit';
-		if(isset($attribs['href'])) {
-			if($attribs['href']=='!')
+		if($action = array_popkey($attribs,'href')) {
+			if($action=='!')
 				$attribs['type'] = 'reset';
 			else
-				$attribs['formaction'] = $attribs['href'];
-			unset($attribs['href']);
+				$attribs['formaction'] = $action;
 		}
-		$closetag = $attribs;
-		return '';
 	} else {
 		$closefunc = 'closeemptyanchor';
 		$attribs = array();
 		commonattribs($mods,$attribs);
-		$closetag = $attribs;
-		return '';
 	}
+	$closetag = $attribs;
+	return '';
 }
 
 function sectiontag($tag,$mods,&$closetag,&$closefunc) {
@@ -243,7 +256,9 @@ function headingtag($tag,$mods,&$closetag,&$closefunc) {
 	$closetag = "h$hlevel";
 	$attribs = array();
 	commonattribs($mods,$attribs);
-	return htmltag($closetag,$attribs);
+	if($p=checkhref($attribs))
+		$closefunc = 'closeanchor';
+	return $p.htmltag($closetag,$attribs);
 }
 
 function formtag($tag,$mods,&$closetag,&$closefunc) {
@@ -254,13 +269,8 @@ function formtag($tag,$mods,&$closetag,&$closefunc) {
 	$attribs = array();
 	commonattribs($mods,$attribs);
 	$attribs['method'] = $tag=='?'? 'get': 'post';
-	if(isset($attribs['href'])) {
-		$attribs['action'] = $attribs['href'];
-		unset($attribs['href']);
-	} elseif(isset($attribs[0])) {
-		$attribs['action'] = $attribs[0];
-		unset($attribs['href']);
-	}
+	array_renamekey($attribs,'href','action') or
+	array_renamekey($attribs,0,'action');
 	return htmltag($closetag,$attribs);
 }
 
@@ -269,7 +279,7 @@ function fieldsettag($tag,$mods,&$closetag,&$closefunc) {
 	$closetag = 'fieldset';
 	$attribs = array();
 	commonattribs($mods,$attribs);
-	return htmltag($closetag,$attribs,False);
+	return htmltag($closetag,$attribs);
 }
 
 function subsectiontag($tag,$mods,&$closetag,&$closefunc) {
@@ -333,13 +343,9 @@ function closeform($content,$tag) {
 
 function closefieldset($content,$tag) {
 	if(preg_match('{^\s*([^<\n"]+)}',$content,$m)) {
-		$r = ' value="'.trim($m[1]).'">';
-		$r.= '<!-- "'.substr($content,0,strlen($m[0])).'" - "'.$m[0].'" -->';
-		$r.= substr($content,strlen($m[0]));
-	} else {
-		$r = '>'.$content;
+		$content = '<legend>'.trim($m[1]).'</legend>'.substr($content,strlen($m[0]));
 	}
-	return "$r</$tag>\n";
+	return ilm_unscape($content)."</$tag>\n";
 }
 
 function openbrace($complex,&$closing,&$ops) {
@@ -430,7 +436,7 @@ function ilmc_ui($content,$ops) {
 $ilm_vars=array();
 function ilm_var($var) {
 	global $ilm_vars;
-	return isset($ilm_vars[$var])? $ilm_vars[$var]: '0';
+	return array_get($ilm_vars,$var,'0');
 }
 
 function ilmb_for($keys,&$ops) {
@@ -446,6 +452,7 @@ function ilmb_next($keys,&$ops) {
 function ilmb_img($keys,&$ops) {
 	$ops = array();
 	$class = array();
+	$coor = 0;
 	$ops['src'] = array_pop($keys);
 	foreach($keys as $key) {
 		switch($key) {
@@ -454,8 +461,36 @@ function ilmb_img($keys,&$ops) {
 		case 'center':
 			$class[] = substr($key,0,1);
 			break;
+		case 'auto':
+			if($coor==1) {
+				$ops['height'] = $key;
+				$coor=2;
+				break;
+			}
+			if($coor==0) {
+				$ops['width'] = $key;
+				$coor=1;
+				break;
+			}
 		default:
-			$class[] = $key;
+			if(substr($key,0,1)=='#') {
+				$ops['id'] = substr($key,1);
+			} elseif(substr($key,0,1)=='!') {
+				$ops['href'] = substr($key,1);
+			} elseif(preg_match('{^\d+\w*$}')) {
+				if($coor==1) {
+					$ops['height'] = $key;
+					$coor=2;
+					break;
+				}
+				if($coor==0) {
+					$ops['width'] = $key;
+					$coor=1;
+					break;
+				}
+			} else {
+				$class[] = $key;
+			}
 		}
 	}
 	if($class)
@@ -464,10 +499,9 @@ function ilmb_img($keys,&$ops) {
 }
 
 function ilmc_img($content,$ops) {
-	if(isset($ops['href'])) {
-		$pre = htmltag('a',array('href'=>$ops['href']));
+	if($h=array_popkey($ops,'href')) {
+		$pre = htmltag('a',array('href'=>fixhref($h)));
 		$pos = '</a>';
-		unset($ops['href']);
 	} else {
 		$pre = $pos = '';
 	}
@@ -475,11 +509,17 @@ function ilmc_img($content,$ops) {
 		$ops['alt'] = $ops['title'] = trim($content);
 		return $pre.htmltag('img',$ops).$pos;
 	}
-	if(isset($ops['class'])) $ops['class'].= ' caption';
-	else $ops['class'] = 'caption';
-	$src = $ops['src'];
-	unset($ops['src']);
+	array_addclass($ops,'caption');
+	$src = array_popkey($ops,'src');
 	return htmltag('span',$ops).$pre.htmltag('img',array('src'=>$src)).$pos.$content.'</span>';
+}
+
+function ilmb_text($keys,&$ops) {
+	$ops = implode(':',$keys);
+	return '';
+}
+function ilmc_text($content,$ops) {
+	return $ops? "$ops $content": $content;
 }
 
 echo ilm2html($ilm);

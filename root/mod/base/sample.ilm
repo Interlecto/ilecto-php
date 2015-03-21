@@ -1,9 +1,11 @@
 [body
-	[header
-		[H!/ Site Name]
-		[p Site Motto]]
-	[content
-		[H!. Page Title]
+	[header.ca#header
+		[p.nav.o#ilinks {text:Go to} [!#search search], [!#menu site navigation], [!#links external links].]
+		{img:left:#logo:/images/small.svg Interlecto}
+		[H#siteid[b!/ {text: Site name}]]
+		[p.d#sitetag [em{text: Site Motto}]]]
+	[content#body
+		[H#title!. Page Title]
 		[section
 			[H Common formating]
 			[p[!//lipsum.org Lorem ipsum] [b dolor sit amet], consectetur adipiscing elit.
@@ -88,9 +90,10 @@
 					[o::twitter item 2 (Twitter)]
 					[o::facebook item 2 (Facbook)]]
 				]]
-	[footer[address The Interlecto Team]]
-]
-						
+	[footer#footer
+		[address#copy{ui:cc}{ui:cc-by} 2015, Chlewey & Interlecto ({ui:twitter}[[http://twitter.com/ @interlecto]])]
+		[p This site complains with HTML ({ui:html5}) and CSS ({ui:css3})]]
+	[js!https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js]]
 
 
 			

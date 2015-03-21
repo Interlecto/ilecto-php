@@ -2,4 +2,4 @@
 	[p.nav.o#ilinks {text:Go to} [[#search search]], [[#menu site navigation]], [[#links external links]].]
 	[[img-logo-l:/images/small.svg!/ Interlecto]]
 	[p.h#siteid[strong!/ {page:site:name}]]
-	[p.d#sitetag[em{page:site:motto}]]
+	[p.d#sitetag[em{page:site:motto}]]]
