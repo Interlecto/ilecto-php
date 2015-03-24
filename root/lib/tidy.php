@@ -3,6 +3,7 @@ class tidy {
 static $blocks = array(
 	'body','div',
 	'section','aside','header','footer',
+	'table','tbody','thead','tfoot',
 	'ul','ol',
 );
 static $pars = array(
