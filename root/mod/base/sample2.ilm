@@ -1,5 +1,8 @@
-[body
-	[header.ca#header
+{?"This is a comment, that won't show in HTML"}
+{?!This is a comment that will show in HTML}
+{??This is a comment that won't show in HTML but should show in stderr or in log}
+[b:body{?common blog structures belong to the 'b' namespace; '[b:]' is a common div.}
+	[b:header.ca##{? '.xxx' provides a class. '#xxx' provides an id name, '##' means autonaming.}
 		[p.nav.o#ilinks {text:Go to} [!#search search], [!#menu site navigation], [!#links external links].]
 		{img:left:#logo:/images/small.svg Interlecto}
 		[H#siteid[b!/ {text: Site name}]]

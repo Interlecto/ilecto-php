@@ -1,5 +1,5 @@
 <?php
-function ilm_escape($input,$chars='_[]{}') {
+function ilm_escape($input,$chars='_[]\{}') {
 		$p = preg_quote($chars,'#');
 		return preg_replace_callback("#[$p]#",'ilm_escape_char',$input);
 }
@@ -19,9 +19,10 @@ function ilm_unescape($p,$t=null,&$text) {
 function ilm_u_unescape($p,$t=null,&$text) {
 	if(is_array($p) && isset($p[1])) {
 		$text = substr($text,strlen($p[0]));
-		return '&#x' . $p[1] . ';';
+		$p=$p[1];
 	}
-	return chr(intval("$p",16));
+	$h = '&#x'.ltrim($p,0).';';
+	return mb_convert_encoding($h, 'UTF-8', 'HTML-ENTITIES');
 }
 
 $GLOBALS['ilm2html_subs'] = array(

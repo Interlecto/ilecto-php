@@ -8,6 +8,7 @@ class doc_static extends Doc {
 		$lang = substr($lpar[0].$lpar[4].$lpar[6],0,2);
 		$this->set('pars/lang',$lang);
 		$lpar12 = empty($lpar[2])? $lpar[1]: $lpar[1].'/'.$lpar[2];
+		$this->page->set('class',$lpar[1]?$lpar[1]:'static',SET_EMPTY);
 		$keys = array( trim($lpar12.'/'.$lpar[3],'/') );
 		if(empty($lpar[3]))
 			$keys[] = trim($lpar12.'/index','/');

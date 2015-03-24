@@ -23,8 +23,9 @@ function make_status(&$doc,$status,$alttitle=null,$altbody=null,$alttype='ilm',$
 		header($h=sprintf('%s %03d %s',$protocol,(int)$status,$t));
 		il_add('log/headers',$h,ADD_ARRAY);
 	}
-	$doc->add('content',"[x ".ilm_escape(htmlentities(print_r($doc,true)))."]");
-	$doc->add('content',"[x ".ilm_escape(htmlentities(print_r($_SERVER,true)))."]");
+	#$doc->add('content',"[x ".ilm_escape(htmlentities(print_r(Page::$first,true)))."]");
+	#$doc->add('content',"[x ".ilm_escape(htmlentities(print_r($doc,true)))."]");
+	#$doc->add('content',"[x ".ilm_escape(htmlentities(print_r($_SERVER,true)))."]");
 }
 
 require_once 'lib/doc.php';
@@ -36,7 +37,11 @@ class doc_status extends Doc {
 		$this->status = $linepar[1];
 	}
 	function make() {
+		$lpar = $this->page->get('line/params');
+		$this->set('pars/arr',$lpar);
 		make_status($this,$this->status,null,null,null,substr(il_get('request/uri'),0,8)!='/status/');
+		$this->page->set('title',$this->get('title',null),SET_EMPTY);
+		$this->page->set('class','status',SET_EMPTY);
 	}
 };
 

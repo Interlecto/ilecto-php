@@ -13,29 +13,547 @@ ini_set('display_errors', true);
 error_reporting(E_ALL);
 $ilm = file_get_contents('mod/base/sample.ilm');
 
-function array_popkey(array &$array,$key) {
-	if(!isset($array[$key])) return Null;
-	$value = $array[$key];
-	unset($array[$key]);
-	return $value;
-}
-function array_renamekey(array &$array,$old,$new,$def=Null) {
-	if(isset($array[$old])) {
-		$array[$new] = $array[$old];
-		unset($array[$old]);
-		return True;
+require_once "lib/arrayutils.php";
+
+define('HTMLT_UNCLOSED',0);
+define('HTMLT_OPEN',1);
+define('HTMLT_CLOSE',2);
+define('HTMLT_STANDALONE',3);
+function htmltag($tag, $flags=HTMLT_OPEN, array $attribs=null) {
+	if($flags===HTMLT_CLOSE) {
+		return "</$tag>";
 	}
-	if(!is_null($def))
-		$array[$new] = $def;
-	return False;
+	$r = "<$tag";
+	if(!is_null($attribs))
+		foreach($attribs as $k=>$v) {
+			if(!$v) continue;
+			$r.=" $k=";
+			if($v===True)
+				$r.= $k;
+			elseif(preg_match('{^[_\w][-_\w]*$}', $v))
+				$r.= $v;
+			else
+				$r.= '"'.htmlentities($v).'"';
+		}
+	if($flags!=HTMLT_UNCLOSED) $r.=">";
+	return $r;
 }
-function array_addclass(array &$array,$class,$key='class') {
-	if(isset($array[$key])) $array[$key].=" $class";
-	else $array[$key] = $class;
+
+define('ILM_UNREFABLE',0);
+define('ILM_SRC',1);
+define('ILM_ANCHORIN',2);
+define('ILM_ANCHOROUT',3);
+class ILM {
+static $tags = array();
+static $alias = array();
+static function add_tag($key,$class,$flags=ILM_UNREFABLE,$alias=null) {
+	ILM::$tags[$key] = array($class,$flags);
+	if($alias)
+		ILM::$alias[$alias] = $key;
 }
-function array_get(array $array,$key,$def=null) {
-	return isset($array[$key])? $array[$key]: $def;
+static function add_alias($alias,$refers) {
+	ILM::$alias[$alias] = $refers;
 }
+
+static $braces = array();
+static function add_brace($key,$class) {
+	ILM::$braces[$key] = $class;
+}
+
+static $gflags = array();
+static function set_flag($flag,$val=true) {
+	ILM::$gflags[$flag] = $val;
+}
+static function unset_flag($flag) {
+	unset(ILM::$gflags[$flag]);
+}
+static function is_flag($flag) {
+	return isset(ILM::$gflags[$flag]) && ILM::$gflags[$flag];
+}
+static function get_flag($flag,$def=false) {
+	return array_get(ILM::$gflags,$flag,$def);
+}
+static function flag_inc($flag,$min=0) {
+	if(!isset(ILM::$gflags[$flag]) || ILM::$gflags[$flag]<$min)
+		ILM::$gflags[$flag]=$min;
+	else
+		ILM::$gflags[$flag]++;
+}
+static function flag_dec($flag,$min=0) {
+	if(!isset(ILM::$gflags[$flag]) || ILM::$gflags[$flag]<=$min)
+		ILM::$gflags[$flag]=$min;
+	else
+		ILM::$gflags[$flag]--;
+}
+
+static function unscape($ilm) {
+	$ilm = preg_replace('{\n\s*}',"\n",$ilm);
+	$ilm = preg_replace('{\s+}',' ',$ilm);
+	$ilm = preg_replace_callback(
+		'{(__([0-9A-Fa-f]{1,6})|_[Uu]([0-9A-Fa-f]{4})|_([0-9A-Fa-f]{2}))}',
+		function ($m) {
+			$a = ltrim(array_pop($m),0);
+			return mb_convert_encoding("&#x$a;", 'UTF-8', 'HTML-ENTITIES');
+		},
+		$ilm);
+	return $ilm;
+}
+
+static function decode(&$text, $t='') {
+	if(!$text) return false;
+	if(preg_match('{^\s*(\])}',$text,$m)) {
+		$text = substr($text,strlen($m[0]));
+		if($t!='[')
+			throw new Exception("Unmatched braces '$t' and '{$m[1]}'.\n");
+		return false;
+	} elseif(preg_match('{^\s*(\})}',$text,$m)) {
+		$text = substr($text,strlen($m[0]));
+		if($t!='{')
+			throw new Exception("Unmatched braces '$t' and '{$m[1]}'.");
+		return false;
+	} elseif(preg_match('{^\s*\[(\w[-_:\w]*|[^][{}\s\w#!.]+)?([^][{}\s]*)(\s*)}',$text,$m)) {
+		$text = substr($text,strlen($m[0]));
+		$tag = array_get(ILM::$alias,$m[1],$m[1]);
+		if(($n=strpos($tag,'.'))!==false)
+			$tag = substr($tag,0,$n);
+		$class = array_get(ILM::$tags, $tag, array('ILM',ILM_UNREFABLE) );
+		return new $class[0] ( $m, $text, $class[1] );
+	} elseif(preg_match('{^\s*\{(\w*)((?:\:[-_./\w#]*)*)(\s*)([^{}]*)\}}',$text,$m)) {
+		$text = substr($text,strlen($m[0]));
+		$x = explode(':',$m[1]);
+		$code = array_shift($x);
+		$class = array_get(ILM::$braces, $code, 'ILMB' );
+		return new $class ( $m, $text );
+	} else {
+		preg_match('{^(\s*[^][{}]*)}',$text,$m);
+		if(strlen($m[0])==0 && strlen($text)!=0) {
+			throw new Exception('Unmatched struct "'.substr($text,0,50).'".');
+		}
+		$text = substr($text,strlen($m[0]));
+		return $m[1];
+	}
+}
+
+static function tohtml(&$text) {
+	$list = array();
+	while(($item = ILM::decode($text))!==false) {
+		$list[] = $item;
+	}
+	#print_r($list);
+	$s = '';
+	foreach($list as $item)
+		#echo ILM::htmlitem($item);
+		$s.= ILM::htmlitem($item);
+	return $s;
+}
+static function htmlitem($item) {
+	if(is_a($item,'ILM'))
+		return $item->html();
+	if(is_object($item) && method_exists($item,'html'))
+		return $item->html();
+	if(is_array($item)) {
+		$r = '';
+		foreach($item as $i)
+			$r.= ILM::htmlitem($i);
+		return $r;
+	}
+	return ILM::unscape($item);
+}
+
+	function openhtml($close=true) {
+		if(empty($this->tag)) {
+			if(ILM::is_flag('inform')) {
+				$this->tag = 'button';
+				$this->attribs['type'] = 'submit';
+				if(array_key_exists('href',$this->attribs)) {
+					$href = array_popkey($this->attribs,'href');
+					if($href=='!') {
+						$this->attribs['type'] = 'reset';
+					} else {
+						$this->attribs['formaction'] = fixhref($href);
+					}
+					
+				}
+			} else {
+				$this->tag = array_key_exists('href',$this->attribs)?
+					'a':
+					'span';
+			}
+			return htmltag($this->tag,$close,$this->attribs);
+		}
+		if($this->flags==ILM_ANCHORIN || $this->flags==ILM_ANCHOROUT) {
+			#$xx = preg_replace('{\s+}',' ',print_r($this->attribs,true));
+			$href = array_popkey($this->attribs,'href');
+			$htag = htmltag($this->tag,$close,$this->attribs);
+			if(empty($href))
+				return $htag;#."<!-- '$xx' -->";
+			if(empty($this->content))
+				$this->content[] = $href;
+			$href = fixhref($href);
+			$anchor = htmltag('a',HTMLT_OPEN,array('href'=>$href));
+			$this->anchor = true;
+			return $this->flags==ILM_ANCHORIN? $htag.$anchor: $anchor.$htag;
+		}
+		if($this->flags==ILM_SRC)
+			$this->attribs['src'] = $href;
+		elseif(is_string($this->flags))
+			$this->attribs[$this->flags] = $href;
+		return htmltag($this->tag,$close,$this->attribs);
+	}
+
+	function closehtml() {
+		$anchor = empty($this->anchor)? '': htmltag('a', HTMLT_CLOSE);
+		$tag = htmltag($this->tag, HTMLT_CLOSE);
+		return $this->flags==ILM_ANCHOROUT? $tag.$anchor: $anchor.$tag;
+	}
+	function html() {
+		$s = $this->openhtml();
+		foreach($this->content as $item)
+			$s.= ILM::htmlitem($item);
+		$s.= $this->closehtml();
+		return $s;
+	}
+/**/
+	function setattribs($str) {
+		preg_match_all('{([/_\w][-./_\w]*|\W)}', $str, $m);
+		while($m[0]) {
+			$a = array_shift($m[0]);
+			switch($a) {
+			case '.';
+				$c = array_shift($m[0]);
+				$c = str_replace('.',' ',$c);
+				array_addclass($this->attribs,$c);
+				break;
+			case '#';
+				$this->attribs['id'] = array_shift($m[0]);
+				break;
+			case '>';
+				$f = array_shift($m[0]);
+				$this->attribs['for'] = str_replace('.','_',$f);
+				break;
+			case '@';
+				$this->attribs['value'] = array_shift($m[0]);
+				break;
+			case '+';
+				$this->attribs['class'] = 'ui ui_'.array_shift($m[0]);
+				break;
+			case '!';
+				$this->attribs['href'] = implode($m[0]);
+				#echo "<!-- ".print_r($this,true).' -->';
+				$m[0]=Null;
+				break;
+			default;
+				$this->attribs[] = $a;
+			}
+		}
+	}
+
+	public function __construct(array $base, &$text, $flags=null) {
+		$this->tag = $base[1];
+		$this->attribs = array();
+		$this->content = array();
+		$this->flags = $flags;
+		
+		if(isset(ILM::$alias[$this->tag])) {
+			$tagpair = ILM::$alias[$this->tag];
+			if(($n=strpos($tagpair,'.'))) {
+				$this->attribs['class'] = substr($tagpair,$n+1);
+				$this->tag = substr($tagpair,0,$n);
+			} elseif(($n=strpos($tagpair,'!'))) {
+				$this->attribs['type'] = substr($tagpair,$n+1);
+				$this->tag = substr($tagpair,0,$n);
+			} else {
+				$this->tag = $tagpair;
+			}
+		}
+		if(isset(ILM::$tags[$this->tag]) && is_null($this->flags)) {
+			$this->flags = ILM::$tags[$this->tag][1];
+		}
+
+		$mods = $base[2];
+		$this->setattribs($mods);
+		$this->esp = $base[3] != '';
+		while(($x = ILM::decode($text,'['))!==false)
+			$this->content[] = $x;
+	}/**/
+};
+
+class ILMpar extends ILM {
+static $level="";
+	function openhtml($close=true) {
+		ILMblock::$level.= "\t";
+		return chr(10).ILMblock::$level.ILM::openhtml($close);
+	}
+	function closehtml() {
+		ILMblock::$level = substr(ILMblock::$level,0,-1);
+		return ILM::closehtml().chr(10);
+	}
+};
+class ILMblock extends ILMpar {
+static $level="";
+	function closehtml() {
+		return chr(10).ILMblock::$level.ILMpar::closehtml();
+	}
+};
+ILM::add_tag('body','ILMblock');
+ILM::add_tag('header','ILMblock');
+ILM::add_tag('footer','ILMblock');
+ILM::add_tag('p','ILMpar',ILM_ANCHORIN);
+ILM::add_tag('legend','ILMpar');
+class ILMsection extends ILMblock {
+	function openhtml($close=true) {
+		ILM::flag_inc('level',2);
+		return ILMblock::openhtml($close);
+	}
+	function closehtml() {
+		ILM::flag_dec('level',2);
+		return ILMblock::closehtml();
+	}
+};
+ILM::add_tag('section','ILMsection',ILM_UNREFABLE,'§');
+class ILMheading extends ILMpar {
+	function openhtml($close=true) {
+		$this->tag = 'h'.ILM::get_flag('level',1);
+		return ILMpar::openhtml($close);
+	}
+};
+ILM::add_tag('H','ILMheading',ILM_ANCHORIN);
+
+ILM::add_tag('strong','ILM',ILM_ANCHOROUT,'b');
+ILM::add_tag('em','ILM',ILM_ANCHOROUT,'i');
+ILM::add_tag('label','ILM',ILM_ANCHOROUT,'L');
+ILM::add_tag('option','ILM',ILM_UNREFABLE,'O');
+ILM::add_tag('select','ILMblock',ILM_UNREFABLE,'S');
+
+class ILMform extends ILMblock {
+	public function __construct(array $base, &$text, $flags=null) {
+		ILM::__construct($base,$text,$flags);
+		$action = array_popkey($this->attribs,0);
+		$this->attribs['method'] = in_array($base[1],array('?','get','getform'))? 'get': 'post';
+		$this->attribs['action'] = fixhref($action);
+	}
+	function openhtml($close=true) {
+		ILM::set_flag('inform');
+		return ILM::openhtml($close);
+	}
+	function closehtml() {
+		ILM::unset_flag('inform');
+		return ILM::closehtml();
+	}
+};
+ILM::add_tag('form','ILMform',ILM_UNREFABLE,'@');
+ILM::add_alias('?','form');
+ILM::add_alias('getform','form');
+ILM::add_alias('get','form');
+ILM::add_alias('postform','form');
+ILM::add_alias('post','form');
+
+class ILMfieldset extends ILMblock {
+	function openhtml($close=true) {
+		$r = ILMblock::openhtml($close);
+		if(is_string($this->content[0])) {
+			$legend = trim(array_shift($this->content));
+			$legend = "[legend $legend]";
+			$r.= ILM::tohtml($legend);
+		}
+		return $r;
+	}
+}
+ILM::add_tag('fieldset','ILMfieldset',ILM_UNREFABLE,'@@');
+
+class ILMdinsec extends ILMfieldset {
+	function openhtml($close=true) {
+		if(ILM::is_flag('inform')) {
+			$this->tag = 'fieldset';
+			return ILMfieldset::openhtml($close);
+		} else {
+			$this->tag = 'section';
+			return ILMblock::openhtml($close);
+		}
+	}
+}
+ILM::add_tag('¶','ILMdinsec');
+
+class ILMsingle extends ILM {
+	function openhtml($close=true) {
+		if(!empty($this->content)) {
+			if(is_string($this->content[0])) {
+				$value = array_shift($this->content);
+				if(!array_addclass_ifset($this->attribs,$value,'placeholder'))
+					$this->attribs['value'] = $value;
+			}
+			$this->content = array();
+		}
+		return ILM::openhtml($close);
+	}
+	function closehtml() {
+		return chr(10);
+	}
+};
+ILM::add_tag('br','ILMsingle');
+ILM::add_tag('hr','ILMsingle');
+
+class ILMinput extends ILMsingle {
+	function setattribs($str) {
+		preg_match_all('{([/_\w][-./_\w]*|\W)}', $str, $m);
+		while($m[0]) {
+			$a = array_shift($m[0]);
+			switch($a) {
+			case '.';
+				$c = array_shift($m[0]);
+				$c = str_replace('.',' ',$c);
+				array_addclass($this->attribs,$c);
+				break;
+			case '#';
+				$id = array_shift($m[0]);
+				$x = explode('.',$id);
+				$name = array_shift($x);
+				if(empty($x)) {
+					$this->attribs['id'] = $name;
+				}
+				else {
+					$value = implode('_',$x);
+					$this->attribs['id'] = "{$name}_$value";
+					$this->attribs['value'] = $value;
+				}
+				$this->attribs['name'] = $name;
+				break;
+			case '<';
+				$this->attribs['placeholder'] = array_shift($m[0]);
+				break;
+			case '@';
+				$this->attribs['name'] = array_shift($m[0]);
+				$this->attribs['value'] = $this->attribs['id'];
+				break;
+			case '+';
+				$this->attribs['class'] = 'ui ui_'.array_shift($m[0]);
+				break;
+			case '!';
+				$this->attribs['formaction'] = implode($m[0]);
+				#echo "<!-- ".print_r($this,true).' -->';
+				$m[0]=Null;
+				break;
+			default;
+				$this->attribs[] = $a;
+			}
+		}
+	}
+};
+ILM::add_tag('input!text','ILMinput',null,'I');
+ILM::add_tag('input!password','ILMinput',null,'P');
+ILM::add_tag('input!email','ILMinput',null,'email');
+ILM::add_tag('input!checkbox','ILMinput',null,'C');
+ILM::add_tag('input!radio','ILMinput',null,'R');
+
+class ILMB extends ILM {
+	function html() {
+		$r = '<b>{</b>';
+		$r.= $this->code;
+		$r.= '('.implode(':',$this->keys).')';
+		$r.= $this->espin? ' ':'';
+		$r.= ILM::tohtml($this->content);
+		$r.= '<b>}</b>';
+		$r.= $this->espafter? ' ':'';
+		return $r;
+	}
+	
+	public function __construct(array $base, &$text) {
+		$this->code = $base[1];
+		#$this->array = $base;
+		$keys = explode(':',ltrim($base[2],':'));
+		$this->keys = $keys;
+		$this->espin = $base[3] != '';
+		$this->content = $base[4];
+		$this->espafter = preg_match('{^\s}',$text);
+		#echo '<!--'.print_r($this,true).'-->';
+	}
+};
+
+class ILMtext extends ILMB {
+	function html() {
+		$r = empty($this->keys)? '': array_pop($this->keys);
+		$r.= $this->espin? ' ':'';
+		$r.= ILM::unscape($this->content);
+		$r.= $this->espafter? ' ':'';
+		global $i18n;
+		return isset($i18n[$r])? $i18n[$r]: $r;
+	}
+};
+ILM::add_brace('text', 'ILMtext');
+#print_r(ILM::$braces);
+
+class ILMui extends ILMB {
+	function html() {
+		#echo '<!--'.print_r($this,true).'-->';
+		$cl = 'ui';
+		foreach($this->keys as $key)
+			$cl.= " ui_$key";
+		$content = $this->content;
+		return
+			htmltag('i',HTMLT_OPEN,array('class'=>$cl)).
+			ILM::tohtml($content).
+			htmltag('i',HTMLT_CLOSE);
+	}
+};
+ILM::add_brace('ui', 'ILMui');
+
+class ILmath {
+static $vars=array();
+static function let($var,$val) { ILmath::$vars[$var] = $val; }
+static function val($var,$def=0) { return array_get(ILmath::$vars,$var,$def); }
+};
+class ILMvar extends ILMB {
+	function html() {
+		try {
+			$var = $this->keys[0];
+		} catch(Exception $e) {
+			return ILM::decode("[W 'for' with too few arguments.]!");
+		}
+		if(!empty($this->code)) $var = "$code:$var";
+		return ILmath::val($var);
+	}
+};
+ILM::add_brace('', 'ILMvar');
+class ILMdo extends ILMB {
+	function html() {
+		if(method_exists($this,$action='do_'.$this->code))
+			return $this->$action();
+		return ILM::htmlitem($this->block);
+	}
+	public function __construct(array $base, &$text) {
+		ILMB::__construct($base,$text);
+		$this->block = array();
+		while(!is_a($n=ILM::decode($text),'ILMdone') && !is_a($n,'ILMelse'))
+			$this->block[] = $n;
+		#echo '<!--'.print_r($this,true).'-->';
+	}
+	
+	function do_for() {
+		$r = '';
+		$envkeys = $this->keys;
+		try {
+			$var = array_shift($envkeys);
+			$ini = array_shift($envkeys);
+			$end = array_pop($envkeys);
+		} catch(Exception $e) {
+			return ILM::decode("[W 'for' with too few arguments.]!");
+		}
+		if(!empty($envkeys)) {
+			$step = $envkeys[0];
+		} else {
+			$step = $end<$ini? -1: 1;
+		}
+		for($i=$ini; ($i*$step)<=($end*$step); $i+=$step) {
+			ILmath::let($var,$i);
+			$r.= ILM::htmlitem($this->block);
+		}
+		return $r;
+	}
+};
+class ILMdone extends ILMB {
+};
+ILM::add_brace('for', 'ILMdo');
+ILM::add_brace('next', 'ILMdone');
 
 $tagactions = array(
 	'' => 'emptytag',
@@ -54,27 +572,12 @@ $tagactions = array(
 	'R' => 'inputtag',
 	'X' => 'inputtag',
 	'email' => 'inputtag',
+	'js' => 'jstag',
 );
 $tagstack = array();
 $hlevel = 0;
 $inform = False;
 
-function htmltag($tag, array $attribs=Null, $close=True) {
-	$r = "<$tag";
-	if(!is_null($attribs))
-		foreach($attribs as $k=>$v) {
-			if(!$v) continue;
-			$r.=" $k=";
-			if($v===True)
-				$r.= $k;
-			elseif(preg_match('{^\w+$}', $v))
-				$r.= $v;
-			else
-				$r.= '"'.htmlentities($v).'"';
-		}
-	if($close) $r.=">";
-	return $r;
-}
 function commonattribs($mods,array &$attribs) {
 	preg_match_all('{([/_\w][-./_\w]*|:+|\W)}', $mods, $m);
 	while($m[0]) {
@@ -289,6 +792,15 @@ function subsectiontag($tag,$mods,&$closetag,&$closefunc) {
 		sectiontag($tag,$mods,$closetag,$closefunc);
 }
 
+function jstag($tag,$mods,&$closetag,&$closefunc) {
+	$closefunc = 'closetag';
+	$closetag = "script";
+	$attribs = array('type'=>'text/javascript');
+	commonattribs($mods,$attribs);
+	array_renamekey($attribs,'href','src');
+	return htmltag($closetag,$attribs);
+}
+
 function inputtag($tag,$mods,&$closetag,&$closefunc) {
 	$closefunc = 'inputclose';
 	tagalias($tag,$attribs);
@@ -361,7 +873,7 @@ function openbrace($complex,&$closing,&$ops) {
 		}
 		return "{<b>$key:</b>".implode(":",$kk);
 	}
-	$closing = 'xxx';
+	$closing = 0;
 	return "<b style='background:#6cf'>{</b><i style='background:#aaa'>$complex</i>";
 }
 
@@ -522,9 +1034,9 @@ function ilmc_text($content,$ops) {
 	return $ops? "$ops $content": $content;
 }
 
-echo ilm2html($ilm);
+//echo ilm2html($ilm);
+echo ILM::tohtml($ilm);
 /* */
 
 ?>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
 </html>

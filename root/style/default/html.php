@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="{style}css/style.css" type="text/css" />
 <link rel="stylesheet" href="{style}css/layout.css" type="text/css" />
 <link rel="icon" href="{page:site:icon}">
-</head>
+</head><!-- {page:type} -->
 <body class="{page:class}">
   {area:header}
 
