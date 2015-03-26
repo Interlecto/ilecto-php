@@ -32,4 +32,13 @@ function array_addclass_ifset(array &$array,$class,$key='class') {
 	else return false;
 }
 
+define('ASET_UNSET',0);
+define('ASET_EMPTY',1);
+define('ASET_ALWAYS',2);
+function array_set(array &$array,$key,$value,$how = ASET_EMPTY) {
+	if(!empty($array[$key]) && $how>=ASET_ALWAYS) $array[$key]=$value;
+	elseif(isset($array[$key]) && $how>=ASET_EMPTY) $array[$key]=$value;
+	else $array[$key]=$value;
+}
+
 ?>

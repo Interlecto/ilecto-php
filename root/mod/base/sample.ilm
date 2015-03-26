@@ -27,8 +27,8 @@
 			[§[H Complex form]
 				[@gb#gb
 					[@@ Personal Info
-						[L>name Name:][I#name Prefilled name]
-						[L>passwd Password][P#passwd<enter your password]
+						[L.wd.33>name Name:][I.wd.67#name Prefilled name]
+						[L>passwd Password:][P#passwd<enter your password]
 						[L>email Email:][email#email<enter your email]
 						[L>bd Birthday:][@@#bd
 						[S#day
@@ -82,13 +82,17 @@
 				{img:left:image2.png image 2}{img:left:image3.png image 3}{img:left:image4.png image 4}
 				this group.]
 				{img:center:image5.png Centered image}
-				[p{img:right:image5.png[c image with caption]}Some images can also be given captions.
+				[p{img:right:image6.png[c image with caption]}Some images can also be given captions.
 				There are other small images, usually called icons, such as: {ui:cc} and {ui:instagram}.
 				Those icons can be used in listings, i.e.:]
 				[l
 					[o item 1 (with no icon)]
 					[o::twitter item 2 (Twitter)]
-					[o::facebook item 2 (Facbook)]]]
+					[o::facebook item 3 (Facbook)]]]
+				[l::rss
+					[o also, a whole]
+					[o list can be given]
+					[o an icon as a bullet.]
 			[§[H Tables]
 				[table
 					[thead[tr[th]{for:k:1:5}[th head {:k}]{next}]]

@@ -4,7 +4,7 @@ static $blocks = array(
 	'body','div',
 	'section','aside','header','footer',
 	'table','tbody','thead','tfoot',
-	'ul','ol',
+	'ul','ol','b','f',
 );
 static $pars = array(
 	'p',
@@ -15,7 +15,7 @@ static $tab="\t";
 static function go($str,$version,$tab=null) {
 	if(!is_null($tab)) tidy::$tab=$tab;
 	$str = preg_replace_callback(
-		'{(?:(<(\w+)[^<>]*>)|(</(\w+)>)|(<!--[^<>]*-->))()}',
+		'{(?:(<(\w+)[^<>]*>)|(</(\w+)[^<>]*>)|(<!--[^<>]*-->))()}',
 		function ($match) {
 			if(in_array($match[2],tidy::$blocks)) {
 				$tab = tidy::$tab;
@@ -37,6 +37,14 @@ static function go($str,$version,$tab=null) {
 			}
 			return $match[0];
 		},
+		$str);
+	$str = preg_replace(
+		'{ *\n}',
+		"\n",
+		$str);
+	$str = preg_replace(
+		'{\n\t*(\n\t*)}',
+		'\1',
 		$str);
 	$str = preg_replace(
 		'{\n\t*(\n\t*)}',

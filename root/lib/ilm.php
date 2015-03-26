@@ -38,8 +38,9 @@ static function tohtml(&$str) {
 	preg_match_all(
 		'{'.'\n\s*'.
 		'|'.'\s+'.
-		'|'.'"[^"]*"'.
+		'|'.'"[^"\n]*"'.
 		'|'."'\\w+'".
+		'|'.'![A-Za-z#/.][^][{}\s]*'.
 		'|'.'__[0-9A-Fa-f]{1,6}'.
 		'|'.'_[Uu][0-9A-Fa-f]{4}'.
 		'|'.'_[0-9A-Fa-f]{2}'.
@@ -48,12 +49,13 @@ static function tohtml(&$str) {
 		'|'.'&#x[0-9A-Fa-f]+;'.
 		'|'.'\d+'.
 		'|'.'[A-Za-z]+'.
-		'|'.'\[?[\xc2-\xdf][\x80-\xbf]'.
-		'|'.'\[?[\xe0-\xef][\x80-\xbf]{2}'.
-		'|'.'\[?[\xf0-\xf7][\x80-\xbf]{3}'.
+		'|'.'[\[:]?[\xc2-\xdf][\x80-\xbf]'.
+		'|'.'[\[:]?[\xe0-\xef][\x80-\xbf]{2}'.
+		'|'.'[\[:]?[\xf0-\xf7][\x80-\xbf]{3}'.
 		'|'.'[\x5b\x7b#:.<>@/][a-z]\w*'.
+		'|'.'[\x5b\x7b#:.<>@/]"[^"\n]*"'.
 		'|'.'\[[A-Z]'.
-		'|'.'[\x5b\x7b][^][\s\w"#/\x80-\xff]*'.
+		'|'.'[\x5b\x7b][^][\s\w"#/:!\x80-\xff]*'.
 		'|'.'#+'.
 		'|'.':+'.
 		'|'.'\W'.
@@ -133,9 +135,12 @@ class ILMtag extends ILM {
 			$r.=" $k=\"$v\"";
 		}
 		$r.='>';
-		foreach($this->childs as $child) {
-			$r.= $child->html();
-		}
+		if(isset($this->value))
+			$r.= $this->value;
+		else
+			foreach($this->childs as $child) {
+				$r.= $child->html();
+			}
 		$r.= '</'.$this->tag.'>';
 		return $r;
 	}
@@ -146,18 +151,18 @@ class ILMtag extends ILM {
 		#echo $this->tag.chr(10);
 		$this->attribs = array();
 		$this->childs=array();
+		$s = '';
 		do {
 			$cl=ILM::get_class($f=array_shift($tok));
 			if($cl=='ILMtagOff') break;
 			$o = new $cl($f,$tok);
-			$s = '';
 			switch($t = $o->tagtarget()) {
 			case 'text':
 				$s.= $o->text();
 				break;
 			case 'child':
 				if(!empty($s)) {
-					$this->childs[] = new ILM('$s');
+					$this->childs[] = new ILM("$s");
 					$s = '';
 				}
 				$this->childs[] = $o;
@@ -182,8 +187,14 @@ class ILMtag extends ILM {
 			}
 			#echo " '$f' '$cl' '$t' \n";
 		} while($t!='');
-		if(!empty($s) && empty($tihs->childs))
-			$this->value = $s;
+		if(!empty($s)) {
+			if(empty($tihs->childs))
+				$this->value = $s;
+			else
+				$this->childs[] = $s;
+		}
+		while(($cl=ILM::get_class($f=$tok[0]))=='ILMesp')
+			array_shift($tok);
 	}
 	
 	function text() {
@@ -218,7 +229,7 @@ class ILMbrace extends ILM {
 				break;
 			case 'child':
 				if(!empty($s)) {
-					$this->childs[] = new ILM('$s');
+					$this->childs[] = new ILM("$s");
 					$s = '';
 				}
 				$this->childs[] = $o;
@@ -231,6 +242,9 @@ class ILMbrace extends ILM {
 				else
 					$s.= $o->text();
 				break;
+			case 'link':
+				$this->link = $o->text();
+				break;
 			case 'class':
 				array_addclass($this->attribs, $o->text(), $t);
 				break;
@@ -240,6 +254,8 @@ class ILMbrace extends ILM {
 		} while($t!='');
 		if(!empty($s) && empty($tihs->childs))
 			$this->value = $s;
+		if(($cl=ILM::get_class($f=$tok[0]))=='ILMesp')
+			array_shift($tok);
 	}
 };
 ILM::add_pattern('\{.*','ILMbrace');
@@ -274,7 +290,7 @@ ILM::add_pattern('\{\?.*','ILMcomment');
 class ILMsubtag extends ILM {
 	public function __construct($bid, array &$tok) {
 		$this->bid = $bid;
-		$this->sub = substr($bid,1);
+		$this->sub = trim(substr($bid,1),'" ');
 		$this->target = 'tag';
 	}
 };
@@ -287,7 +303,7 @@ class ILMclass extends ILMsubtag {
 		$this->target = 'class';
 	}
 };
-ILM::add_pattern('\..*','ILMclass');
+ILM::add_pattern('\.\w.*','ILMclass');
 
 class ILMid extends ILMsubtag {
 	public function __construct($bid, array &$tok) {
@@ -297,5 +313,33 @@ class ILMid extends ILMsubtag {
 	}
 };
 ILM::add_pattern('#.*','ILMid');
+
+class ILMlink extends ILMsubtag {
+	public function __construct($bid, array &$tok) {
+		ILMsubtag::__construct($bid,$tok);
+		$this->bid = $this->sub;
+		$this->target = 'link';
+	}
+};
+ILM::add_pattern('!.+','ILMlink');
+
+class ILMph extends ILMsubtag {
+	public function __construct($bid, array &$tok) {
+		ILMsubtag::__construct($bid,$tok);
+		$this->bid = $this->sub;
+		$this->target = 'placeholder';
+	}
+};
+ILM::add_pattern('<.+','ILMph');
+
+class ILMfor extends ILMsubtag {
+	public function __construct($bid, array &$tok) {
+		ILMsubtag::__construct($bid,$tok);
+		$this->bid = $this->sub;
+		$this->target = 'for';
+	}
+};
+ILM::add_pattern('>.+','ILMfor');
+
 
 ?>

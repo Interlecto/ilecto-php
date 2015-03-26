@@ -111,7 +111,7 @@ static function decode(&$text, $t='') {
 		if($t!='{')
 			throw new Exception("Unmatched braces '$t' and '{$m[1]}'.");
 		return false;
-	} elseif(preg_match('{^\s*\[(\w[-_:\w]*|[^][{}\s\w#!.]+)?([^][{}\s]*)(\s*)}',$text,$m)) {
+	} elseif(preg_match('{^\s*\[(\w[-_\w]*(?:\:[-_\w]+)*|[^][{}\s\w#!.]+)?([^][{}\s]*)(\s*)}',$text,$m)) {
 		$text = substr($text,strlen($m[0]));
 		$tag = array_get(ILM::$alias,$m[1],$m[1]);
 		if(($n=strpos($tag,'.'))!==false)
@@ -162,22 +162,32 @@ static function htmlitem($item) {
 
 	function openhtml($close=true) {
 		if(empty($this->tag)) {
+			$href = array_popkey($this->attribs,'href');
 			if(ILM::is_flag('inform')) {
 				$this->tag = 'button';
 				$this->attribs['type'] = 'submit';
-				if(array_key_exists('href',$this->attribs)) {
-					$href = array_popkey($this->attribs,'href');
+				if(!is_null($href)) {
 					if($href=='!') {
 						$this->attribs['type'] = 'reset';
 					} else {
 						$this->attribs['formaction'] = fixhref($href);
 					}
-					
+				}
+				if(count($this->content)==1 && is_string($this->content[0])) {
+					$this->tag = 'input';
+					$this->attribs['value'] = ILM::unscape(array_shift($this->content));
+				} elseif(count($this->content)==0) {
+					$this->tag = 'input';
 				}
 			} else {
-				$this->tag = array_key_exists('href',$this->attribs)?
-					'a':
-					'span';
+				if(!is_null($href)) {
+					$this->tag = 'a';
+					$this->attribs['href'] = fixhref($href);
+					if(empty($this->content))
+						$this->content[] = $href;
+				} else {
+					$this->tag = 'span';
+				}
 			}
 			return htmltag($this->tag,$close,$this->attribs);
 		}
@@ -202,6 +212,7 @@ static function htmlitem($item) {
 	}
 
 	function closehtml() {
+		if($this->tag == 'input') return '';
 		$anchor = empty($this->anchor)? '': htmltag('a', HTMLT_CLOSE);
 		$tag = htmltag($this->tag, HTMLT_CLOSE);
 		return $this->flags==ILM_ANCHOROUT? $tag.$anchor: $anchor.$tag;
@@ -215,7 +226,7 @@ static function htmlitem($item) {
 	}
 /**/
 	function setattribs($str) {
-		preg_match_all('{([/_\w][-./_\w]*|\W)}', $str, $m);
+		preg_match_all('{([/_\w][-./_\w]*|::|\W)}', $str, $m);
 		while($m[0]) {
 			$a = array_shift($m[0]);
 			switch($a) {
@@ -241,6 +252,10 @@ static function htmlitem($item) {
 				$this->attribs['href'] = implode($m[0]);
 				#echo "<!-- ".print_r($this,true).' -->';
 				$m[0]=Null;
+				break;
+			case '::';
+				$c = array_shift($m[0]);
+				array_addclass($this->attribs,"ui ui_$c");
 				break;
 			default;
 				$this->attribs[] = $a;
@@ -300,6 +315,12 @@ ILM::add_tag('header','ILMblock');
 ILM::add_tag('footer','ILMblock');
 ILM::add_tag('p','ILMpar',ILM_ANCHORIN);
 ILM::add_tag('legend','ILMpar');
+ILM::add_tag('caption','ILMpar',ILM_ANCHORIN,'c');
+
+ILM::add_tag('ul','ILMblock',ILM_UNREFABLE,'l');
+ILM::add_tag('ol','ILMblock',ILM_UNREFABLE,'n');
+ILM::add_tag('li','ILMblock',ILM_UNREFABLE,'o');
+
 class ILMsection extends ILMblock {
 	function openhtml($close=true) {
 		ILM::flag_inc('level',2);
@@ -481,6 +502,57 @@ class ILMtext extends ILMB {
 };
 ILM::add_brace('text', 'ILMtext');
 #print_r(ILM::$braces);
+
+class ILMimg extends ILMB {
+	function html() {
+		$cl=array();
+		$attribs=array(
+			'src' => array_pop($this->keys),
+		);
+		$title = $this->content;
+		if((strpos($title,'['))!==false) {
+			$caption = ILM::tohtml($title);
+		} else {
+			$attribs['title'] = $title;
+			$attribs['alt'] = $title;
+		}
+		foreach($this->keys as $key) {
+			switch($key) {
+			case 'left':
+			case 'right':
+			case 'center':
+				$cl[] = substr($key,0,1);
+				break;
+			default:
+				if(substr($key,0,1)=='#')
+					$attribs['id'] = substr($key,1);
+				else
+					$cl[] = $key;
+			}
+		}
+		if(isset($caption)) {
+			array_unshift($cl,'caption');
+			$friatts=array('class'=>implode(' ',$cl));
+			$r = htmltag('img',HTMLT_STANDALONE,$attribs);
+			if(isset($href)) {
+				$r = htmltag('a',HTMLT_OPEN,array('href'=>$href)).
+					$r.htmltag('a',HTMLT_CLOSE);
+			}
+			$r = htmltag('div',HTMLT_OPEN,$friatts).
+				$r.$caption.htmltag('div',HTMLT_CLOSE);
+			return $r;
+		} else {
+			$attribs['class'] = implode(' ',$cl);
+			$r = htmltag('img',HTMLT_STANDALONE,$attribs);
+			if(isset($href)) {
+				$r = htmltag('a',HTMLT_OPEN,array('href'=>$href)).
+					$r.htmltag('a',HTMLT_CLOSE);
+			}
+			return $r;
+		}
+	}
+};
+ILM::add_brace('img', 'ILMimg');
 
 class ILMui extends ILMB {
 	function html() {

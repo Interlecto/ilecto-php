@@ -1,84 +1,84 @@
 {?"This is a comment, that won't show in HTML"}
 {?!This is a comment that will show in HTML}
 {??This is a comment that won't show in HTML but should show in stderr or in log}
-[b:body{?common blog structures belong to the 'b' namespace; '[b:]' is a common div.}
-	[b:header.ca##{? '.xxx' provides a class. '#xxx' provides an id name, '##' means autonaming.}
-		[p.nav.o#ilinks {text:Go to} [!#search search], [!#menu site navigation], [!#links external links].]
+[b:body{?!common blog structures belong to the 'b' namespace; '[b:]' is a common div.}
+	[b:header.ca##{?! '.xxx' provides a class. '#xxx' provides an id name, '##' means autonaming.}
+		[p:.nav.o#ilinks {text:Go to} [!#search search], [!#menu site navigation], [!#links external links].]
 		{img:left:#logo:/images/small.svg Interlecto}
-		[H#siteid[b!/ {text: Site name}]]
-		[p.d#sitetag [em{text: Site Motto}]]]
-	[content#body
-		[H#title!. Page Title]
-		[section
-			[H Common formating]
-			[p[!//lipsum.org Lorem ipsum] [b dolor sit amet], consectetur adipiscing elit.
+		[p:h#siteid[:b!/ {text: Site name}]]
+		[p:.d#sitetag [:i{text: Site Motto}]]]
+	[b:content#body
+		[p:h#title!. Page Title]
+		[b:section
+			[p:h Common formating]
+			[p:[!//lipsum.org Lorem ipsum] [:b dolor sit amet], consectetur adipiscing elit.
 				Donec lacinia [!consequences consectetur] nisi, id aliquam leo tristique [!non].
 				Cras ut ullamcorper nunc, sit amet ultricies tellus.
-				Nunc maximus, felis vel [i vehicula pretium], diam ante faucibus [i!knowledge sapien], et fermentum ipsum sem in dui.
+				Nunc maximus, felis vel [:i vehicula pretium], diam ante faucibus [i!knowledge sapien], et fermentum ipsum sem in dui.
 				Mauris eu [u lorem vitae] libero fermentum scelerisque.
 				Morbi felis turpis, [!mailto:me facilisis] ac congue vel, finibus id [!mailto:ex@not.me ex].
 				Vivamus at elementum velit, vitae sodales [b!ftp:tellus.org tellus].
 				[del Mauris maximus neque id dignissim interdum.]
 				Fusce ac finibus velit.]
-			[p _45n un _u00e1rbol __00064__65 __00006danzanas (__0006danzanas, S__faper __006danzanas _c3_ba __1F50d¿¡Qué!?__01f50e &#x1F5; &#x1F50; &#x1F50E;).]
-			[p[i The End]]]
-		[section
-			[H Form test]
-			[section
-				[H Simple Search form]
-					[?search#searchform[I#s>Search term][!]]]
-			[§[H Complex form]
-				[@gb#gb
-					[@@ Personal Info
-						[L>name Name:][I#name Prefilled name]
-						[L>passwd Password][P#passwd<enter your password]
-						[L>email Email:][email#email<enter your email]
-						[L>bd Birthday:][@@#bd
-						[S#day
-							{for:n:1:31}[O {:n}]{next}]
-						[S#month
-							[O@1 January]
-							[O@2 February]
-							[O@3 March]
-							[O@4 April]
-							[O@5 May]
-							[O@6 June]
-							[O@7 July]
-							[O@8 August]
-							[O@9 September]
-							[O@10 Octuber]
-							[O@11 November]
-							[O@12 December]]
-						[S#year
-							{for:n:2005:-1:1905}[O {:n}]{next}]]]
-					[¶ Interests
-						[L>int Interests:]
-						[¶#int
-							[R#int.1 education][L>int.1 Education]
-							[R#int.2 job][L>int.2 Job and Career]
-							[R#int.3 leisure][L>int.3 Leisure time]
-							[R#int.4 travel][L>int.4 Travel]]
-						[L>com Commitment:]
-						[@@#com
-							[R#com.2][L>com.2 Mild]
-							[R#com.3:x][L>com.3 Fair]
-							[R#com.4][L>com.4 Dedicated]
-							[R#com.5][L>com.5 Full]]
-						[L>el Education level:]
-						[¶#el
-							[R#some@el][L>some Some Shool]
-							[R#hs@el highschool][L>hs Highschool]
-							[R#college@el][L>college College]
-							[R#graduate@el][L>graduate Graduate School]]
-						[L>iss Issues:]
-						[@@#iss
-							[C#nofly][L>nofly Can't fly]
-							[C#iss.2][L>iss.2 Vegan]
-							[C#issue3 married][L>issue3 Married]
-							[C#issue4:0][L>issue4 Unrelated]]]
-					[¶Message
-						[T Some initial text]]
-					[! Publish][!emailing Apply [b privately]][!!]]]]
+			[p: _45n un _u00e1rbol __00064__65 __00006danzanas (__0006danzanas, S__faper __006danzanas _c3_ba __1F50d¿¡Qué!?__01f50e &#x1F5; &#x1F50; &#x1F50E;).]
+			[p:[i The End]]]
+		[b:section
+			[p:h Form test]
+			[b:section
+				[p:h Simple Search form]
+					[f:get!search#searchform[f:text#s<"Search term"][f:!]]]
+			[b:§[p:h Complex form]
+				[f:@gb#gb
+					[f:g Personal Info
+						[f:text#name>"Prefilled name" "Nombre:"]
+						[f:pass#passwd<"enter your password" "Password:"]
+						[f:email#email<"enter your email" "Email:"]
+						[f:l>bd Birthday:][f:g#bd
+						[f:s#day
+							{for:n:1:31}[f:o{:n}]{next}]
+						[f:s#month
+							[f:o@1 January]
+							[f:o@2 February]
+							[f:o@3 March]
+							[f:o@4 April]
+							[f:o@5 May]
+							[f:o@6 June]
+							[f:o@7 July]
+							[f:o@8 August]
+							[f:o@9 September]
+							[f:o@10 Octuber]
+							[f:o@11 November]
+							[f:o@12 December]]
+						[f:s#year
+							{for:n:2005:-1:1905}[f:o{:n}]{next}]]]
+					[f:g Interests
+						[f:l>int Interests:]
+						[f:g#int
+							[f:rad#int.1@education Education]
+							[f:rad#int.2@job Job and Career]
+							[f:rad#int.3@leisure Leisure time]
+							[f:rad:disabled#int.4@travel Travel]]
+						[f:l>com Commitment:]
+						[f:g#com
+							[f:rad#com.2 Mild]
+							[f:rad:selected#com.3 Fair]
+							[f:rad#com.4 Dedicated]
+							[f:rad#com.5 Full]]
+						[f:l>el Education level:]
+						[f:g#el
+							[f:rad#some>el Some Shool]
+							[f:rad#hs>el@highschool Highschool]
+							[f:rad#college>el College]
+							[f:rad#graduate>el Graduate School]]
+						[f:l>iss Issues:]
+						[f:g#iss
+							[f:cb#nofly Can't fly]
+							[f:cb#iss.2 Vegan]
+							[f:cb#issue3@married Married]
+							[f:cb:disabled#issue4 Unrelated]]]
+					[f:g Message
+						[f:T Some initial text]]
+					[f:! Publish][f:!emailing Apply [b privately]][f:?]]]]
 			[§[H Images]
 				[p Here is some inline {img:image1.png image 1} image
 				And we can have some floating images such as
@@ -93,14 +93,14 @@
 					[o::twitter item 2 (Twitter)]
 					[o::facebook item 2 (Facbook)]]]
 			[§[H Tables]
-				[table
-					[thead[tr[th]{for:k:1:5}[th head {:k}]{next}]]
-					{for:i:1:3}[tbody
-						{for:j:1:4}[tr[th{:i}:{:j}]
-							{for:k:1:5}[td ({:j},{:k})]{next}
+				[t:
+					[t:H[t:r[t:h]{for:k:1:5}[t:h head {:k}]{next}]]
+					{for:i:1:3}[t:B
+						{for:j:1:4}[t:r[t:h{:i}:{:j}]
+							{for:k:1:5}[t:d ({:j},{:k})]{next}
 						]{next}
 					]{next}
-					[c Table test]]]]
+					[t:c Table test]]]]
 	[footer#footer
 		[address#copy{ui:cc}{ui:cc-by} 2015, Chlewey & Interlecto ({ui:twitter[!http://twitter.com/ @interlecto]})]
 		[p This site complains with {ui:html5 HTML} and {ui:css3 CSS}.]]
