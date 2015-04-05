@@ -45,6 +45,7 @@ function forward_post($reluri, array $data, array $headers = null) {
 	throw new Exception("Error loading '$url', $php_errormsg");
 }
 
+/*
 if(isset($_REQUEST['s-go']))
 	redirect_local( '/search?q=' . urlencode($_REQUEST['s']) );
 
@@ -63,5 +64,6 @@ if(isset($_REQUEST['l-go'])) {
 	echo $ans;
 	die ();
 }
+* */
 
 ?>

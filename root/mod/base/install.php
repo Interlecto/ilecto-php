@@ -12,7 +12,7 @@ db_insert($dp.'res_environ',
 	array(
 		array(1,'load','mod/base/','status.php'),
 		array(2,'load','mod/base/','dispatch.php'),
-		array(3,'load','mod/base/','ilm.php'),
+		array(3,'load','mod/ilm/','ilm.php'),
 	),
 	array('id','verb','basedir','file'),true);
 

@@ -1,4 +1,4 @@
-[div.nav.hnav#menu[h3.o Menú]
-[l	[i[[/ Inicio]]]
-	[i[[/info Información]]]
-	[i[[/catalogo Catálogo]]]]]
+[nav:horizontal#menu{@title:o:Menú}
+	[nav:i!! Inicio]
+	[nav:i!info Información]
+	[nav:i!catalogo Catálogo]]

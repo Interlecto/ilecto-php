@@ -16,7 +16,10 @@ class html extends il_output {
 	function make($content) {
 		if(empty($this->template)) return il_output::make($content);
 		$this->on_html($content);
-		echo $this->make_template();
+		il_set('title',$content->get('title'),SET_UNSET);
+		il_set('type',$content->get('type'),SET_UNSET);
+		il_set('class',$content->get('class','common'),SET_UNSET);
+		echo $this->make_template();#."<pre>html object: {\n".htmlentities($this->print_r("\t",true))."\n}</pre>";
 	}
 
 	function make_template() {

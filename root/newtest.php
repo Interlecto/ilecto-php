@@ -13,12 +13,14 @@
 
 $ilmt = <<<ILM
 [b:body
-	[b:head
-		[nav:p.o {text:Go to} [!#search{text:search}], [!#menu{text:menu}], [!#links{text:links}]]
-		[p:h "The Page"]
+	[b:head.ca#header
+		[nav:p.o#ilinks {text:Go to} [!#search{text:search}], [!#menu{text:menu}], [!#links{text:links}]]
+		{img:left:#logo:small.svg!/ Interlecto}
+		[p:h#siteid "The Site"]
+		[p:sub#sitetag{text:motto}]
 	]
-	[b:content
-		[p:h "The Doc Title"]
+	[b:content#body
+		[p:h#title "The Doc Title"]
 		[b:section
 			[p:h Lorem Ipsum]
 			[p: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -40,14 +42,14 @@ $ilmt = <<<ILM
 		[b:section.twocolb
 			[p:h Lists]
 			[b:section{@title:Simple lists}
-				[p: Simple lists use the p namespace _22"[p:bullet"_22]
+				[p: Simple lists use the p namespace _22"[p:bullet...]"_22]
 				[p:bullet uno]
 				[p:disc dos]
 				[p:circle tres]
 				[p:disc cuatro]
 				[p::guy cinco]]
 			[b:section{@title:Bulleted lists}
-				[p: Normal lists use the l namespace _22"[l:bullet"_22]
+				[p: Normal lists use the l namespace _22"[l:bullet...]"_22]
 				[l:bullet uno]
 				[l:disc dos]
 				[l:circle tres]
@@ -95,16 +97,97 @@ $ilmt = <<<ILM
 				]{next}
 			{@title:Table test}]
 		]
+		[b:section.twocola{@title:Forms}
+			[f:#gb!gb
+				[f:set{@title:Personal Info}{@style:horizontal}
+					[f:text#name{@label:Name:}"Prefilled name"]
+					[f:password#passwd{@label:Password:}{@placeholder:Enter your password}]
+					[f:email#email{@label:Email:}{@placeholder:Enter your email}]
+					[f:group#bd
+						[f:label!#bd Birdthday:]
+						[f:s#day
+							{for:n:1:31}[f:o{:n}]{next}
+						]
+						[f:s#month
+							[f:o@1 January]
+							[f:o@2 February]
+							[f:o@3 March]
+							[f:o@4 April]
+							[f:o@5 May]
+							[f:o@6 June]
+							[f:o@7 July]
+							[f:o@8 August]
+							[f:o@9 September]
+							[f:o@10 Octuber]
+							[f:o@11 November]
+							[f:o@12 December]
+						]
+						[f:s#year
+							{for:n:2005:-1:1905}[f:o{:n}]{next}
+						]
+					]
+				]
+				[f:set{@title:Interests}{@style:horizontal}
+					[f:group#int{@title:"Interests:"}{@style:radios}
+						[f:r#int.1 education{@label:Education}]
+						[f:r#int.2 job{@label:Job and Career}]
+						[f:r#int.3 leisure{@label:Leisure time}]
+						[f:r#int.4 travel{@label:Travel}]
+					]
+					[f:group#com{@title:"Commitment:"}{@style:radios}
+						[f:r#com.2{@label:Mild}]
+						[f:r#com.3{@label:Fair}{@bool:selected}]
+						[f:r#com.4{@label:Dedicated}]
+						[f:r#com.5{@label:Full}]
+					]
+					[f:group#el{@title:"Education level:"}{@style:radios}
+						[f:r#some@el{@label:Some Shool}]
+						[f:r#hs@el{@label:Highschool}]
+						[f:r#college@el{@label:College}]
+						[f:r#graduate@el{@label:Graduate School}]
+					]
+					[f:group#iss{@title:"Issues:"}{@style:radios}
+						[f:c#nofly{@label:Can't fly}]
+						[f:c#iss.2{@label:Vegan}]
+						[f:c#issue3 married{@label:Married}]
+						[f:c#issue4{@label:Unrelated}{@bool:grayed}]
+					]
+				]
+				[f:set{@title:Message}
+						[f:t#text Some initial text]
+				]
+				[f:submit Publish]
+				[f:submit!emailing Apply [b privately]]
+				[f:reset]
+			]
+		]
 	]
-	[b:aside
-		[f:#search]
-		[nav:menu#menu]
-		[nav:menu#links]
+	[b:aside#asides{@title:o:Enlaces}
+		[nav:#search{@title:o:Búsqueda}
+			[f:#s-box!search
+				[f:text#s{@placeholder:Your search}]
+				[f:submit.search#s-go]
+			]
+		]
+		[nav:horizontal#menu{@title:o:Menú}
+			[nav:i!! Inicio]
+			[nav:i!info Información]
+			[nav:i!catalogo Catálogo]
+		]
+		[nav:horizontal#links{@title:o:Enlaces externos}
+			[nav:i!//chlewey.net Chlewey[sc _2enet]]
+			[nav:i!//chlewey.org Chlewey[sc _2eorg]]
+			[nav:i!//invermeq.com Invermeq]
+		]
 		[b:#toc {auto:toc}]
 	]
+ 
+
 	[b:foot#footer
-		{ui:copyleft} 2015, Interlecto
+		[p:section#copy {ui:copyleft 2015}, Chlewey & Interlecto ({ui:twitter [!twitter:interlecto @interlecto]})]
+		[p:section This sites complains with {ui:html5 HTML} and {ui:css3 CSS}.]
 	]
+	[script:js!//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js]
 ]
 ILM;
 
@@ -124,6 +207,11 @@ include_once 'lib/tidy.php';
 $ob = ILM::read($ilmt);
 echo ILM::tohtml($ob,null,true);
 
+echo "<!--\nalias ";
+var_dump(ILM::$nsalias);
+echo "\ndic ";
+print_r(ILM::$nsdic);
+echo "-->\n";
 ?>
 
 </html>

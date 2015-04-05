@@ -2,14 +2,16 @@
 class tidy {
 static $blocks = array(
 	'body','div',
-	'section','aside','header','footer',
+	'section','aside','header','footer','nav',
 	'table','tbody','thead','tfoot',
-	'ul','ol','b','f',
+	'ul','ol',
+	'form','fieldset','select',
 );
 static $pars = array(
 	'p',
 	'h1','h2','h3','h4','h5','h6',
 	'tr','li',
+	'legend','option',
 );
 static $tab="\t";
 static function go($str,$version,$tab=null) {

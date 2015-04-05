@@ -204,7 +204,7 @@ class Page extends Attributer {
 				header('Content-type: text/plain;charset=utf8');
 			}
 			if(isset($this->content)) echo $this->content.chr(10).chr(10);
-			print_r($this);
+			$this->print_r();
 		}
 	}
 };

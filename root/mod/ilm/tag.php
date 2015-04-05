@@ -27,7 +27,12 @@ function htmltag($tag, $flags=HTMLT_OPEN, array $attribs=null, $version=5) {
 		}
 	if($x && $flags==HTMLT_STANDALONE) $r.=" />";
 	elseif($flags!=HTMLT_UNCLOSED) $r.=">";
-	return $r;
+	$db = $version==6? '<!-- '.print_r($attribs,1).' -->': '';
+	return $r.$db;
+}
+function htmltag_content($tag, $content, array $attribs=null, $version=5) {
+	return htmltag($tag,HTMLT_OPEN,$attribs,$version).
+		$content.htmltag($tag,HTMLT_CLOSE,null,$version);
 }
 class ILMtag extends ILMcontainer {
 	private $attribs = array();
@@ -68,6 +73,19 @@ class ILMtag extends ILMcontainer {
 	function htmlclose($version=5) {
 		return htmltag($this->code,HTMLT_CLOSE,null,$version);
 	}
+	function htmlstandalone($version=5) {
+		return htmltag($this->code,HTMLT_STANDALONE,$this->attribs,$version);
+	}
+	function hrefopen($ref = null,$version=5) {
+		if(is_null($ref)) {
+			if(isset($this->link)) $ref = $this->link;
+			else return '';
+		}
+		return htmltag('a',HTMLT_OPEN,array('href'=>fixhref($ref)),$version);
+	}
+	function hrefclose($version=5) {
+		return htmltag('a',HTMLT_CLOSE,null,$version);
+	}
 	
 	function addclass($class,$key='class') {
 		if(!isset($this->attribs[$key]))
@@ -91,6 +109,18 @@ class ILMtag extends ILMcontainer {
 		else
 			$this->push($obj);
 	}
+	function getatt($key,$def=null) {
+		return isset($this->attribs[$key])? $this->attribs[$key]: $def;
+	}
+	function hasclass($class,$key='class') {
+		if(!isset($this->attribs[$key])) return false;
+		$cc = $this->attribs[$key];
+		$ck = explode(' ',$cc);
+		return in_array($class,$ck);
+	}
+	function hasatt($key) {
+		return !empty($this->attribs[$key]);
+	}
 };
 ILM::add_namespace('b',null,'div');
 ILM::add_class('header',null,'b','head');
@@ -101,7 +131,9 @@ class ILManonym extends ILMtag {
 	function htmlopen($version=5) {
 		if(isset($this->link)) {
 			$this->code = 'a';
-			$this->addattrib('href',$this->link);
+			$this->addattrib('href',fixhref($this->link,$cln));
+			if($this->count()==0)
+				$this->addchild($cln);
 		} else {
 			$this->code = 'span';
 		}
@@ -118,5 +150,34 @@ class ILMsection extends ILMtag {
 	}
 };
 ILM::add_class('section','ILMsection','b');
+ILM::add_class('aside','ILMsection','b','aside');
+
+ILM::add_class('span');
+ILM::add_class('span.sc',null,'','sc');
+
+function fixhref($link,&$clean=null) {
+	#echo '<!-- LINK: '.print_r($link,true).' -->'.chr(10);
+	if(preg_match('{^(\w+):(.*)$}',$link,$m)) {
+		$clean = ltrim($m[2],'/');
+		switch($m[1]) {
+		case 'mailto':
+			$to = preg_match('{^([^@]+)@interlecto.net$}',$m[2],$mm)? $mm[1]: $m[2];
+			return "/contact.cgi/$to";
+		case 'twitter':
+			return "http://twitter.com/{$m[2]}";
+		default:
+			return $link;
+		}
+	}
+	$clean = ltrim($link,'/');
+	if(preg_match('{^\w[-_\w/.]*$}',$link,$m)) {
+		return "/$link";
+	}
+	if(preg_match('{^//\w.*$}',$link,$m)) {
+		return "http:$link";
+	}
+	if($link=='!') return '/';
+	return $link;
+}
 
 ?>

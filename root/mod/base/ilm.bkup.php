@@ -1,5 +1,5 @@
 <?php
-function ilm_escape($input,$chars='_[]\{}') {
+function ilm_escape($input,$chars='[\]_{}') {
 		$p = preg_quote($chars,'#');
 		return preg_replace_callback("#[$p]#",'ilm_escape_char',$input);
 }

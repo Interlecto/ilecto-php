@@ -3,8 +3,8 @@ require_once "brace.php";
 
 class ILMdone extends ILMbrace {
 };
-ILMbrace::add_class('next','ILMdone');
-ILMbrace::add_class('fi','ILMdone');
+ILMbrace::add_bclass('next','ILMdone');
+ILMbrace::add_bclass('fi','ILMdone');
 
 class ILMblock extends ILMbrace {
 	private $content;
@@ -73,10 +73,10 @@ class ILMfor extends ILMblock {
 		return $r;
 	}
 }
-ILMbrace::add_class('if','ILMblock');
+ILMbrace::add_bclass('if','ILMblock');
 
 class ILMelse extends ILMblock {
 };
-ILMbrace::add_class('elif','ILMelse');
+ILMbrace::add_bclass('elif','ILMelse');
 
 ?>

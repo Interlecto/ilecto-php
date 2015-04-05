@@ -1,4 +1,5 @@
-[div.nav#links[h3.o Enlaces externos]
-[l	[i[0!http://chlewey.net Chlewey[span.sc .net]]]
-	[i[0!http://chlewey.org Chlewey[span.sc .org]]]
-	[i[[http://invermeq.com Invermeq]]]]]
+[nav:horizontal#links{@title:o:Enlaces externos}
+	[nav:i!//chlewey.net Chlewey[sc _2enet]]
+	[nav:i!//chlewey.org Chlewey[sc _2eorg]]
+	[nav:i!//invermeq.com Invermeq]
+]

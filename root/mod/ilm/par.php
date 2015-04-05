@@ -15,6 +15,8 @@ class ILMpar extends ILMtag {
 	}
 };
 ILM::add_namespace('p','ILMpar');
+ILM::add_class('p.sub',null,'p','sub');
+ILM::add_class('p.section',null,'p','section');
 #ILM::add_class('h2',null,'p','h');
 #ILM::add_class('p.bullet',null,'p','bullet');
 ILM::add_class('table.fancy',null,'t','fancy');
@@ -27,13 +29,13 @@ ILM::add_class('td',null,'t','d');
 class ILMlinkin extends ILMtag {
 	function htmlopen($version=5) {
 		$anchor = isset($this->link)?
-			htmltag('a',HTMLT_OPEN,array('href'=>$this->link),$version):
+			$this->hrefopen($this->link,$version):
 			'';
 		return ILMtag::htmlopen().$anchor;
 	}
 	function htmlclose($version=5) {
 		$canchor = isset($this->link)?
-			htmltag('a',HTMLT_CLOSE):
+			$this->hrefclose($version):
 			'';
 		return $canchor.ILMtag::htmlclose();
 	}
@@ -51,17 +53,18 @@ ILM::add_class('h','ILMheading','p');
 class ILMlinkout extends ILMtag {
 	function htmlopen($version=5) {
 		$anchor = isset($this->link)?
-			htmltag('a',HTMLT_OPEN,array('href'=>$this->link),$version):
+			$this->hrefopen($this->link,$version):
 			'';
 		return $anchor.ILMtag::htmlopen();
 	}
 	function htmlclose($version=5) {
 		$canchor = isset($this->link)?
-			htmltag('a',HTMLT_CLOSE):
+			$this->hrefclose($version):
 			'';
 		return ILMtag::htmlclose().$canchor;
 	}
 };
-
-
+ILM::add_namespace('x','ILMlinkout');
+ILM::add_class('strong','ILMlinkout','x','b');
+ILM::add_class('em','ILMlinkout','x','i');
 ?>

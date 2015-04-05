@@ -30,7 +30,7 @@ static function get_class($tag,$ns='') {
 	if(isset(ILM::$nsalias[$ns][$tag])) {
 		$tag = ILM::$nsalias[$ns][$tag];
 		if(($n=strpos($tag,'.'))!==false) $tag = substr($tag,0,$n);
-		return ILM::$nsdic[$ns][$tag];
+		return isset(ILM::$nsdic[$ns][$tag])? ILM::$nsdic[$ns][$tag]: 'ILMtag';
 	}
 	if(isset(ILM::$nsdic[$ns][$tag]))
 		return ILM::$nsdic[$ns][$tag];
@@ -40,6 +40,14 @@ static function is_space($txt){return is_string($txt)?preg_match('{^\s+$}u',$txt
 static function is_word($txt){return is_string($txt)?preg_match('{^\w+$}u',$txt):(is_array($txt)&&count($txt)?ILM::is_word($txt[0]):false);}
 static function is_urable($txt){return is_string($txt)?preg_match('{^[^][{}\s]}u',$txt):(is_array($txt)&&count($txt)?ILM::is_urable($txt[0]):false);}
 static function is_quote($txt){return is_string($txt)?preg_match('{^".}u',$txt):(is_array($txt)&&count($txt)?ILM::is_quote($txt[0]):false);}
+static function is_qnw($txt){return is_string($txt)?preg_match('{^"?\w+}u',$txt):(is_array($txt)&&count($txt)?ILM::is_quote($txt[0]):false);}
+static function escape($text,$chars='[\]_{}') {
+	$p = preg_quote($chars,'#');
+	return preg_replace_callback("{[$p]}u",
+		function($m){
+			return sprintf('_%02X',ord($m[0]));
+		},$input);
+}
 static function unescape($text) {
 	$text = preg_replace('{\n\s*}',"\n",$text);
 	$text = preg_replace('{\s+}',' ',$text);
@@ -91,18 +99,18 @@ static function readone($tok,array &$toks) {
 				if(!is_null($class = ILM::get_class('',$ns)))
 					return new $class("$ns:$key",$toks);
 			} elseif(!empty(ILM::$nsstack)) {
-				echo "<!-- [$key] [{$toks[0]}][{$toks[1]}][{$toks[2]}][{$toks[3]}] -->\n";
+				#echo "<!-- [$key] [{$toks[0]}][{$toks[1]}][{$toks[2]}][{$toks[3]}] (".ILM::$nsstack[0].") -->\n";
 				$ns = ILM::$nsstack[0];
 				if(!is_null($class = ILM::get_class($key,$ns))) {
-					echo "<!-- ** [$key] [$ns] [$class] -->\n";
+					#echo "<!-- ** [$key] [$ns] [$class] -->\n";
 					return new $class(":$key",$toks);
 				}
 				if(!is_null($class = ILM::get_class($key,$key))) {
-					echo "<!-- ** [$key] [$key] [$class] -->\n";
+					#echo "<!-- ** [$key] [$key] [$class] -->\n";
 					return new $class("$key",$toks);
 				}
 				if(!is_null($class = ILM::get_class($key,''))) {
-					echo "<!-- ** [$key] [] [$class] -->\n";
+					#echo "<!-- ** [$key] [] [$class] -->\n";
 					return new $class("$key",$toks);
 				}
 			} else {
@@ -119,6 +127,10 @@ static function readone($tok,array &$toks) {
 				return new ILMstr($tok,$toks);
 			$t = ILM::$tagstack[0];
 			$cl = array_shift($toks);
+			while(!empty($toks) && in_array($toks[0],array('-','_')) && ILM::is_word($toks[1])) {
+				$cl.= array_shift($toks);
+				$cl.= array_shift($toks);
+			}
 			$t->addclass($cl);
 			ILM::ltrim($toks);
 			return;
@@ -127,6 +139,23 @@ static function readone($tok,array &$toks) {
 				return new ILMstr($tok,$toks);
 			$t = ILM::$tagstack[0];
 			$id = array_shift($toks);
+			while(!empty($toks) && in_array($toks[0],array('-','_')) && ILM::is_word($toks[1])) {
+				$id.= array_shift($toks);
+				$id.= array_shift($toks);
+			}
+			if(!empty($toks) && $toks[0]=='.' && ILM::is_word($toks[1])) {
+				array_shift($toks);
+				$v = array_shift($toks);
+				$t->addattrib('name',$id);
+				$t->addattrib('value',$v);
+				$id.= "_$v";
+			}
+			if(!empty($toks) && $toks[0]=='@' && ILM::is_word($toks[1])) {
+				array_shift($toks);
+				$n = array_shift($toks);
+				$t->addattrib('name',$n);
+				$t->addattrib('value',$id);
+			}
 			$t->addattrib('id',$id);
 			ILM::ltrim($toks);
 			return;
@@ -145,6 +174,18 @@ static function readone($tok,array &$toks) {
 			if(empty($uri))
 				return new ILMstr($tok,$toks);
 			$t->addlink($uri);
+			ILM::ltrim($toks);
+			return;
+		case '@':
+			#echo "<!-- [{$toks[0]}][{$toks[1]}][{$toks[2]}][{$toks[3]}] -->\n";
+			if(empty(ILM::$tagstack) or ILM::$tagstack[0]->count() or !ILM::is_word($toks))
+				return new ILMstr($tok,$toks);
+			$t = ILM::$tagstack[0];
+			$v = array_shift($toks);
+			#echo "<!-- [{$t->code}][{$v}] -->\n";
+			if(ILM::is_quote($v)) $v = trim($v,'"');
+			$t->addattrib('value',$v);
+			ILM::ltrim($toks);
 			return;
 		default:
 			return new ILMstr($tok,$toks);
@@ -250,8 +291,8 @@ class ILMcontainer extends ILM {
 }
 
 class ILMstr extends ILM {
-	function html() {
-		return ILM::unescape($this->code);
+	function html($version=5) {
+		return $this->text();
 	}
 	function text() {
 		return ILM::unescape($this->code);
@@ -261,6 +302,8 @@ class ILMstr extends ILM {
 require_once 'tag.php';
 require_once 'par.php';
 require_once 'list.php';
+require_once 'nav.php';
+require_once 'form.php';
 require_once 'math.php';
 require_once 'brace.php';
 require_once 'control.php';

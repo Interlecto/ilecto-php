@@ -1,3 +1,3 @@
-[div.footer#footer
-	[p.section#copy{ui:cc}{ui:cc-by} 2015, Chlewey & Interlecto ({ui:twitter}[[http://twitter.com/ @interlecto]])]
-	[p This site complains with HTML ([ui:html5]) and CSS ([ui:css3])]]
+[b:foot#footer
+	[p:section#copy {ui:copyleft 2015} {ui:cc}{ui:cc-by Chlewey} & Interlecto ({ui:twitter [!twitter:interlecto "@interlecto"]})]
+	[p:section This sites complains with {ui:html5 HTML} and {ui:css3 CSS}.]]

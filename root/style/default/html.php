@@ -12,7 +12,7 @@
   {area:header}
 
   <div class="content" id="body">
-    <h1 id="title">{page:title}</h1>
+    <h1 id="title"><a href="">{page:title}</a></h1>
     {content}
   </div>
 

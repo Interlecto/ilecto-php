@@ -18,7 +18,7 @@ class Attributer {
 	}
 
 	private function deeper(&$key,&$atr,$create=false) {
-		if(($n=strpos($key,'/'))!=false) {
+		if(($n=strpos($key,'/'))!==false) {
 			$root = substr($key,0,$n);
 			$key  = substr($key,1+$n);
 			if(isset($this->$root))

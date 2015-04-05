@@ -1,2 +1,4 @@
-[div.nav#search[h3.o Búsqueda]
-	[@F#s-box[@I#s][@G.ui#s-go __1F50E]]]
+[nav:#search{@title:o:Búsqueda}
+	[f:get#s-box!search.cgi
+		[f:text#s{@placeholder:Your search}]
+		[f:submit.ui#s-go __1F50E]]]
