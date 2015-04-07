@@ -7,6 +7,7 @@ class ILMfbase extends ILMtag {
 		ILMtag::__construct($code,$tokens);
 		if(isset($p->style))
 			$this->style = $p->style;
+		ILM::ltrim($tokens);
 	}
 	function htmlopen($version=5) {
 		if($this->hasclass('fgroup') && isset($this->style))
@@ -29,7 +30,51 @@ class ILMform extends ILMfbase {
 	}
 };
 
-class ILMinput extends ILMfbase {
+class ILMlabeled extends ILMfbase {
+	function setlabel($version=5) {
+		if(!$this->hasatt('name'))
+			$this->addattrib('name',$this->getatt('id'));
+		$pre = $post = '';
+		if(isset($this->label)) {
+			$this->label = $label = htmltag_content('label',$this->label,array('for'=>$this->getatt('id')),$version);
+			if(isset($this->style)) {
+				$divop = htmltag('div',HTMLT_OPEN,array('class'=>'fgroup f_'.$this->style),$version);
+				$divcl = htmltag('div',HTMLT_CLOSE,null,$version);
+				switch($this->style) {
+				case 'radios':
+					$pre = $divop;
+					$post = $label.$divcl;
+					break;
+				default:
+					$pre = $divop.$label;
+					$post = $divcl;
+				}
+			} else {
+				if(isset($this->type) && in_array($this->type,array('radio','checkbox')))
+					$post = $label;
+				else
+					$pre = $label;
+			}
+		}
+		$this->pretag = $pre;
+		$this->postag = $post;
+	}
+	function htmlopen($version=5) {
+		$this->setlabel($version);
+		return $this->pretag.ILMfbase::htmlopen($version);
+	}
+	function htmlclose($version=5) {
+		return ILMfbase::htmlclose($version).$this->postag;
+	}
+	function htmlstandalone($version=5) {
+		$this->setlabel($version);
+		return $this->pretag.
+			ILMfbase::htmlstandalone($version).
+			$this->postag;
+	}
+};
+
+class ILMinput extends ILMlabeled {
 	function __construct($code,array &$tokens) {
 		ILMfbase::__construct($code,$tokens);
 		$type = $this->code;
@@ -51,40 +96,16 @@ class ILMinput extends ILMfbase {
 		}
 		if(!empty($r))
 			$this->addattrib('value',$r);
-		if(!$this->hasatt('name'))
-			$this->addattrib('name',$this->getatt('id'));
-		$pre = $post = '';
-		if(isset($this->label)) {
-			$label = htmltag_content('label',$this->label,array('for'=>$this->getatt('id')),$version);
-			if(isset($this->style)) {
-				$divop = htmltag('div',HTMLT_OPEN,array('class'=>'fgroup f_'.$this->style),$version);
-				$divcl = htmltag('div',HTMLT_CLOSE,null,$version);
-				switch($this->style) {
-				case 'radios':
-					$pre = $divop;
-					$post = $label.$divcl;
-					break;
-				default:
-					$pre = $divop.$label;
-					$post = $divcl;
-				}
-			} else {
-				if(in_array($this->type,array('radio','checkbox')))
-					$post = $label;
-				else
-					$pre = $label;
-			}
-		}
-		return $pre.$this->htmlstandalone($version).$post;
+		return $this->htmlstandalone($version);
 	}
 };
 
-class ILMselect extends ILMfbase {
-	function htmlopen($version=5) {
+class ILMselect extends ILMlabeled {
+	/*function htmlopen($version=5) {
 		if(!$this->hasatt('name'))
 			$this->addattrib('name',$this->getatt('id'));
 		return ILMfbase::htmlopen($version);
-	}
+	}/**/
 };
 
 class ILMlabel extends ILMfbase {
@@ -108,7 +129,7 @@ ILM::add_class('div.fgroup','ILMfbase','f','group');
 ILM::add_class('select','ILMselect','f','s');
 ILM::add_class('option','ILMfbase','f','o');
 ILM::add_class('label','ILMlabel','f');
-ILM::add_class('textarea','ILMfbase','f','t');
+ILM::add_class('textarea','ILMlabeled','f','t');
 ILM::add_class('get','ILMform','f');
 
 

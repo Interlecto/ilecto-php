@@ -18,5 +18,22 @@ db_insert("{$dp}res_case",
 	),
 	array('id','case','priority','engine','langidx','formidx'),true);
 
+db_insert("{$dp}base_text",
+	array(
+		array(13,'en','[f:get{@style:horizontal}[f:text#q{@label:Search terms:}{@placeholder:Your search}][f:group[f:submit Search][f:reset]]]'),
+		array(14,'en','[p: Search results:][b:section {searchresult}]'),
+		array(13,'es','[f:get{@style:horizontal}[f:text#q{@label:Términos de búsqueda:}{@placeholder:Su búsqueda}][f:group[f:submit Buscar][f:reset]]]'),
+		array(14,'es','[p: Resultado de la búsqueda:][b:section {searchresult}]'),
+	),
+	array('idx','lang','content'),true);
+
+db_insert("{$dp}base_titles",
+	array(
+		array(13,'en','Search'),
+		array(14,'en','Results for "%s"'),
+		array(13,'es','Búsqueda'),
+		array(14,'es','Resultados de "%s"'),
+	),
+	array('idx','lang','title'),true);
 
 ?>

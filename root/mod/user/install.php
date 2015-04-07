@@ -129,10 +129,6 @@ db_insert($dp.'res_case',
 	),
 	array('id','case','priority','engine','langidx','formidx'),true);
 
-#db_update($dp.'res_case',array('case'=>'(?:([a-z]{2})/)?(users?|usuarios?)(?:|/|(?:\\.([a-z]{2}))?(?:\\.(\\w+!?))?(?:\\.([a-z]{2}))?)'),array('id'=>'=7'));
-#db_update($dp.'res_case',array('case'=>'(?:([a-z]{2})/)?login(?:\\.([a-z]{2}))?(?:\\.(\\w+!?))?(?:\\.([a-z]{2}))?(?:/(logout|out)(?:\\.([a-z]{2}))?(?:\\.(\\w+!?))?(?:\\.([a-z]{2}))?)'),array('id'=>'=8'));
-#db_update($dp.'res_case',array('case'=>'(?:([a-z]{2})/)?login(?:\\.([a-z]{2}))?(?:\\.(\\w+!?))?(?:\\.([a-z]{2}))?(?:/(reg(?:ist(?:er|ro))?)(?:\\.([a-z]{2}))?(?:\\.(\\w+!?))?(?:\\.([a-z]{2}))?)'),array('id'=>'=10'));
-
 db_insert($dp.'res_engine',
 	array(
 		array('user','mod/user/','user.php','user'),
@@ -149,17 +145,14 @@ db_insert($dp.'res_environ',
 	),
 	array('id','verb','basedir','file'),true);
 
-#db_update($dp.'res_engine',array('file'=>'user.php'),array('file'=>"#",'basedir'=>'mod/user/'));
-#db_update($dp.'res_engine',array('file'=>null),array('file'=>"=login.php"));
-
 db_insert($dp.'base_text',
 	array(
-		array(10,'en','[@F[@P[@L#user User Name][@I#user]][@P[@L#passwd Password][@W#passwd]][@P[@G][@R]]]'),
-		array(11,'en','[@F]'),
-		array(12,'en','[@F[@P[@L#name Full Name][@I#name]][@P[@L#user User Name][@I#user]][@P[@L#passwd Password][@W#passwd]][@P[@L#passwd2 Repeat password][@W#passwd2]][@P[@L#email Email][@I#email]][@P[@G][@R]]]'),
-		array(10,'es','[@F[@P[@L#user Nombre de usuario][@I#user]][@P[@L#passwd Contraseña][@W#passwd]][@P[@G][@R]]]'),
-		array(11,'es','[@F]'),
-		array(12,'es','[@F[@P[@L#name Nombre completo][@I#name]][@P[@L#user Nombre de usuario][@I#user]][@P[@L#passwd Contraseña][@W#passwd]][@P[@L#passwd2 Repetir contraseña][@W#passwd2]][@P[@L#email Correo electrónico][@I#email]][@P[@G][@R]]]'),
+		array(10,'en','[f:{@style:horizontal}[f:text#user{@label:User name:}][f:password#passwd{@label:Password:}][f:group[f:submit][f:reset]]]'),
+		array(11,'en','[f:{@style:horizontal}]'),
+		array(12,'en','[f:{@style:horizontal}[f:text#name{@label:Full name:}{@placeholder:Write your full name}][f:text#user{@label:User name}{@placeholder:Enter a user name}][f:password#passwd{@label:Password:}][f:password#passwd2{@label:Repeat password:}][f:email#email{@label:Email:}{@placeholder:Enter your email address}][f:group[f:submit][f:reset]]]'),
+		array(10,'es','[f:{@style:horizontal}[f:text#user{@label:Nombre de usuario:}][f:password#passwd{@label:Contraseña:}][f:group[f:submit][f:reset]]]'),
+		array(11,'es','[f:{@style:horizontal}]'),
+		array(12,'es','[f:{@style:horizontal}[f:text#name{@label:Nombre completo:}{@placeholder:Entre su nombre completo}][f:text#user{@label:Nombre de usuario}{@placeholder:Entre un nombre de usuario}][f:password#passwd{@label:Contraseña:}][f:password#passwd2{@label:Repetir contraseña:}][f:email#email{@label:Correo electrónico:}{@placeholder:Escriba su correo electrónico}][f:group[f:submit][f:reset]]]'),
 	),
 	array('idx','lang','content'),true);
 

@@ -32,16 +32,27 @@ class Page extends Attributer {
 				unset($GLOBALS[$gvar]);
 			}
 		foreach($_SERVER as $serkey=>$val) {
-			$key = preg_match('{^(HTTP|SERVER|CONTEXT|REDIRECT|REQUEST|PHP)_(.*)}',$serkey,$m)? strtolower("{$m[1]}/{$m[2]}"): strtolower("enviro/$serkey");
+			$key = preg_match('{^(HTTP|SERVER|CONTEXT|REDIRECT|REQUEST|PHP)_(.*)}',$serkey,$m)?
+				strtolower("{$m[1]}/{$m[2]}"):
+				strtolower("enviro/$serkey");
 			$this->set($key,$val);
 		}
-		foreach($_REQUEST as $key=>$val) {
-			$this->set("req/$key",$val);
+		foreach($_POST as $key=>$val) {
+			$this->set("post/$key",$val);
+		}
+		foreach($_GET as $key=>$val) {
+			$this->set("getv/$key",$val);
+		}
+		foreach($_COOKIE as $key=>$val) {
+			$this->set("cookie/$key",$val);
+		}
+		foreach($_FILES as $key=>$val) {
+			$this->set("files/$key",$val);
 		}
 		foreach($_SESSION as $key=>$val) {
 			$this->set("session/$key",$val);
 		}
-		$this->set('line/uri',$this->get('req/line',$this->get('redirect/url',$this->get('request/uri',''))));
+		$this->set('line/uri',$this->get('getv/line',$this->get('redirect/url',$this->get('request/uri',''))));
 		$this->set('line/query',$this->get('redirect/query_string',$this->get('enviro/query_string','')));
 	}
 	function get_db_params() {
@@ -57,6 +68,7 @@ class Page extends Attributer {
 			$p = -1;
 			foreach($cases as $row) {
 				$re = '#^/?('.$row['case'].')(\?|$)#';
+				if(!is_string($line)) { var_dump($line); print_r($this); die ( "Bye!" ); }
 				$q = preg_match($re,$line,$m);
 				if($q && $p<$row['priority']) {
 					array_shift($m);array_pop($m);
@@ -212,6 +224,7 @@ class Page extends Attributer {
 function il_add($key,$val,$how=ADD_ARRAY) { return Page::$first->add($key,$val,$how); }
 function il_get($key,$def=null,$how=DEF_UNSET) { return Page::$first->get($key,$def,$how); }
 function il_set($key,$val,$how=SET_REPLACE) { return Page::$first->set($key,$val,$how); }
+function il_getorset($key,$val,$how=SET_UNSET) { return Page::$first->getorset($key,$val,$how); }
 function il_exists($key) { return Page::$first->exists($key); }
 function il_empt($key) { return Page::$first->empt($key); }
 function il_clear($key) { return Page::$first->clear($key); }

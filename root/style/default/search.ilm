@@ -1,4 +1,4 @@
 [nav:#search{@title:o:Búsqueda}
 	[f:get#s-box!search.cgi
-		[f:text#s{@placeholder:Your search}]
-		[f:submit.ui#s-go __1F50E]]]
+		[f:text#q{@placeholder:Your search}]
+		[f:submit.ui __1F50E]]]

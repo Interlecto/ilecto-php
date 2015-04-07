@@ -136,7 +136,7 @@ $ilmt = <<<ILM
 					]
 					[f:group#com{@title:"Commitment:"}{@style:radios}
 						[f:r#com.2{@label:Mild}]
-						[f:r#com.3{@label:Fair}{@bool:selected}]
+						[f:r#com.3{@label:Fair}{@bool:checked}]
 						[f:r#com.4{@label:Dedicated}]
 						[f:r#com.5{@label:Full}]
 					]

@@ -5,6 +5,7 @@ class Doc extends Attributer {
 	static $first;
 	public $page;
 	function __construct($page) {
+		$this->prepare_check();
 		if(!isset(Doc::$first)) Doc::$first = $this;
 		Attributer::__construct(true);
 		$this->protect[] = 'page';
@@ -79,6 +80,13 @@ class Doc extends Attributer {
 		//print_r(Page::$first);
 		return $c;
 	}
+	
+	function dotlang($deflang='en') {
+		$lang = il_get('line/lang',$deflang);
+		return ($lang == $deflang)? '': ".$lang";
+	}
+	
+	function prepare_check() {}
 };
 
 class nulldoc extends Doc {

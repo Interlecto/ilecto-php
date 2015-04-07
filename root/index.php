@@ -9,4 +9,5 @@ require "lib/catches.php";
 $page = require "lib/page.php";
 $page->go();
 $page->close();
+#echo $page->print_r();
 ?>

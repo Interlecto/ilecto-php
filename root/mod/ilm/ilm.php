@@ -46,7 +46,7 @@ static function escape($text,$chars='[\]_{}') {
 	return preg_replace_callback("{[$p]}u",
 		function($m){
 			return sprintf('_%02X',ord($m[0]));
-		},$input);
+		},$text);
 }
 static function unescape($text) {
 	$text = preg_replace('{\n\s*}',"\n",$text);
@@ -210,14 +210,14 @@ static function ltrim(array &$toks) {
 	while(ILM::is_space($toks)) array_shift($toks);
 }
 static function totext($ilmobject) {
-	if(method_exists($obj,'text')) {
-		$r = $obj->text();
-	} elseif(is_array($obj)) {
+	if(method_exists($ilmobject,'text')) {
+		$r = $ilmobject->text();
+	} elseif(is_array($ilmobject)) {
 		$r = '';
 		foreach($obj as $item)
 			$r.= ILM::totext($obj);
-	} elseif(is_string($obj)) {
-		$r = $obj;
+	} elseif(is_string($ilmobject)) {
+		$r = $ilmobject;
 	}
 	return $r;
 }

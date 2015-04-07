@@ -34,6 +34,7 @@ class Attributer {
 
 	function set($key,$val,$how=SET_REPLACE) {
 		if(isset($this->protect) && in_array($key,$this->protect)) return null;
+		if(empty($key)) throw new Exception("Attempting to set empty property with value '$val' in object ".get_class($this));
 		if($this->deeper($key,$atr,true))
 			return $atr->set($key,$val,$how);
 		if(method_exists($this,$met=$key.'_set')) return $this->$met($val,$how);
@@ -45,7 +46,9 @@ class Attributer {
 	function get($key,$default=null,$how=DEF_UNSET) {
 		if($this->deeper($key,$atr)) {
 			if(is_a($atr,'Attributer')) return $atr->get($key,$default,$how);
-			if(is_array($atr)) return isset($atr[$key])? $atr[$key]: $default;
+			if(is_array($atr)) return
+				($how==DEF_EMPTY? !empty($atr[$key]): isset($atr[$key]))?
+					$atr[$key]: $default;
 			if(method_exists($this,$met="{$atr}_get")) return $this->$met($key,$default,$how);
 			if(method_exists($this,$met="$atr")) return ($r = $this->$met($key))? $r: $default;
 			return $default;
@@ -78,6 +81,15 @@ class Attributer {
 		elseif(is_string($this->$key)) $this->$key.= trim("$val").chr(10);
 		elseif(is_number($this->$key)) $this->$key+= (double)$val;
 		return $this->$key;
+	}
+	
+	function getorset($key,$val,$how=SET_UNSET) {
+		$e = $this->get($key, null, SET_EMPTY? DEF_EMPTY: DEF_UNSET);
+		if(is_null($e)) {
+			$this->set($key,$val,$how);
+			return $val;
+		}
+		return $e;
 	}
 
 	function exists($key) {

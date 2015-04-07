@@ -24,14 +24,11 @@ function redirect($url, $params=null, $session=false, $status=0) {
 	die( "Redirect to <a href=\"$fullurl\">$url</a> (from ".il_get('request/uri').")" );
 }
 
-function check_or_redirect($go,$pat=null) {
+function check_or_redirect($go,$pat=null,$query='') {
 	$l = ltrim(il_get('request/uri',il_get('line/clean')),'/');
 	if(($n = strpos($l,'?'))!==false) $l = substr($l,0,$n);
-	if(!empty($pat))
-		$o = preg_replace($go,$pat,$l);
-	else
-		$o = ltrim($go,'/');
-	if($o!=$l) redirect('/'.$o);
+	$o = empty($pat)? ltrim($go,'/'): preg_replace($go,$pat,$l);
+	if($o!=$l) redirect("/$o$query");
 }
 
 require_once 'lib/doc.php';
