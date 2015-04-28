@@ -1,0 +1,5 @@
+[b:footer#footer
+	{menu:copycont}
+	{area:copyright}
+	{area:footer:validate}
+]

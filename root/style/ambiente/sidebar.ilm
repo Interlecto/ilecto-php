@@ -1,0 +1,7 @@
+[b:aside#sidebar
+	[ul.xoxo
+		[li.module#search[h3 Search]{applet:search}]
+		[li.module#googleAd[h3 Advertizing]{applet:googlead}]
+		[li.module#donations[h3 Donations]{applet:donations}]
+		[li.module#visitors[h3 Visitors]{applet:visitors}]]]
+

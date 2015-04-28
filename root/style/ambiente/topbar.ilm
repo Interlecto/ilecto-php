@@ -1,0 +1,5 @@
+[b:aside#topbar
+	[ul.xoxo
+		[li.module#mainnav[h3 Links]{menu:mainnav}]
+		[li.module#syblings[h3 Syblings]{menu:syblings}]
+		[li.module#children[h3 Children]{menu:children}]]]

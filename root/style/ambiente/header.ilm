@@ -1,0 +1,3 @@
+[b:header#header
+	[p#sitename[!/[strong#homelink {page:site:name}]]]
+	[nav.hidden Jump to [!#mainnav navigation], [!/#search search].]]

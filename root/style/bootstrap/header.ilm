@@ -1,0 +1,14 @@
+[nav:bar.navbar-inverse.navbar-fixed-top
+	[b:container
+		[b:div.navbar-header
+			[b:button.navbar-toggle.collapsed{@type:button}{@data-toggle:collapse}{@data-target:#navbar}{@aria-expanded:false}{@aria-controls:navbar}
+				[span.sr-only Toggle navigation]
+				[span.icon-bar]
+				[span.icon-bar]
+				[span.icon-bar]]
+			[.navbar-brand!#{site:name}]]
+		[b:div.collapse.navbar-collapse#navbar
+			[b:ul.nav.navbar-nav
+				[b:li.active[!# Home]]
+				[b:li[!#about About]]
+				[b:li[!#contact Contact]]]]]]

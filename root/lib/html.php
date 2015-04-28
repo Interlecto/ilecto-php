@@ -6,6 +6,7 @@ class html extends il_output {
 	public $template;
 	public $areas=array();
 	public $menus=array();
+	public $applets=array();
 
 	function __construct($page) {
 		if(!isset(html::$first)) html::$first = $this;
@@ -55,6 +56,19 @@ class html extends il_output {
 
 	function menu_add($name,$how=ADD_ARRAY) {
 		if(!isset($this->menus[$name])) $this->menus[$name] = new Menu($name);
+	}
+
+	function applet_set($name,$how=SET_REPLACE) {
+		if(!isset($this->applets[$name])) $this->applets[$name] = new Applet($name);
+	}
+
+	function applet_get($name,$def=null,$how=DEF_UNSET) {
+		if(isset($this->applets[$name])) return $this->applets[$name]->html();
+		return $def;
+	}
+
+	function applet_add($name,$how=ADD_ARRAY) {
+		if(!isset($this->applets[$name])) $this->applets[$name] = new Applet($name);
 	}
 };
 
@@ -113,44 +127,74 @@ function il_html_unbrace($m) {
 
 require_once "lib/doc.php";
 class Area extends Doc {
-	public $name;
+	public $name,$clss;
 	function __construct($name) {
 		Doc::__construct(Page::$first);
 		$this->name = $name;
+		$this->clss = 'area';
 	}
 
 	function make() {
+		$this->make_from_db() or
+		$this->make_from_file() or
+		Doc::make();
+	}
+	function make_from_db() {
 		$name = $this->name;
-		if($r=db_select_first('base_area',null,array('id'=>"=$name"))) {
+		$clss = $this->clss;
+		if($r=db_select_first('base_object',null,array('key'=>"=$name"))) {
+			if(($type = $r['type'])=='file') return 0;
+			$this->set('type',$type);
+			$this->set_content($r['record']);
+			return 1;
+		} 
+		if($r=db_select_first('base_content',null,array('key'=>"=@$clss:$name"))) {
+			if($r['as']=='file') return 0;
 			$this->set('type',$r['type']);
 			$this->set_content($r['record']);
-			return;
+			if($name=='header') var_dump($r);
+			return 1;
 		}
+		return 0;
+	}
+	function make_from_file() {
+		$name = $this->name;
 		$style = il_get('style');
 		if(file_exists($fn = "style/$style/$name.ilm")) {
 			$this->set('type','ilm');
 			$this->set('content',file_get_contents($fn));
-			return;
+			return 1;
 		}
 		if(file_exists($fn = "style/$style/$name.html")) {
 			$this->set('type','html');
 			$this->set('content',file_get_contents($fn));
-			return;
+			return 1;
 		}
 		if(file_exists($fn = "style/$style/$name.txt")) {
 			$this->set('type','text');
 			$this->set('content',file_get_contents($fn));
-			return;
+			return 1;
 		}
 		if(file_exists($fn = "style/$style/$name.php")) {
 			$this->content = require $fn;
-			return;
+			return 1;
 		}
-		Doc::make();
+		return 0;
 	}
 };
 
 class Menu extends Area {
+	function __construct($name) {
+		Doc::__construct(Area::$first);
+		$this->clss = 'menu';
+	}
+};
+
+class Applet extends Area {
+	function __construct($name) {
+		Doc::__construct(Area::$first);
+		$this->clss = 'applet';
+	}
 };
 
 ?>

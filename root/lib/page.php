@@ -135,12 +135,13 @@ class Page extends Attributer {
 
 	function imports() {
 		$f = $this->db->select('res_environ');
+		//$dr = il_get('enviro/document_root').'/';
 		if(!$f) return;
 		foreach($f as $r) {
 			switch($r['verb']) {
 			case 'load':
 				try {
-					$fn = $r['basedir'].$r['file'];
+					$fn = /*$dr.*/$r['basedir'].$r['file'];
 					require_once $fn;
 				} catch(Exception $e) {
 					echo 'Caught exception: ',  $e->getMessage(), " when attempting to load '$fn'\n";

@@ -50,6 +50,29 @@ CREATE TABLE IF NOT EXISTS `{$dp}base_titles` (
 QUERY
 );
 
+
+db_query(<<<QUERY
+CREATE TABLE IF NOT EXISTS `{$dp}base_object`(
+	`key` CHAR(128) PRIMARY KEY,
+	`class` CHAR(12) DEFAULT 'area',
+	`type` CHAR(12) DEFAULT 'ilm',
+	`record` BIGINT(20) NOT NULL DEFAULT 0
+);
+QUERY
+);
+
+db_insert( $dp.'base_object',
+	array(
+		array('mainnav','menu','auto',60000),
+		array('syblings','menu','auto',60001),
+		array('children','menu','auto',60002),
+		array('breadcrumbs','menu','auto',60003),
+		array('search','applet','ilm',60004),
+		array('login','applet','ilm',60005),
+		array('copyright','area','ilm',60006),
+	),
+	array('key','class','type','record'),true);
+
 db_query(<<<QUERY
 CREATE TABLE IF NOT EXISTS `{$dp}base_status` (
 	`id` INT(3) PRIMARY KEY,
@@ -104,7 +127,7 @@ db_insert( $dp.'base_status',
 		array(504,'Gateway Timeout'),
 		array(505,'HTTP Version Not Supported'),
 	),
-	array($dp.'id','text'),true);
+	array('id','text'),true);
 
 db_insert( $dp.'base_content',
 	array(
@@ -115,7 +138,10 @@ db_insert( $dp.'base_content',
 db_insert( $dp.'base_text',
 	array(
 		array(1000,'en','[p Main Page.]'),
+		array(60004,'en','[nav:#search{@title:o:Search}[f:get#s-box!search.cgi[f:text#q{@placeholder:Your search}][f:submit.ui __1F50E]]]'),
+		array(60005,'en','{if:page:user}[f#u-box{text:Welcome} {page:user}[f:submit#logout{text:logout}]]{else}[f#u-box[f:text#username{text:Username}][f:password#passwd{text:Contraseña}]{fi}'),
+		array(60006,'en','[b.cs#footer-copy[p[img:span.l!http://www.gnu.org/copyleft/fdl.html {@rel:license}{@src:/images/gnu-fdl.png}{@width:88px}{@height:31px}_60][img:span.r!http://creativecommons.org/licenses/by-nc-sa/3.0/ {@rel:license}{@src:/images/gnu-fdl.png}{@width:88px}{@height:31px}_60]{text:This page is double licensed as} [!http://www.gnu.org/copyleft/fdl.html {@rel;license}{text:GNU Free Documentation License}] {text:and} [!http://creativecommons.org/licenses/by-nc-sa/3.0/ {@rel:license}{text:Creative Commons Attribution-Noncommertial-Share Alike}]. {text:You can use any or both of this licenses}.][{text:For more info, please go to the} [!on/copy] {text:notice}.]'),
 	),
-	array('index','lang','content'),true);
+	array('idx','lang','content'),true);
 
 ?>

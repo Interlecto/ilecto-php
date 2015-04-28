@@ -126,6 +126,7 @@ ILM::add_namespace('b',null,'div');
 ILM::add_class('header',null,'b','head');
 ILM::add_class('footer',null,'b','foot');
 ILM::add_class('div.content',null,'b','content');
+ILM::add_class('div.container',null,'b','container');
 
 class ILManonym extends ILMtag {
 	function htmlopen($version=5) {

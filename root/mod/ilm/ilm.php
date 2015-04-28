@@ -222,10 +222,10 @@ static function totext($ilmobject) {
 	return $r;
 }
 static function tohtml($obj,$version=5,$tidied=false) {
+	$r = '';
 	if(method_exists($obj,'html')) {
 		$r = $obj->html($version);
 	} elseif(is_array($obj)) {
-		$r = '';
 		foreach($obj as $item)
 			$r.= ILM::tohtml($obj);
 	} elseif(is_string($obj)) {

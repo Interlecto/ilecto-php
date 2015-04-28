@@ -13,7 +13,8 @@ class ILMaction extends ILMbrace {
 	}
 	function apply($tag) {
 		$text = implode(':',$this->parts);
-		$text = trim("$text {$this->value}");
+		if(!empty($this->value))
+			$text = trim("$text {$this->value}");
 		$tag->addattrib($this->code,$text);
 	}
 	function html($version=5) { return ''; }

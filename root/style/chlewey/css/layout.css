@@ -1,0 +1,15 @@
+body{display:block;position:relative;width:100%;max-width:1080px;margin:0 auto}
+#header{display:block;position:relative;width:100%;height:120px;padding:6px 5px 6px 130px;box-sizing:border-box;clear:both}
+	#logo{position:absolute;left:5px;top:5px;width:120px;height:120px;}
+	#siteid{height:72px;font-size:72px;line-height:72px;margin:0;padding:0}
+		#siteid a{background-color:transparent!important}
+#body{display:body;position:relative;width:100%;margin-top:48px;box-sizing:border-box;clear:both}
+#footer{display:body;position:relative;width:100%;box-sizing:border-box;margin-top:1em;font-size:0.93em;clear:both}
+#asides{display:body;position:absolute;left:0;right:0;top:120px;height:48px}
+	#search{display:body;position:absolute;width:35%;right:1%;top:5px;bottom:5px}
+	#menu{display:inline}
+	#links{display:inline}
+		#links ul{display:inline-block;list-style-type:none}
+		#links li{display:block;float:left;margin:0;padding:0}
+		#links a{padding:2px 0.5ex}
+header:after,.content:after,footer:after{display:block;content:'\a0';clear:both;height:0;overflow:hidden}

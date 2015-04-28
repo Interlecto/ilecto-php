@@ -105,4 +105,32 @@ class ILMdoc extends ILMbrace {
 	}
 }
 
+class ILMsite extends ILMbrace {
+	function text() {
+		$v = isset($this->value)? $this->value: null;
+		return il_get('site/'.implode('/',$this->parts),$v);
+	}
+}
+
+class ILMarea extends ILMbrace {
+	function html($version=5) {
+		$name = implode('-',$this->parts);
+		return html::$first->area_get($name,"{area:$name}");
+	}
+}
+
+class ILMmenu extends ILMarea {
+	function html($version=5) {
+		$name = implode('-',$this->parts);
+		return html::$first->menu_get($name,"{menu:$name}");
+	}
+}
+
+class ILMapplet extends ILMarea {
+	function html($version=5) {
+		$name = implode('-',$this->parts);
+		return html::$first->applet_get($name,"{applet:$name}");
+	}
+}
+
 ?>

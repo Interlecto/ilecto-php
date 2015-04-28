@@ -1,0 +1,74 @@
+/** style.css
+ **
+ **/
+
+/*** Flow Layout **/
+*{margin:0;padding:0;border:none;}
+body{position:relative;padding-top:35px;}
+#header{float:left;width:225px;height:225px}
+#sitename{height:100%;width:100%;}
+#sitename a{display:block;height:100%;width:100%;}
+#homelink{display:none;}
+#main{float:left;width:800px;height:auto;}
+#topbar{position:absolute;top:0;left:0;width:1250px;height:35px;}
+#topbar .xoxo{float:right;list-style:none;padding-right:225px;}
+#topbar .module{float:left;display:block;position:relative;width:120px;}
+#topbar .module h3{height:21px;padding:7px;}
+#topbar .module .menu{display:none;position:absolute;right:0;top:34px;padding:0;width:150px;list-style:none;}
+#topbar .module:hover .menu{display:block;}
+#topbar .module span.item{display:block;padding:3px 5px;}
+#topbar .module a{display:block;padding:2px 4px;border:outset 1px #666;}
+#topbar .module a:hover{display:block;padding:2px 4px;border:solid 1px #666;}
+#topbar #mainnav{position:absolute;float:none;left:0;}
+#topbar #mainnav h3{display:none;}
+#topbar #mainnav .menu{display:block;right:auto;left:0;width:225px;top:0;}
+#topbar #mainnav li{display:block;float:left;}
+#topbar #mainnav a{height:100%;width:100%;border:none;padding:0;}
+#topbar #mainnav a:hover{border:none;padding:0;}
+#topbar #mainnav li#top-1{width:175px;height:30px;position:absolute;top:0px;left:0px;}
+#topbar #mainnav li#top-2{width:78px;height:72px;position:absolute;top:35px;left:0px;}
+#topbar #mainnav li#top-3{width:140px;height:24px;position:absolute;top:35px;left:78px;}
+#topbar #mainnav li#top-4{width:140px;height:24px;position:absolute;top:59px;left:78px;}
+#topbar #mainnav li#top-5{width:36px;height:36px;position:absolute;top:84px;left:78px;}
+#topbar #mainnav li#top-6{width:36px;height:36px;position:absolute;top:84px;left:114px;}
+#topbar #mainnav li#top-7{width:36px;height:36px;position:absolute;top:84px;left:150px;}
+#topbar #mainnav li#top-8{width:50px;height:35px;position:absolute;top:0px;left:175px;}
+#topbar #mainnav li#top-9{width:50px;height:35px;position:absolute;top:0px;left:225px;}
+#sidebar{float:left;width:225px;}
+#sidebar .xoxo{list-style:none;}
+#sidebar .module{margin:1ex 5px;}
+#footer{clear:both;padding:0 225px;width:800px;}
+#footer div{margin:1ex 5px;}
+
+/*** Aspect ***/
+body{background:#eee;font-family:Helvetica, Arial, sans-serif;font-size:11pt;}
+#main{background:#fff;}
+#sitename{background:transparent url('images/sitelogo.png') no-repeat center top;}
+#sitename:hover{background-position:center bottom;}
+#sitename a{margin:0;padding:0;}
+#sitename a:hover{border:none;}
+#topbar{background:#000;color:#ccc;}
+#topbar :link,#topbar :visited{color:#fff;}
+#topbar .module h3{font-size:1em;font-weight:normal;vertical-align:bottom;}
+#topbar .module .menu{background:#333;}
+#topbar #mainnav .menu{background:transparent;}
+#topbar #mainnav li{background:transparent no-repeat center top;}
+#topbar #mainnav li:hover{background-position:center bottom;}
+#topbar #mainnav li#top-1{background-image:url('images/icon-dnet.png');}
+#topbar #mainnav li#top-2{background-image:url('images/icon-il.png');}
+#topbar #mainnav li#top-3{background-image:url('images/icon-blog.png');}
+#topbar #mainnav li#top-4{background-image:url('images/icon-dorg.png');}
+#topbar #mainnav li#top-5{background-image:url('images/icon-fb.png');}
+#topbar #mainnav li#top-6{background-image:url('images/icon-twt.png');}
+#topbar #mainnav li#top-7{background-image:url('images/icon-tmb.png');}
+#topbar #mainnav li#top-8{background-image:url('images/icon-cont.png');}
+#topbar #mainnav li#top-9{background-image:url('images/icon-feed.png');}
+#topbar #mainnav a{text-indent:-999em;font-size:0em;}
+#sidebar .module h3{font-size:1em;font-weight:normal;color:#999;}
+#footer{text-align:center;}
+
+.hidden{display:none;}
+.left {float:left;}
+.right{float:right;}
+.clear{clear:both;}
+.center{margin-left:auto;margin-right:auto;text-align:center;}
